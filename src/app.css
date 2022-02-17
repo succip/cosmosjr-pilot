@@ -1,0 +1,9 @@
+@import "https://js.arcgis.com/4.22/@arcgis/core/assets/esri/themes/dark/main.css";
+
+.layerList {
+  background-color: rgb(220, 220, 220);
+}
+
+.viewDiv {
+  height: 100vh;
+}
