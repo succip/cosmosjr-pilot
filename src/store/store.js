@@ -6,7 +6,7 @@ import { mapReducer } from "./reducers/mapReducer";
 
 const reducers = combineReducers({
   layers: layerReducer,
-  map: mapReducer,
+  mapView: mapReducer,
 });
 
 const store = createStore(reducers, {}, composeWithDevTools(applyMiddleware(thunk)));

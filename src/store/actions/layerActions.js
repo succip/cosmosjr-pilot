@@ -4,3 +4,10 @@ export const addLayer = (layer) => {
     payload: layer,
   };
 };
+
+export const addLegendLayer = (layer) => {
+  return {
+    type: "ADD_LEGEND_LAYER",
+    payload: layer,
+  };
+};

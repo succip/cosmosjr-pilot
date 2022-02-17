@@ -1,6 +1,6 @@
-export const addMap = (map) => {
+export const addMapView = (map) => {
   return {
-    type: "ADD_MAP",
+    type: "ADD_MAPVIEW",
     payload: map,
   };
 };
