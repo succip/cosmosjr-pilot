@@ -1,5 +1,7 @@
 import ArcGISMap from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
+import store from "../store/store";
+import { addLayer } from "../store/actions/layerActions";
 
 export const webmap = new ArcGISMap({
   basemap: "streets-vector",

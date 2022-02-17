@@ -1,13 +1,12 @@
-import { useContext } from "react";
-import { AppContext } from "../store/AppContext";
+import { useSelector } from "react-redux";
 
 const LayerList = () => {
-  const { state } = useContext(AppContext);
+  const layerStore = useSelector((state) => state.layers);
   return (
     <div className="layerList">
       <h3>Map Layers</h3>
-      {state.layerList.map((layer) => {
-        return <p key={layer.id}>{layer.name}</p>;
+      {layerStore.layers.map((layer) => {
+        return <p key={layer}>{layer}</p>;
       })}
     </div>
   );
