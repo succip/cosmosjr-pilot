@@ -1,5 +1,5 @@
 const initialState = {
-  layers: ["first", "second"],
+  layers: [],
 };
 
 const layerReducer = (state = initialState, { type, payload }) => {

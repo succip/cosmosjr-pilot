@@ -1,21 +1,16 @@
-import React, { useRef, useEffect, useContext } from "react";
+import React, { useRef, useEffect } from "react";
 import { initialize } from "../js/webmap";
-import { statesService } from "../services/mapServices";
 import { useDispatch } from "react-redux";
-import { addLayer } from "../store/actions/layerActions";
+import { addMap } from "../store/actions/mapActions";
 
 const MapFrame = () => {
   const mapRef = useRef(null);
-  const dispatch = useDispatch();
+  const mapDispatch = useDispatch();
 
   useEffect(() => {
     if (mapRef.current) {
-      const mapView = initialize(mapRef.current);
-      mapView.map.add(statesService);
-
-      mapView.on("click", () => {
-        dispatch(addLayer("layer clicked"));
-      });
+      const view = initialize(mapRef.current);
+      mapDispatch(addMap(view));
     }
   }, []);
 

@@ -7,6 +7,10 @@ export const webmap = new ArcGISMap({
   basemap: "streets-vector",
 });
 
+webmap.layers.on("change", ({ added }) => {
+  store.dispatch(addLayer(added[0].title));
+});
+
 const mapViewParams = {
   map: webmap,
   zoom: 6,
