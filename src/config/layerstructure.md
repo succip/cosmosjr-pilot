@@ -26,3 +26,6 @@ mapServiceSettings = [
         type: "Dynamic"
     }
 ]
+
+- getNodeIds() combs the UI tree to push all child nodes to nodeIdList[]
+- nodeIdList[] is used in getNodeByIdX()
