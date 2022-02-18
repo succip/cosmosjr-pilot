@@ -1,12 +1,12 @@
-import MapLegend from "./components/MapLegend";
 import MapFrame from "./components/MapFrame";
+import Controlbar from "./components/ControlBar";
 import "./app.css";
 
 function App() {
   return (
     <div className="row g-0">
       <div className="col-2">
-        <MapLegend />
+        <Controlbar />
       </div>
       <div className="col-10">
         <MapFrame />

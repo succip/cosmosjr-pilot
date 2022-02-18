@@ -24,6 +24,7 @@ view.on("layerview-create", ({ layer }) => {
   if (title === "Drainage") {
     layer.allSublayers.forEach((sublayer) => {
       console.log(sublayer.title, sublayer.minScale, sublayer.maxScale);
+      store.dispatch(addLegendLayer({ layer: sublayer, title: sublayer.title }));
     });
   }
 });

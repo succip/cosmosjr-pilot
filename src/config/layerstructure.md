@@ -27,5 +27,5 @@ mapServiceSettings = [
     }
 ]
 
-- getNodeIds() combs the UI tree to push all child nodes to nodeIdList[]
+- getNodeIds() combs the UI tree to push all child node ids to nodeIdList[], things like "Lots (Yellow),Lots"
 - nodeIdList[] is used in getNodeByIdX()
