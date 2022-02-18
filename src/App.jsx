@@ -1,4 +1,3 @@
-import { useState } from "react";
 import MapLegend from "./components/MapLegend";
 import MapFrame from "./components/MapFrame";
 import "./app.css";
