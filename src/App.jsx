@@ -1,18 +1,16 @@
 import { useState } from "react";
-import LayerList from "./components/LayerList";
+import MapLegend from "./components/MapLegend";
 import MapFrame from "./components/MapFrame";
 import "./app.css";
 
 function App() {
-  const [layerList, setLayerList] = useState([]);
-
   return (
     <div className="row g-0">
       <div className="col-2">
-        <LayerList layerList={layerList} />
+        <MapLegend />
       </div>
       <div className="col-10">
-        <MapFrame layerList={layerList} setLayerList={setLayerList} />
+        <MapFrame />
       </div>
     </div>
   );

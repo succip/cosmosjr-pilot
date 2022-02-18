@@ -18,8 +18,18 @@ export const map = new ArcGISMap();
 
 export let view = new MapView({ map, extent });
 
-view.on("layerview-create", (event) => {
-  console.log(event.layer.title, event.layer.allSublayers.length);
+view.on("layerview-create", ({ layer }) => {
+  const title = layer.title;
+  console.log("layer id " + layer.url);
+  store.dispatch(addLegendLayer({ layer, title }));
+  if (title === "Drainage") {
+    const sublayers = layer.allSublayers.items;
+
+    console.log(sublayers[11].title);
+    // layer.allSublayers.forEach((sublayer) => {
+    //   console.log(sublayer.title);
+    // });
+  }
 });
 
 settings.mapServices.forEach(({ id, url }) => {
