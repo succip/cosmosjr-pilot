@@ -21,14 +21,16 @@ export let view = new MapView({ map, extent });
 view.on("layerview-create", ({ layer }) => {
   const title = layer.title;
   store.dispatch(addLegendLayer({ layer, title }));
-  if (title === "Drainage") {
-    layer.allSublayers.forEach((sublayer) => {
-      console.log(sublayer.title, sublayer.minScale, sublayer.maxScale);
-      store.dispatch(addLegendLayer({ layer: sublayer, title: sublayer.title }));
-    });
-  }
+
+  layer.allSublayers.forEach((sublayer) => {
+    // console.log(sublayer.title, sublayer.minScale, sublayer.maxScale);
+    store.dispatch(addLegendLayer({ layer: sublayer, title: sublayer.title }));
+  });
 });
 
+view.on("click", () => {
+  console.log(view.scale);
+});
 settings.mapServices.forEach(({ id, url }) => {
   const mapService = new MapImageLayer({
     id,
