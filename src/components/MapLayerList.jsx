@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 const MapLayerList = () => {
-  const { legendLayers } = useSelector((state) => state.layers);
+  const { allLayers } = useSelector((state) => state.layers);
 
   return (
     <div>
