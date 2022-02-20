@@ -6,7 +6,7 @@ const MapLayerList = () => {
 
   return (
     <div>
-      <h3>Layer List</h3>
+      <p className="h4">Layer List</p>
     </div>
   );
 };

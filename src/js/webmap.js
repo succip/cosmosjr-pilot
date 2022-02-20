@@ -28,9 +28,6 @@ view.on("layerview-create", ({ layer }) => {
   });
 });
 
-view.on("click", () => {
-  console.log(view.scale);
-});
 settings.mapServices.forEach(({ id, url }) => {
   const mapService = new MapImageLayer({
     id,
@@ -40,6 +37,17 @@ settings.mapServices.forEach(({ id, url }) => {
   map.add(mapService);
 });
 
+view.on("click", () => {
+  console.log(view.scale);
+  const curMapLayers = map.layers;
+
+  curMapLayers.forEach((lyr) => {
+    const testLyr = lyr.allSublayers.items[11];
+    console.log(`${testLyr.title}: ${testLyr.visible.toString()}`);
+    testLyr.visible = true;
+    console.log(`${testLyr.title}: ${testLyr.visible.toString()}`);
+  });
+});
 export const initialize = (container) => {
   view.container = container;
   return view;

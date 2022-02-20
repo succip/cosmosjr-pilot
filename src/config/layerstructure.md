@@ -1,3 +1,5 @@
+1. How does the basemap show past 25k if all the map services have a minScale of 25k
+
 temporary research for finding out what attributes belong to what layer lists
 
 mapServiceLayerIds = [
