@@ -11,13 +11,8 @@ export let view = new MapView({ map, extent: settings.startingExtent });
 
 view.on("layerview-create", ({ layer }) => {
   layer.allSublayers.forEach((sublayer) => {
-    // console.log(sublayer.title, sublayer.minScale, sublayer.maxScale);
-    store.dispatch(addLayer({ layer: sublayer }));
+    store.dispatch(addLayer(sublayer));
   });
-});
-
-view.on("layerview-create", ({ layerView }) => {
-  const evt = layerView.layer;
 });
 
 const addOrthoServices = () => {
@@ -50,18 +45,14 @@ const addMapServices = () => {
   });
 };
 
-addOrthoServices();
-
-setTimeout(() => {
-  addMapServices();
-}, 3000);
+addMapServices();
 
 view.on("click", () => {
   console.log(view.scale);
-  const drnLayers = map.allLayers.items[1].allSublayers;
-  for (const layer of drnLayers) {
-    console.log(layer.title, layer.minScale);
-  }
+  const allSublayers = map.layers.items[0].allSublayers;
+  allSublayers.forEach((sublayer) => {
+    console.log(sublayer);
+  });
 });
 export const initialize = (container) => {
   view.container = container;
