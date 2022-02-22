@@ -4,6 +4,7 @@ import MapImageLayer from "@arcgis/core/layers/MapImageLayer";
 import settings from "../config/Settings";
 import store from "../store/store";
 import { addLayer } from "../store/actions/layerActions";
+import { useSelector } from "react-redux";
 
 export const map = new ArcGISMap();
 
@@ -11,7 +12,13 @@ export let view = new MapView({ map, extent: settings.startingExtent });
 
 view.on("layerview-create", ({ layer }) => {
   layer.allSublayers.forEach((sublayer) => {
-    store.dispatch(addLayer(sublayer));
+    const { minScale, maxScale } = sublayer;
+    store.dispatch(
+      addLayer({
+        layer: sublayer,
+        inScale: false,
+      })
+    );
   });
 });
 
@@ -49,11 +56,23 @@ addMapServices();
 
 view.on("click", () => {
   console.log(view.scale);
-  const allSublayers = map.layers.items[0].allSublayers;
-  allSublayers.forEach((sublayer) => {
-    console.log(sublayer);
+  const { layers } = store.getState();
+  console.log(view.scale);
+  layers.allLayers.forEach((mapLayer) => {
+    console.log(mapLayer.layer.title, mapLayer.inScale);
   });
 });
+
+const onViewStationary = () => {
+  const mapScale = view.scale;
+  const { layers } = store.getState();
+  layers.allLayers.forEach((mapLayer) => {
+    mapLayer.inScale = mapScale < mapLayer.maxScale && mapScale > mapLayer.minScale;
+  });
+};
+
+view.watch("stationary", onViewStationary);
+
 export const initialize = (container) => {
   view.container = container;
   return view;

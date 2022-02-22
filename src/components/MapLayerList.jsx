@@ -7,8 +7,8 @@ const MapLayerList = () => {
   return (
     <div>
       <p className="h4">Layer List</p>
-      {allLayers.map((layer) => {
-        return <LayerListItem key={layer.title} name={layer.title} visible={layer.visible} />;
+      {allLayers.map((mapLayer) => {
+        return <LayerListItem key={mapLayer.layer.title} mapLayer={mapLayer} />;
       })}
     </div>
   );
