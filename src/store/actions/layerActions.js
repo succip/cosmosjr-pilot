@@ -5,6 +5,13 @@ export const addLayer = (layer) => {
   };
 };
 
+export const updateLayerInscale = ({ ulid, inScale }) => {
+  return {
+    type: "UPDATE_LAYER_INSCALE",
+    payload: { ulid, inScale },
+  };
+};
+
 export const addLegendLayer = (layer) => {
   return {
     type: "ADD_LEGEND_LAYER",
