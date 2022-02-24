@@ -10,7 +10,7 @@ const LayerListItem = ({ mapLayer }) => {
 
   return (
     <FormGroup>
-      <FormControlLabel control={<Checkbox onChange={handleChange} />} label={layer.title} />
+      <FormControlLabel disabled={!mapLayer.inScale} control={<Checkbox onChange={handleChange} />} label={layer.title} />
     </FormGroup>
   );
 };

@@ -8,7 +8,7 @@ const MapLayerList = () => {
     <div>
       <p className="h4">Layer List</p>
       {allLayers.map((mapLayer) => {
-        return <LayerListItem key={mapLayer.layer.title} mapLayer={mapLayer} />;
+        return <LayerListItem key={mapLayer.ulid} mapLayer={mapLayer} />;
       })}
     </div>
   );

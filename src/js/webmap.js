@@ -12,7 +12,6 @@ export let view = new MapView({ map, extent: settings.startingExtent });
 
 view.on("layerview-create", ({ layer }) => {
   layer.allSublayers.forEach((sublayer) => {
-    const { minScale, maxScale } = sublayer;
     const nanoid = customAlphabet("1234567890abcdef", 6);
     store.dispatch(
       addLayer({
@@ -54,11 +53,16 @@ const addMapServices = () => {
   });
 };
 
+addOrthoServices();
 addMapServices();
 
 view.on("click", () => {
+  console.log(view.scale);
+});
+
+const onViewStationary = () => {
+  console.log(view.scale);
   const mapScale = view.scale;
-  console.log("-------");
   const { layers } = store.getState();
   layers.allLayers.forEach((mapLayer) => {
     const maxScale = mapLayer.layer.maxScale;
@@ -66,24 +70,16 @@ view.on("click", () => {
     let inScale;
 
     if ((mapScale < minScale && mapScale > maxScale) || (minScale === 0 && maxScale === 0)) {
-      inScale = false;
-    } else {
       inScale = true;
+    } else {
+      inScale = false;
     }
-    console.log(mapLayer.layer.title, mapScale, mapLayer.layer.maxScale, mapLayer.layer.minScale, inScale);
-    // console.log(`${mapLayer.layer.title}: ${mapLayer.inScale} - ${inScale}`);
-    // updateLayerInscale({ ulid: mapLayer.ulid, inScale });
-  });
-});
 
-const onViewStationary = () => {
-  // const mapScale = view.scale;
-  // const { layers } = store.getState();
-  // layers.allLayers.forEach((mapLayer) => {
-  //   const inScale = mapScale < mapLayer.layer.maxScale && mapScale > mapLayer.layer.minScale;
-  //   console.log(mapLayer.layer.title, inScale);
-  //   updateLayerInscale({ ulid: mapLayer.ulid, inScale });
-  // });
+    if (inScale !== mapLayer.inScale) {
+      console.log("layer updated");
+      store.dispatch(updateLayerInscale({ ulid: mapLayer.ulid, inScale }));
+    }
+  });
 };
 
 view.watch("stationary", onViewStationary);
