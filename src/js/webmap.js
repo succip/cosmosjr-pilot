@@ -11,16 +11,23 @@ export const map = new ArcGISMap();
 
 export let view = new MapView({ map, extent: settings.startingExtent });
 
+let curLayers = [];
+
 view.on("layerview-create", ({ layer }) => {
   layer.allSublayers.forEach((sublayer) => {
     const nanoid = customAlphabet("1234567890abcdef", 6);
-    store.dispatch(
-      addLayer({
-        layer: sublayer,
-        inScale: false,
-        ulid: nanoid(),
-      })
-    );
+    curLayers.push({
+      layer: sublayer,
+      inScale: false,
+      title: sublayer.title,
+      ulid: nanoid(),
+    });
+    // store.dispatch(
+    //   addLayer({
+    //     layer: sublayer,
+    //     inScale: false,
+    //     ulid: nanoid(),
+    //   })
   });
 });
 
@@ -49,7 +56,7 @@ const addMapServices = () => {
         visible: true,
       });
       map.add(addMapService);
-      console.log(`Sublayer added: ${id}`);
+      console.log(`Map service added: ${id}`);
     }
   });
 };
@@ -57,11 +64,21 @@ const addMapServices = () => {
 addMapServices();
 
 view.on("click", () => {
-  console.log(view.scale);
+  const iterate = (obj) => {
+    Object.keys(obj).forEach((key) => {
+      if (typeof obj[key] === "object") {
+        if (obj[key].leaf) {
+          const matchedLayer = curLayers.find((layer) => layer.layer.title === obj[key].name);
+          if (matchedLayer) store.dispatch(addLayer(matchedLayer));
+        }
+        iterate(obj[key]);
+      }
+    });
+  };
+  iterate(LayerStore);
 });
 
 const onViewStationary = () => {
-  console.log(view.scale);
   const mapScale = view.scale;
   const { layers } = store.getState();
   layers.allLayers.forEach((mapLayer) => {
@@ -76,7 +93,7 @@ const onViewStationary = () => {
     }
 
     if (inScale !== mapLayer.inScale) {
-      console.log("layer updated");
+      console.log("Layer updated");
       store.dispatch(updateLayerInscale({ ulid: mapLayer.ulid, inScale }));
     }
   });
