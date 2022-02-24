@@ -5,6 +5,7 @@ import settings from "../config/Settings";
 import store from "../store/store";
 import { addLayer, updateLayerInscale } from "../store/actions/layerActions";
 import { customAlphabet } from "nanoid";
+import LayerStore from "../config/LayerStore";
 
 export const map = new ArcGISMap();
 
@@ -53,7 +54,6 @@ const addMapServices = () => {
   });
 };
 
-addOrthoServices();
 addMapServices();
 
 view.on("click", () => {
