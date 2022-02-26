@@ -3,11 +3,11 @@ import { useSelector } from "react-redux";
 import LayerListItem from "./LayerListItem";
 
 const MapLayerList = () => {
-  const { allLayers } = useSelector((state) => state.layers);
+  const { mapLayers } = useSelector((state) => state.layers);
   return (
     <div>
       <p className="h4">Layer List</p>
-      {allLayers.map((mapLayer) => {
+      {mapLayers.map((mapLayer) => {
         return <LayerListItem key={mapLayer.ulid} mapLayer={mapLayer} />;
       })}
     </div>

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { initialize } from "../js/webmap";
+import { initialize } from "../js/Webmap";
 import { useDispatch } from "react-redux";
 import { addMapView } from "../store/actions/mapActions";
 

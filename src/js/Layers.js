@@ -1,7 +1,7 @@
 import settings from "../config/Settings";
 import MapImageLayer from "@arcgis/core/layers/MapImageLayer";
 import store from "../store/store";
-import { updateLayerInscale } from "../store/actions/layerActions";
+import { addMapLayer, updateLayerInscale } from "../store/actions/layerActions";
 
 export const addOrthoServices = (map) => {
   settings.mapServices.forEach((mapService) => {
@@ -18,7 +18,7 @@ export const addOrthoServices = (map) => {
   });
 };
 
-export const addMapServices = (map) => {
+export const addMapServices = async (map) => {
   settings.mapServices.forEach((mapService) => {
     const { id, url, baseMapService } = mapService;
     if (!baseMapService) {
@@ -52,4 +52,15 @@ export const updateLayerListInScale = (mapScale) => {
   });
 };
 
-export const buildLayerList = () => {};
+export const buildMapLayers = (layerStore) => {
+  const { layers } = store.getState();
+  Object.keys(layerStore).forEach((key) => {
+    if (typeof layerStore[key] === "object") {
+      if (layerStore[key].leaf) {
+        const matchedLayer = layers.allLayers.find((mapLayer) => mapLayer.title === layerStore[key].name);
+        if (matchedLayer) store.dispatch(addMapLayer(matchedLayer));
+      }
+      buildMapLayers(layerStore[key]);
+    }
+  });
+};
