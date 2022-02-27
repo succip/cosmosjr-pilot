@@ -17,7 +17,12 @@ const onAddServiceLayer = ({ allSublayers }) => {
       })
     );
   });
-  buildMapLayers(LayerStore);
+
+  if (allSublayers.length > 100) {
+    console.log("basemap added");
+  } else {
+    buildMapLayers(LayerStore);
+  }
 };
 
 export const addOrthoServices = (map) => {
