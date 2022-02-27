@@ -1,33 +1,53 @@
 import settings from "../config/Settings";
 import MapImageLayer from "@arcgis/core/layers/MapImageLayer";
 import store from "../store/store";
-import { addMapLayer, updateLayerInscale } from "../store/actions/layerActions";
+import LayerStore from "../config/LayerStore";
+import { customAlphabet } from "nanoid";
+import { addLayer, addMapLayer, updateLayerInscale } from "../store/actions/layerActions";
+
+const onAddServiceLayer = ({ allSublayers }) => {
+  allSublayers.items.forEach((sublayer) => {
+    const nanoid = customAlphabet("1234567890abcdef", 6);
+    store.dispatch(
+      addLayer({
+        layer: sublayer,
+        inScale: false,
+        title: sublayer.title,
+        ulid: nanoid(),
+      })
+    );
+  });
+  buildMapLayers(LayerStore);
+};
 
 export const addOrthoServices = (map) => {
   settings.mapServices.forEach((mapService) => {
     const { id, url, baseMapService } = mapService;
     if (baseMapService) {
-      const addMapService = new MapImageLayer({
+      const serviceLayer = new MapImageLayer({
         id,
         url,
         visible: true,
       });
-      map.add(addMapService);
+      serviceLayer.when(onAddServiceLayer);
+
+      map.add(serviceLayer);
       console.log(`Ortho service added: ${id}`);
     }
   });
 };
 
-export const addMapServices = async (map) => {
+export const addMapServices = (map) => {
   settings.mapServices.forEach((mapService) => {
     const { id, url, baseMapService } = mapService;
     if (!baseMapService) {
-      const addMapService = new MapImageLayer({
+      const serviceLayer = new MapImageLayer({
         id,
         url,
         visible: true,
       });
-      map.add(addMapService);
+      serviceLayer.when(onAddServiceLayer);
+      map.add(serviceLayer);
       console.log(`Map service added: ${id}`);
     }
   });
