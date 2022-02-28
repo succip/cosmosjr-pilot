@@ -9,6 +9,19 @@ const MapLayerList = () => {
     <div>
       <p className="h4">Layer List</p>
 
+      {LayerStore.map((group) => {
+        return (
+          <div key={group.name}>
+            <h3 key={group.name}>{group.name}</h3>
+            {group.children.map((child) => {
+              if (child.leaf) {
+                return <p key={child.name}>{child.name}</p>;
+              }
+            })}
+          </div>
+        );
+      })}
+
       {mapLayers.map((mapLayer) => {
         return <LayerListItem key={mapLayer.ulid} mapLayer={mapLayer} />;
       })}
