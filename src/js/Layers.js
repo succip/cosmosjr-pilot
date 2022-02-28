@@ -5,8 +5,8 @@ import LayerStore from "../config/LayerStore";
 import { customAlphabet } from "nanoid";
 import { addLayer, addMapLayer, updateLayerInscale } from "../store/actions/layerActions";
 
-const onAddServiceLayer = ({ allSublayers }) => {
-  allSublayers.items.forEach((sublayer) => {
+const onAddServiceLayer = (layer) => {
+  layer.allSublayers.items.forEach((sublayer) => {
     const nanoid = customAlphabet("1234567890abcdef", 6);
     store.dispatch(
       addLayer({
@@ -17,12 +17,7 @@ const onAddServiceLayer = ({ allSublayers }) => {
       })
     );
   });
-
-  if (allSublayers.length > 100) {
-    console.log("basemap added");
-  } else {
-    buildMapLayers(LayerStore);
-  }
+  if (layer.id !== "BaseMap") buildMapLayers(LayerStore);
 };
 
 export const addOrthoServices = (map) => {
@@ -60,7 +55,7 @@ export const addMapServices = (map) => {
 
 export const updateLayerListInScale = (mapScale) => {
   const { layers } = store.getState();
-  layers.allLayers.forEach((mapLayer) => {
+  layers.mapLayers.forEach((mapLayer) => {
     const maxScale = mapLayer.layer.maxScale;
     const minScale = mapLayer.layer.minScale;
     let inScale;

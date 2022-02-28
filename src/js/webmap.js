@@ -12,9 +12,9 @@ const onViewStationary = () => {
   updateLayerListInScale(view.scale);
 };
 
-view.on("click", () => {
-  buildMapLayers(LayerStore);
-});
+// view.on("click", () => {
+//   buildMapLayers(LayerStore);
+// });
 
 addOrthoServices(map);
 addMapServices(map);
