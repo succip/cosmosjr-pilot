@@ -45,3 +45,5 @@ export const buildMapLayers = (layerStore) => {
     }
   });
 };
+
+https://stackoverflow.com/questions/61067142/how-to-map-an-array-with-unknown-nesting-levels/61067404#61067404
