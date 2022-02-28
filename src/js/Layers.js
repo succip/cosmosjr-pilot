@@ -8,16 +8,15 @@ import { addLayer, addMapLayer, updateLayerInscale } from "../store/actions/laye
 const onAddServiceLayer = (layer) => {
   layer.allSublayers.items.forEach((sublayer) => {
     const nanoid = customAlphabet("1234567890abcdef", 6);
-    store.dispatch(
-      addLayer({
-        layer: sublayer,
-        inScale: false,
-        title: sublayer.title,
-        ulid: nanoid(),
-      })
-    );
+    const newLayer = {
+      layer: sublayer,
+      inScale: false,
+      title: sublayer.title,
+      ulid: nanoid(),
+    };
+    store.dispatch(addLayer(newLayer));
+    checkMapLayers(LayerStore, newLayer);
   });
-  if (layer.id !== "BaseMap") buildMapLayers(LayerStore);
 };
 
 export const addOrthoServices = (map) => {
@@ -72,31 +71,13 @@ export const updateLayerListInScale = (mapScale) => {
   });
 };
 
-export const buildMapLayers = (layerStore) => {
-  const { layers } = store.getState();
+export const checkMapLayers = (layerStore = LayerStore, queryLayer = {}) => {
   Object.keys(layerStore).forEach((key) => {
     if (typeof layerStore[key] === "object") {
       if (layerStore[key].leaf) {
-        const matchedLayer = layers.allLayers.find((mapLayer) => mapLayer.title === layerStore[key].name);
-        if (matchedLayer) store.dispatch(addMapLayer(matchedLayer));
+        if (queryLayer.title === layerStore[key].name) store.dispatch(addMapLayer(queryLayer));
       }
-      buildMapLayers(layerStore[key]);
+      checkMapLayers(layerStore[key], queryLayer);
     }
   });
-};
-
-export const checkMapLayers = (layerStore, queryLayers = {}) => {
-  const { layers } = store.getState();
-  if (queryLayers) {
-    Object.keys(layerStore).forEach((key) => {
-      if (typeof layerStore[key] === "object") {
-        if (layerStore[key].leaf) {
-          const matchedLayer = layers.allLayers.find((mapLayer) => mapLayer.title === layerStore[key].name);
-          if (matchedLayer) store.dispatch(addMapLayer(matchedLayer));
-        }
-        buildMapLayers(layerStore[key]);
-      }
-    });
-  } else {
-  }
 };

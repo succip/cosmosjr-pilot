@@ -24,6 +24,15 @@ const LayerStore = [
       },
     ],
   },
+  {
+    name: "Images",
+    children: [
+      {
+        name: "Aerial Photo April 2021",
+        leaf: true,
+      },
+    ],
+  },
 ];
 
 export default LayerStore;

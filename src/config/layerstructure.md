@@ -32,3 +32,16 @@ mapServiceSettings = [
 
 - getNodeIds() combs the UI tree to push all child node ids to nodeIdList[], things like "Lots (Yellow),Lots"
 - nodeIdList[] is used in getNodeByIdX()
+
+export const buildMapLayers = (layerStore) => {
+  const { layers } = store.getState();
+  Object.keys(layerStore).forEach((key) => {
+    if (typeof layerStore[key] === "object") {
+      if (layerStore[key].leaf) {
+        const matchedLayer = layers.allLayers.find((mapLayer) => mapLayer.title === layerStore[key].name);
+        if (matchedLayer) store.dispatch(addMapLayer(matchedLayer));
+      }
+      buildMapLayers(layerStore[key]);
+    }
+  });
+};
