@@ -84,3 +84,19 @@ export const buildMapLayers = (layerStore) => {
     }
   });
 };
+
+export const checkMapLayers = (layerStore, queryLayers = {}) => {
+  const { layers } = store.getState();
+  if (queryLayers) {
+    Object.keys(layerStore).forEach((key) => {
+      if (typeof layerStore[key] === "object") {
+        if (layerStore[key].leaf) {
+          const matchedLayer = layers.allLayers.find((mapLayer) => mapLayer.title === layerStore[key].name);
+          if (matchedLayer) store.dispatch(addMapLayer(matchedLayer));
+        }
+        buildMapLayers(layerStore[key]);
+      }
+    });
+  } else {
+  }
+};

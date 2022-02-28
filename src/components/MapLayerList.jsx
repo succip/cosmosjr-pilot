@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import LayerListItem from "./LayerListItem";
-import LayerStore from "../config/LayerStore";
 
 const MapLayerList = () => {
   const { mapLayers } = useSelector((state) => state.layers);
