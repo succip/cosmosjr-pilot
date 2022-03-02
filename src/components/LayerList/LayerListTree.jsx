@@ -19,7 +19,7 @@ const getTreeItemsFromData = (treeItems) => {
     if (treeItemData.children && treeItemData.children.length > 0) {
       children = getTreeItemsFromData(treeItemData.children);
     }
-    return <TreeItem nodeId={treeItemData.id} key={treeItemData.id} label={treeItemData.name} children={children} />;
+    return mapLayer ? <TreeItem nodeId={treeItemData.id} key={treeItemData.id} label={<LayerListItem mapLayer={mapLayer} />} children={children} /> : <TreeItem nodeId={treeItemData.id} key={treeItemData.id} label={treeItemData.name} children={children} />;
   });
 };
 

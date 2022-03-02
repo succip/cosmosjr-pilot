@@ -7,11 +7,6 @@ const LayerStore = [
     children: [
       {
         id: nanoid(),
-        name: "Drainage Casings and Sleeves",
-        leaf: true,
-      },
-      {
-        id: nanoid(),
         name: "Drainage Catch Basins",
         leaf: true,
       },
