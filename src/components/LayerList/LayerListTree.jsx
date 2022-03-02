@@ -2,7 +2,6 @@ import TreeItem from "@mui/lab/TreeItem";
 import TreeView from "@mui/lab/TreeView";
 import FolderIcon from "@mui/icons-material/Folder";
 import FolderOpenIcon from "@mui/icons-material/FolderOpen";
-import React from "react";
 
 const getTreeItemsFromData = (treeItems) => {
   return treeItems.map((treeItemData) => {
