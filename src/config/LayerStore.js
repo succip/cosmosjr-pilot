@@ -3,6 +3,22 @@ const nanoid = customAlphabet("1234567890abcdef", 6);
 const LayerStore = [
   {
     id: nanoid(),
+    name: "Property",
+    children: [
+      {
+        id: nanoid(),
+        name: "Lots",
+        leaf: true,
+      },
+      {
+        id: nanoid(),
+        name: "Lot Numbers (black)",
+        leaf: true,
+      },
+    ],
+  },
+  {
+    id: nanoid(),
     name: "Drainage",
     children: [
       {

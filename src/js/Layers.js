@@ -81,3 +81,14 @@ export const checkMapLayers = (layerStore = LayerStore, queryLayer = {}) => {
     }
   });
 };
+
+export const getMapLayerByTitle = (mapLayerTitle) => {
+  const { layers } = store.getState();
+  const { mapLayers } = layers;
+  return mapLayers.find((mapLayer) => mapLayer.title === mapLayerTitle);
+};
+
+export const clearVisibleLayers = () => {
+  const { mapView } = store.getState();
+  console.log(mapView);
+};

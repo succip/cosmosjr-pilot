@@ -18,8 +18,13 @@ addMapServices(map);
 view.watch("stationary", onViewStationary);
 
 view.on("click", () => {
-  const { layers } = store.getState();
-  console.log(layers.mapLayers);
+  const { mapView } = store.getState();
+  const map = mapView.mapView.map;
+  const allLayers = map.allLayers.items;
+
+  allLayers.forEach((layer) => {
+    layer.visible = false;
+  });
 });
 
 export const initialize = (container) => {

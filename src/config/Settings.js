@@ -5,7 +5,8 @@ const settings = {
   appName: "COSMOS",
   version: "4.5.1",
   serverName: "cosmos.surrey.ca",
-  geometryServerurl: "https://gisservices.surrey.ca/arcgis/rest/services/Utilities/Geometry/GeometryServer",
+  geometryServerurl:
+    "https://gisservices.surrey.ca/arcgis/rest/services/Utilities/Geometry/GeometryServer",
   currentYearAerialLayerName: "Aerial Photo April 2021",
   aerialStreetViewTools: "Aerial,StreetView,Pictomerty",
   pictometryToolurl: "https://cosmos.surrey.ca/external/Pictometry/PictoViewer.aspx?",
@@ -35,7 +36,15 @@ const settings = {
   surreyBoundary: "504000, 5425000, 524000, 5455000",
   surreyBoundaryLatLon: "-123.4789, 48.627, -122.004, 49.496,",
   dataServiceurl: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/",
-  noIdentifyLayerNames: ["Road Names", "Building Shadow", "Aerial Photo", "(labels)", "Intersection Search", "Address Search", "Road Surface"],
+  noIdentifyLayerNames: [
+    "Road Names",
+    "Building Shadow",
+    "Aerial Photo",
+    "(labels)",
+    "Intersection Search",
+    "Address Search",
+    "Road Surface",
+  ],
   startingExtent: new Extent({
     xmin: 505e3,
     ymin: 5425e3,
@@ -47,6 +56,13 @@ const settings = {
     {
       id: "BaseMap",
       url: "https://gisservices.surrey.ca/arcgis/rest/services/Base_Map/MapServer/",
+      type: "Dynamic",
+      baseMapService: true,
+    },
+    {
+      id: "Lots",
+      url: "https://gisservices.surrey.ca/arcgis/rest/services/Lots/MapServer/",
+      VisibleLayers: "",
       type: "Dynamic",
       baseMapService: true,
     },
