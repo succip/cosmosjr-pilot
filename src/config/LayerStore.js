@@ -2,160 +2,206 @@ import { customAlphabet } from "nanoid";
 const nanoid = customAlphabet("1234567890abcdef", 6);
 const LayerStore = [
   {
-    id: nanoid(),
     name: "Property",
+    id: nanoid(),
     children: [
       {
-        id: nanoid(),
         name: "Addresses (black)",
+        id: nanoid(),
         leaf: true,
       },
       {
-        id: nanoid(),
         name: "Addresses (yellow)",
+        id: nanoid(),
         leaf: true,
       },
       {
-        id: nanoid(),
         name: "Buildings",
+        id: nanoid(),
         leaf: true,
       },
       {
-        id: nanoid(),
         name: "Easements (black)",
+        id: nanoid(),
         leaf: true,
       },
       {
-        id: nanoid(),
         name: "Easements (yellow)",
+        id: nanoid(),
         leaf: true,
       },
       {
-        id: nanoid(),
         name: "Legal Plan Boundaries (all)",
+        id: nanoid(),
         leaf: true,
       },
       {
-        id: nanoid(),
         name: "Lot Dimensions",
+        id: nanoid(),
         leaf: true,
       },
       {
-        id: nanoid(),
         name: "Lot Hooks",
+        id: nanoid(),
         leaf: true,
       },
       {
-        id: nanoid(),
         name: "Lot Numbers (black)",
+        id: nanoid(),
         leaf: true,
       },
       {
-        id: nanoid(),
         name: "Lot Numbers (yellow)",
+        id: nanoid(),
         leaf: true,
       },
       {
-        id: nanoid(),
         name: "Lots",
+        id: nanoid(),
         leaf: true,
       },
       {
-        id: nanoid(),
         name: "Lots (Outline)",
+        id: nanoid(),
         leaf: true,
       },
       {
-        id: nanoid(),
         name: "Lots (Yellow)",
+        id: nanoid(),
         leaf: true,
       },
       {
-        id: nanoid(),
         name: "Posting Plans",
+        id: nanoid(),
         leaf: true,
       },
       {
-        id: nanoid(),
         name: "Rights of Way (black)",
+        id: nanoid(),
         leaf: true,
       },
       {
-        id: nanoid(),
         name: "Rights of Way (yellow)",
+        id: nanoid(),
         leaf: true,
       },
       {
-        id: nanoid(),
         name: "Surrey City Boundary",
+        id: nanoid(),
         leaf: true,
       },
       {
-        id: nanoid(),
         name: "Surrey Communities",
+        id: nanoid(),
         leaf: true,
       },
       {
-        id: nanoid(),
         name: "Surrey Map Index",
+        id: nanoid(),
         leaf: true,
       },
       {
-        id: nanoid(),
         name: "Survey Monuments",
+        id: nanoid(),
         leaf: true,
       },
       {
-        id: nanoid(),
         name: "Water courses",
+        id: nanoid(),
         leaf: true,
       },
     ],
   },
   {
+    name: "Community Services",
     id: nanoid(),
-    name: "Drainage",
     children: [
       {
+        name: "Garbage and Recycling",
         id: nanoid(),
-        name: "Drainage Catch Basins",
-        leaf: true,
-      },
-      {
-        id: nanoid(),
-        name: "Drainage Flow Arrows",
-        leaf: true,
-      },
-      {
-        id: nanoid(),
-        name: "Drainage Detention Ponds",
-        leaf: true,
-      },
-      {
-        id: nanoid(),
-        name: "Drainage Mains",
-        leaf: true,
-      },
-      {
-        id: nanoid(),
-        name: "Subfolder test",
         children: [
           {
+            name: "Collection Secondary Suites",
             id: nanoid(),
-            name: "Test Item",
+            leaf: true,
+          },
+          {
+            name: "Collection Curbside",
+            id: nanoid(),
+            leaf: true,
+          },
+          {
+            name: "Garbage Recycling Collection Days",
+            id: nanoid(),
+            leaf: true,
+          },
+          {
+            name: "Multi-family Building Centralized Collections",
+            id: nanoid(),
             leaf: true,
           },
         ],
       },
+      {
+        name: "Elementary School Catchments",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Fire Hall Zones",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Schools",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Secondary School Catchments",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Child Care",
+        id: nanoid(),
+        leaf: true,
+      },
     ],
   },
   {
+    name: "Drainage",
     id: nanoid(),
-    name: "Images",
     children: [
       {
+        name: "Drainage Catch Basins",
         id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Drainage Flow Arrows",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Drainage Detention Ponds",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Drainage Mains",
+        id: nanoid(),
+        leaf: true,
+      },
+    ],
+  },
+  {
+    name: "Images",
+    id: nanoid(),
+    children: [
+      {
         name: "Aerial Photo April 2021",
+        id: nanoid(),
         leaf: true,
       },
     ],
