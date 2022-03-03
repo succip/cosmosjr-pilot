@@ -3,7 +3,12 @@ import MapImageLayer from "@arcgis/core/layers/MapImageLayer";
 import store from "../store/store";
 import LayerStore from "../config/LayerStore";
 import { customAlphabet } from "nanoid";
-import { addLayer, addMapLayer, updateLayerInscale } from "../store/actions/layerActions";
+import {
+  addLayer,
+  addMapLayer,
+  setLayerVisible,
+  updateLayerInscale,
+} from "../store/actions/layerActions";
 
 const onAddServiceLayer = (layer) => {
   layer.allSublayers.items.forEach((sublayer) => {
@@ -89,6 +94,6 @@ export const getMapLayerByTitle = (mapLayerTitle) => {
 };
 
 export const clearVisibleLayers = () => {
-  const { mapView } = store.getState();
-  console.log(mapView);
+  const { layers } = store.getState();
+  layers.mapLayers.forEach((mapLayer) => store.dispatch(setLayerVisible(mapLayer, false)));
 };

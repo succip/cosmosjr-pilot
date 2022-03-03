@@ -12,6 +12,20 @@ export const addMapLayer = (layer) => {
   };
 };
 
+export const setLayerVisible = ({ ulid, layer }, visible) => {
+  return {
+    type: "SET_LAYER_VISIBLE",
+    payload: { ulid, layer, visible },
+  };
+};
+
+export const toggleLayerVisible = (mapLayer) => {
+  return {
+    type: "TOGGLE_LAYER_VISIBLE",
+    payload: mapLayer,
+  };
+};
+
 export const updateLayerInscale = ({ ulid, inScale }) => {
   return {
     type: "UPDATE_LAYER_INSCALE",

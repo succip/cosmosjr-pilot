@@ -7,12 +7,107 @@ const LayerStore = [
     children: [
       {
         id: nanoid(),
-        name: "Lots",
+        name: "Addresses (black)",
+        leaf: true,
+      },
+      {
+        id: nanoid(),
+        name: "Addresses (yellow)",
+        leaf: true,
+      },
+      {
+        id: nanoid(),
+        name: "Buildings",
+        leaf: true,
+      },
+      {
+        id: nanoid(),
+        name: "Easements (black)",
+        leaf: true,
+      },
+      {
+        id: nanoid(),
+        name: "Easements (yellow)",
+        leaf: true,
+      },
+      {
+        id: nanoid(),
+        name: "Legal Plan Boundaries (all)",
+        leaf: true,
+      },
+      {
+        id: nanoid(),
+        name: "Lot Dimensions",
+        leaf: true,
+      },
+      {
+        id: nanoid(),
+        name: "Lot Hooks",
         leaf: true,
       },
       {
         id: nanoid(),
         name: "Lot Numbers (black)",
+        leaf: true,
+      },
+      {
+        id: nanoid(),
+        name: "Lot Numbers (yellow)",
+        leaf: true,
+      },
+      {
+        id: nanoid(),
+        name: "Lots",
+        leaf: true,
+      },
+      {
+        id: nanoid(),
+        name: "Lots (Outline)",
+        leaf: true,
+      },
+      {
+        id: nanoid(),
+        name: "Lots (Yellow)",
+        leaf: true,
+      },
+      {
+        id: nanoid(),
+        name: "Posting Plans",
+        leaf: true,
+      },
+      {
+        id: nanoid(),
+        name: "Rights of Way (black)",
+        leaf: true,
+      },
+      {
+        id: nanoid(),
+        name: "Rights of Way (yellow)",
+        leaf: true,
+      },
+      {
+        id: nanoid(),
+        name: "Surrey City Boundary",
+        leaf: true,
+      },
+      {
+        id: nanoid(),
+        name: "Surrey Communities",
+        leaf: true,
+      },
+      {
+        id: nanoid(),
+        name: "Surrey Map Index",
+        leaf: true,
+      },
+      {
+        id: nanoid(),
+        name: "Survey Monuments",
+        leaf: true,
+      },
+      {
+        id: nanoid(),
+        name: "Water courses",
         leaf: true,
       },
     ],
@@ -43,11 +138,11 @@ const LayerStore = [
       },
       {
         id: nanoid(),
-        name: "Drainage Sublayers",
+        name: "Subfolder test",
         children: [
           {
             id: nanoid(),
-            name: "drnSub",
+            name: "Test Item",
             leaf: true,
           },
         ],

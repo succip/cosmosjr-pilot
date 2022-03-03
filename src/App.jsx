@@ -5,10 +5,10 @@ import "./app.css";
 function App() {
   return (
     <div className="row g-0">
-      <div className="col-2">
+      <div className="col-3">
         <Controlbar />
       </div>
-      <div className="col-10">
+      <div className="col-9">
         <MapFrame />
       </div>
     </div>

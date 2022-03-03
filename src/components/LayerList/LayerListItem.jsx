@@ -1,19 +1,19 @@
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const LayerListItem = ({ mapLayer }) => {
   const { layer } = mapLayer;
   const [checked, setChecked] = useState(layer.visible);
   const handleChange = () => {
     layer.visible = !layer.visible;
-    setChecked(layer.visible);
+    setChecked(!checked);
   };
 
   useEffect(() => {
-    console.log("something changed");
-  }, [mapLayer.layer]);
+    setChecked(layer.visible);
+  }, [layer.visible]);
 
   return (
     <FormGroup>
