@@ -2,13 +2,7 @@ import ArcGISMap from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
 import settings from "../config/Settings";
 import store from "../store/store";
-import { setLayerVisible } from "../store/actions/layerActions";
-import {
-  addOrthoServices,
-  addMapServices,
-  updateLayerListInScale,
-  clearVisibleLayers,
-} from "./Layers";
+import { addOrthoServices, addMapServices, updateLayerListInScale } from "./Layers";
 
 const map = new ArcGISMap();
 
@@ -23,9 +17,9 @@ addMapServices(map);
 
 view.watch("stationary", onViewStationary);
 
-view.on("click", () => {
-  clearVisibleLayers();
-});
+const setMapThemeLayers = () => {};
+
+view.on("click", () => {});
 
 export const initialize = (container) => {
   view.container = container;
