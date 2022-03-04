@@ -1,4 +1,5 @@
 import settings from "../config/Settings";
+import MapThemes from "../config/MapThemes";
 import MapImageLayer from "@arcgis/core/layers/MapImageLayer";
 import store from "../store/store";
 import LayerStore from "../config/LayerStore";
@@ -12,6 +13,12 @@ import {
 
 const onAddServiceLayer = (layer) => {
   layer.allSublayers.items.forEach((sublayer) => {
+    if (layer.id === "BaseMap") {
+      sublayer.legendEnabled = false;
+    } else {
+      sublayer.legendEnabled = !settings.legendDisabledLayers.includes(sublayer.title);
+    }
+    if (layer.id === "BaseMap") sublayer.legendEnabled = false;
     const nanoid = customAlphabet("1234567890abcdef", 6);
     const newLayer = {
       layer: sublayer,
@@ -36,7 +43,6 @@ export const addOrthoServices = (map) => {
       serviceLayer.when(onAddServiceLayer);
 
       map.add(serviceLayer);
-      console.log(`Ortho service added: ${id}`);
     }
   });
 };
@@ -50,9 +56,22 @@ export const addMapServices = (map) => {
         url,
         visible: true,
       });
+
       serviceLayer.when(onAddServiceLayer);
       map.add(serviceLayer);
-      console.log(`Map service added: ${id}`);
+    }
+  });
+};
+
+export const setMapThemeLayers = (mapThemeName) => {
+  clearVisibleMapLayers();
+  const { layers } = store.getState();
+  const { themeLayers } = MapThemes.find((mapTheme) => mapTheme.themeTitle === mapThemeName);
+
+  themeLayers.forEach((themeLayer) => {
+    const mapLayer = layers.mapLayers.find((mapLayer) => mapLayer.title === themeLayer.title);
+    if (mapLayer) {
+      store.dispatch(setLayerVisible(mapLayer, true));
     }
   });
 };
@@ -93,7 +112,7 @@ export const getMapLayerByTitle = (mapLayerTitle) => {
   return mapLayers.find((mapLayer) => mapLayer.title === mapLayerTitle);
 };
 
-export const clearVisibleLayers = () => {
+export const clearVisibleMapLayers = () => {
   const { layers } = store.getState();
   layers.mapLayers.forEach((mapLayer) => store.dispatch(setLayerVisible(mapLayer, false)));
 };

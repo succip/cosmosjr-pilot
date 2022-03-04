@@ -1,8 +1,12 @@
 import ArcGISMap from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
 import settings from "../config/Settings";
-import store from "../store/store";
-import { addOrthoServices, addMapServices, updateLayerListInScale } from "./Layers";
+import {
+  addOrthoServices,
+  addMapServices,
+  updateLayerListInScale,
+  setMapThemeLayers,
+} from "./Layers";
 
 const map = new ArcGISMap();
 
@@ -17,9 +21,9 @@ addMapServices(map);
 
 view.watch("stationary", onViewStationary);
 
-const setMapThemeLayers = () => {};
-
-view.on("click", () => {});
+view.when(() => {
+  setMapThemeLayers("City Map");
+});
 
 export const initialize = (container) => {
   view.container = container;

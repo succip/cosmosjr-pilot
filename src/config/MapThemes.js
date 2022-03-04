@@ -1,59 +1,61 @@
 export const MapThemes = [
   {
-    themeName: "City Map",
+    themeTitle: "City Map",
     themeLayers: [
       {
-        name: "Park Outdoor Recreation Facilities",
+        title: "Park Outdoor Recreation Facilities",
         source: "Parks",
       },
       {
-        name: "Park Playgrounds",
+        title: "Park Playgrounds",
         source: "Parks",
       },
       {
-        name: "Park Specimen Trees",
+        title: "Park Specimen Trees",
         source: "Parks",
       },
       {
-        name: "Park Sports Fields",
+        title: "Park Sports Fields",
         source: "Parks",
       },
       {
-        name: "Trails and Paths",
+        title: "Trails and Paths",
         source: "Transportation",
       },
       {
-        name: "Road Surface",
+        title: "Road Surface",
         source: "Transportation",
       },
       {
-        name: "Road names",
+        title: "Road Names",
         source: "Transportation",
       },
       {
-        name: "Buildings",
+        title: "Buildings",
         source: "Buildings",
       },
       {
-        name: "Water Courses Internal",
+        title: "Water Courses Internal",
         source: "Drainage_Secured",
       },
       {
-        name: "Early Copy Lots",
+        title: "Early Copy Lots",
         source: "Legal_Secured",
       },
       {
-        name: "Lots",
+        title: "Lots",
         source: "Lots",
       },
       {
-        name: "Addresses (black)",
+        title: "Addresses (black)",
         source: "Annotation_Dimensions",
       },
       {
-        name: "Park name Labels",
+        title: "Park title Labels",
         source: "Parks",
       },
     ],
   },
 ];
+
+export default MapThemes;

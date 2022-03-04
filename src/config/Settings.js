@@ -45,6 +45,7 @@ const settings = {
     "Address Search",
     "Road Surface",
   ],
+  legendDisabledLayers: ["Building Shadow", "Address Search", "Road Names", "Intersection Search"],
   startingExtent: new Extent({
     xmin: 505e3,
     ymin: 5425e3,
@@ -56,6 +57,12 @@ const settings = {
     {
       id: "BaseMap",
       url: "https://gisservices.surrey.ca/arcgis/rest/services/Base_Map/MapServer/",
+      type: "Dynamic",
+      baseMapService: true,
+    },
+    {
+      id: "AerialImages",
+      url: "https://gisservices.surrey.ca/arcgis/rest/services/AerialImages/MapServer/",
       type: "Dynamic",
       baseMapService: true,
     },

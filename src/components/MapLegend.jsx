@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import Legend from "@arcgis/core/widgets/Legend";
 
 const MapLegend = () => {
-  const { legendLayers } = useSelector((state) => state.layers);
   const { mapView } = useSelector((state) => state.mapView);
   const legendRef = useRef(null);
 
@@ -11,7 +10,6 @@ const MapLegend = () => {
     if (mapView) {
       const legend = new Legend({
         view: mapView,
-        layerInfos: legendLayers,
       });
       legend.container = legendRef.current;
     }

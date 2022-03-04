@@ -170,6 +170,269 @@ const LayerStore = [
     ],
   },
   {
+    name: "Parks and Recreation",
+    id: nanoid(),
+    children: [
+      {
+        name: "Cemeteries",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Park Bioswale Beds",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Park Catch Basins",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Park Classification",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Park Name Labels",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Park Natural Areas",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Park Outdoor Recreation Facilities",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Park Playgrounds",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Park Potential Donation Bench Locations",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Park Specimen Trees",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Park Specimen Trees (Parks)",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Park Sports Fields",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Park Structures",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Trails and Paths (Parks)",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Parks",
+        id: nanoid(),
+        leaf: true,
+      },
+    ],
+  },
+  {
+    name: "Transportation",
+    id: nanoid(),
+    children: [
+      {
+        name: "Transit",
+        id: nanoid(),
+        children: [
+          {
+            name: "SkyTrain Guideways",
+            id: nanoid(),
+            leaf: true,
+          },
+          {
+            name: "SkyTrain Stations",
+            id: nanoid(),
+            leaf: true,
+          },
+          {
+            name: "Transit Routes",
+            id: nanoid(),
+            leaf: true,
+          },
+          {
+            name: "Transit Stops (Accessible Only)",
+            id: nanoid(),
+            leaf: true,
+          },
+          {
+            name: "Transit Stops (All Stops)",
+            id: nanoid(),
+            leaf: true,
+          },
+        ],
+      },
+      {
+        name: "Adopt A Street",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Bike Routes",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Grass Cutting Contracts",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Greenways",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Historic Roads",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Intersections",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Pay Parking Stations",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "EV Charging Stations",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Poles",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Sign Inventory",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Road Centrelines",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Road Classifications-Existing",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Road Classifications-Future",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Road Names",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Road Surface",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Sidewalks",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Traffic Data Hub",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Traffic Cameras",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Drainage Signals",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Trails and Paths (Parks)",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Trails and Paths (Eng)",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Truck Routes",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Vehicular Bridges",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Drainage Catch Basins",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Winter Maintenance Brine Truck 1st Priority Routes",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Winter Maintenance Brine Truck 2nd Priority Routes",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Winter Maintenance Grader Truck Routes",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Winter Maintenance One Ton Truck Routes",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Winter Maintenance Tandem Truck 1st Priority Routes",
+        id: nanoid(),
+        leaf: true,
+      },
+    ],
+  },
+  {
     name: "Drainage",
     id: nanoid(),
     children: [
