@@ -1,28 +1,18 @@
-import * as React from "react";
-import PropTypes from "prop-types";
+import { useState } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import MapLayerList from "./LayerList/MapLayerList";
 import MapLegend from "../components/MapLegend";
 
 function TabPanel(props) {
-  const { children, value, index, ...other } = props;
+  const { children, value, index } = props;
 
-  return (
-    <div role="tabpanel" {...other}>
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
+  return <div>{value === index && <Box>{children}</Box>}</div>;
 }
 
 export default function BasicTabs() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -31,8 +21,8 @@ export default function BasicTabs() {
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Layers" />
+        <Tabs value={value} onChange={handleChange} variant="fullWidth">
+          <Tab label="Layer List" />
           <Tab label="Legend" />
         </Tabs>
       </Box>

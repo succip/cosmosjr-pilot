@@ -5,7 +5,6 @@ import LayerListTree from "./LayerListTree";
 const MapLayerList = () => {
   return (
     <div>
-      <p className="h4">Layer List</p>
       <LayerListTree treeItems={LayerStore} />
     </div>
   );
