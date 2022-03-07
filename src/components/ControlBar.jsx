@@ -1,10 +1,8 @@
-import React from "react";
-import LayerLegendPanel from "../components/LayerLegendPanel";
-
+import ControlAccordionGroup from "./ControlAccordionGroup";
 const Controlbar = () => {
   return (
     <>
-      <LayerLegendPanel />
+      <ControlAccordionGroup />
     </>
   );
 };
