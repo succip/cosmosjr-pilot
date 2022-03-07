@@ -8,7 +8,7 @@ import MapLegend from "../components/MapLegend";
 function TabPanel(props) {
   const { children, value, index } = props;
 
-  return <div>{value === index && <Box>{children}</Box>}</div>;
+  return <div>{<Box hidden={value !== index}>{children}</Box>}</div>;
 }
 
 export default function BasicTabs() {
@@ -19,7 +19,7 @@ export default function BasicTabs() {
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs value={value} onChange={handleChange} variant="fullWidth">
           <Tab label="Layer List" />
@@ -32,6 +32,6 @@ export default function BasicTabs() {
       <TabPanel value={value} index={1}>
         <MapLegend />
       </TabPanel>
-    </Box>
+    </>
   );
 }

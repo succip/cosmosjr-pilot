@@ -4,7 +4,7 @@ import "./app.css";
 
 function App() {
   return (
-    <div className="row g-0">
+    <div className="row g-0 mh-100">
       <div className="col-3">
         <Controlbar />
       </div>
