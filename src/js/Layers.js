@@ -2,7 +2,7 @@ import settings from "../config/Settings";
 import MapThemes from "../config/MapThemes";
 import MapImageLayer from "@arcgis/core/layers/MapImageLayer";
 import store from "../store/store";
-import LayerStore from "../config/LayerStore";
+import LayerTree from "../config/LayerTree";
 import { customAlphabet } from "nanoid";
 import {
   addLayer,
@@ -27,7 +27,7 @@ const onAddServiceLayer = (layer) => {
       ulid: nanoid(),
     };
     store.dispatch(addLayer(newLayer));
-    checkMapLayers(LayerStore, newLayer);
+    checkMapLayers(LayerTree, newLayer);
   });
 };
 
@@ -95,7 +95,7 @@ export const updateLayerListInScale = (mapScale) => {
   });
 };
 
-export const checkMapLayers = (layerStore = LayerStore, queryLayer = {}) => {
+export const checkMapLayers = (layerStore = LayerTree, queryLayer = {}) => {
   Object.keys(layerStore).forEach((key) => {
     if (typeof layerStore[key] === "object") {
       if (layerStore[key].leaf) {

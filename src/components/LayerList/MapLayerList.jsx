@@ -1,11 +1,11 @@
 import React from "react";
-import LayerStore from "../../config/LayerStore";
+import LayerTree from "../../config/LayerTree";
 import LayerListTree from "./LayerListTree";
 
 const MapLayerList = () => {
   return (
     <div>
-      <LayerListTree treeItems={LayerStore} />
+      <LayerListTree treeItems={LayerTree} />
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import ControlAccordion from "./ControlAccordion";
-import LayerLegendPanel from "./LayerLegendPanel";
-import TestPanelContent from "./TestPanelContent";
+import accordions from "../config/Accordions";
 
 const ControlAccordionGroup = () => {
   const [curAccordionId, setCurAccordionId] = useState(null);
@@ -9,22 +8,17 @@ const ControlAccordionGroup = () => {
     setCurAccordionId(id);
   };
 
-  return (
-    <>
+  return accordions.map((accordion, index) => {
+    return (
       <ControlAccordion
+        accordionId={index}
+        key={index}
+        title={accordion.title}
+        panel={accordion.component}
         handleChange={handleChange}
-        accordionId={0}
-        title={"Layers & Legend"}
-        panel={<LayerLegendPanel />}
       />
-      <ControlAccordion
-        handleChange={handleChange}
-        accordionId={1}
-        title={"Identify"}
-        panel={<TestPanelContent />}
-      />
-    </>
-  );
+    );
+  });
 };
 
 export default ControlAccordionGroup;
