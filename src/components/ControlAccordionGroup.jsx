@@ -1,11 +1,14 @@
+import { useState } from "react";
 import ControlAccordion from "./ControlAccordion";
 import LayerLegendPanel from "./LayerLegendPanel";
 import TestPanelContent from "./TestPanelContent";
 
 const ControlAccordionGroup = () => {
+  const [curAccordionId, setCurAccordionId] = useState(null);
   const handleChange = (id) => {
-    console.log(id);
+    setCurAccordionId(id);
   };
+
   return (
     <>
       <ControlAccordion
