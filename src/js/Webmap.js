@@ -1,6 +1,7 @@
 import ArcGISMap from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
+import store from "../store/store";
 import Graphic from "@arcgis/core/Graphic";
 import * as identify from "@arcgis/core/rest/identify";
 import IdentifyParameters from "@arcgis/core/rest/support/IdentifyParameters";
@@ -33,6 +34,8 @@ view.watch("stationary", onViewStationary);
 view.when(() => {
   setMapThemeLayers("City Map");
 });
+
+const getMapServiceUrls = () => {};
 
 view.on("click", ({ mapPoint }) => {
   if (mapPoint) {

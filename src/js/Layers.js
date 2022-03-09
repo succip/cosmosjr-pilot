@@ -56,8 +56,8 @@ export const addMapServices = (map) => {
         url,
         visible: true,
       });
-
       serviceLayer.when(onAddServiceLayer);
+
       map.add(serviceLayer);
     }
   });
