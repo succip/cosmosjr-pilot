@@ -7,6 +7,14 @@ const accordions = [
     component: <LayerLegendPanel />,
   },
   {
+    title: "Document Search",
+    component: <TestPanelContent />,
+  },
+  {
+    title: "Measure",
+    component: <TestPanelContent />,
+  },
+  {
     title: "Identify",
     component: <TestPanelContent />,
   },

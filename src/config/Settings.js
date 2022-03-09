@@ -53,6 +53,17 @@ const settings = {
     ymax: 5455e3,
     spatialReference: { wkid: 26910 },
   }),
+  searchMarkerSymbol: {
+    type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+    style: "diamond",
+    color: [255, 0, 0],
+    size: "12px", // pixels
+    outline: {
+      // autocasts as new SimpleLineSymbol()
+      color: [255, 255, 0],
+      width: 1, // points
+    },
+  },
   mapServices: [
     {
       id: "BaseMap",

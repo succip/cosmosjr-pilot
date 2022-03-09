@@ -13,3 +13,5 @@ const appReducer = (state = initialState, { type, payload }) => {
       return state;
   }
 };
+
+export { appReducer };

@@ -4,9 +4,9 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-const ControlAccordion = ({ title, panel, accordionId, handleChange }) => {
+const ControlAccordion = ({ title, panel, accordionId, handleChange, expanded }) => {
   return (
-    <Accordion onChange={() => handleChange(accordionId)}>
+    <Accordion expanded={expanded} onChange={() => handleChange(accordionId)} disableGutters={true}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <Typography>{title}</Typography>
       </AccordionSummary>
