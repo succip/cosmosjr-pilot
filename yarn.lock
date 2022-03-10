@@ -23,18 +23,17 @@
     "jsonpointer" "^5.0.0"
     "leven" "^3.1.0"
 
-"@arcgis/core@^4.22.2":
-  "integrity" "sha512-twx50yjKsMoeotgQfnYHmm4EIS57fC9rWNNrvGc2xERVUOY7p2fFPs2qemdyFnCmvrRNflZcnZkxrTZXeDCtow=="
-  "resolved" "https://registry.npmjs.org/@arcgis/core/-/core-4.22.2.tgz"
-  "version" "4.22.2"
+"@arcgis/core@^4.23.0-next.20220304":
+  "integrity" "sha512-p8QbOMq3ppU0h54RadLozuaurd7HJfM0naO5SV8r2ZGsRo7QH5OK733gomPXNktDheFRhp8GxskPV9tc5QcM8w=="
+  "resolved" "https://registry.npmjs.org/@arcgis/core/-/core-4.23.0-next.20220304.tgz"
+  "version" "4.23.0-next.20220304"
   dependencies:
-    "@esri/arcgis-html-sanitizer" "~2.9.0-next.1"
+    "@esri/arcgis-html-sanitizer" "~2.9.0"
     "@esri/calcite-colors" "~6.0.1"
-    "@esri/calcite-components" "1.0.0-beta.69"
-    "@popperjs/core" "~2.10.2"
-    "focus-trap" "~6.7.1"
-    "luxon" "~2.1.1"
-    "moment" "~2.29.1"
+    "@esri/calcite-components" "1.0.0-beta.77"
+    "@popperjs/core" "~2.11.2"
+    "focus-trap" "~6.7.3"
+    "luxon" "~2.3.1"
     "sortablejs" "~1.14.0"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.16.0", "@babel/code-frame@^7.16.7", "@babel/code-frame@^7.8.3":
@@ -1278,7 +1277,7 @@
     "minimatch" "^3.0.4"
     "strip-json-comments" "^3.1.1"
 
-"@esri/arcgis-html-sanitizer@~2.9.0-next.1":
+"@esri/arcgis-html-sanitizer@~2.9.0":
   "integrity" "sha512-kF5gfE2W16Nu/p4P69bsGmo7CKzKiTHlK3oWOqrDy/ptaMxEDCorHLm9UKULCA478xlOQM6lSnq4o3HYgST5Lw=="
   "resolved" "https://registry.npmjs.org/@esri/arcgis-html-sanitizer/-/arcgis-html-sanitizer-2.9.0.tgz"
   "version" "2.9.0"
@@ -1291,16 +1290,17 @@
   "resolved" "https://registry.npmjs.org/@esri/calcite-colors/-/calcite-colors-6.0.1.tgz"
   "version" "6.0.1"
 
-"@esri/calcite-components@1.0.0-beta.69":
-  "integrity" "sha512-aBcFqNYI7T1KJyAlUtEGl/VlRJ2SyPszheRpkLG+88GnlI8nN/bMrqxXVpltkViXhx370kotdBoO4xJkWnV5pQ=="
-  "resolved" "https://registry.npmjs.org/@esri/calcite-components/-/calcite-components-1.0.0-beta.69.tgz"
-  "version" "1.0.0-beta.69"
+"@esri/calcite-components@1.0.0-beta.77":
+  "integrity" "sha512-fCE9ikXHzUQTHJSMXNYB1/WrPpKtQMUBbaypbbwwxM8y3ifavN0a5ns7NAC+W7uQJA+29fGpAlIMjXr/483eXw=="
+  "resolved" "https://registry.npmjs.org/@esri/calcite-components/-/calcite-components-1.0.0-beta.77.tgz"
+  "version" "1.0.0-beta.77"
   dependencies:
     "@a11y/focus-trap" "1.0.5"
-    "@popperjs/core" "2.10.2"
-    "@stencil/core" "2.10.0"
-    "@types/color" "3.0.2"
-    "color" "4.0.1"
+    "@popperjs/core" "2.11.2"
+    "@stencil/core" "2.13.0"
+    "@types/color" "3.0.3"
+    "color" "4.2.0"
+    "form-request-submit-polyfill" "2.0.0"
     "lodash-es" "4.17.21"
     "sortablejs" "1.14.0"
 
@@ -1675,20 +1675,10 @@
     "schema-utils" "^3.0.0"
     "source-map" "^0.7.3"
 
-"@popperjs/core@^2.10.2", "@popperjs/core@^2.4.4":
+"@popperjs/core@^2.10.2", "@popperjs/core@^2.4.4", "@popperjs/core@~2.11.2", "@popperjs/core@2.11.2":
   "integrity" "sha512-92FRmppjjqz29VMJ2dn+xdyXZBrMlE42AV6Kq6BwjWV7CNUW1hs2FtxSNLQE+gJhaZ6AAmYuO9y8dshhcBl7vA=="
   "resolved" "https://registry.npmjs.org/@popperjs/core/-/core-2.11.2.tgz"
   "version" "2.11.2"
-
-"@popperjs/core@~2.10.2":
-  "integrity" "sha512-IXf3XA7+XyN7CP9gGh/XB0UxVMlvARGEgGXLubFICsUMGz6Q+DU+i4gGlpOxTjKvXjkJDJC8YdqdKkDj9qZHEQ=="
-  "resolved" "https://registry.npmjs.org/@popperjs/core/-/core-2.10.2.tgz"
-  "version" "2.10.2"
-
-"@popperjs/core@2.10.2":
-  "integrity" "sha512-IXf3XA7+XyN7CP9gGh/XB0UxVMlvARGEgGXLubFICsUMGz6Q+DU+i4gGlpOxTjKvXjkJDJC8YdqdKkDj9qZHEQ=="
-  "resolved" "https://registry.npmjs.org/@popperjs/core/-/core-2.10.2.tgz"
-  "version" "2.10.2"
 
 "@redux-devtools/extension@^3.2.2":
   "integrity" "sha512-fKA2TWNzJF7wXSDwBemwcagBFudaejXCzH5hRszN3Z6B7XEJtEmGD77AjV0wliZpIZjA/fs3U7CejFMQ+ipS7A=="
@@ -1753,10 +1743,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@stencil/core@2.10.0":
-  "integrity" "sha512-15rWMTPQ/sp0lSV82HVCXkIya3QLN+uBl7pqK4JnTrp4HiLrzLmNbWjbvgCs55gw0lULbCIGbRIEsFz+Pe/Q+A=="
-  "resolved" "https://registry.npmjs.org/@stencil/core/-/core-2.10.0.tgz"
-  "version" "2.10.0"
+"@stencil/core@2.13.0":
+  "integrity" "sha512-EEKHOHgYpg3/iFUKMXTZJjUayRul7sXDwNw0OGgkEOe4t7JWiibDkzUHuruvpbqEydX+z1+ez5K2bMMY76c2wA=="
+  "resolved" "https://registry.npmjs.org/@stencil/core/-/core-2.13.0.tgz"
+  "version" "2.13.0"
 
 "@surma/rollup-plugin-off-main-thread@^2.2.3":
   "integrity" "sha512-lR8q/9W7hZpMWweNiAKU7NQerBnzQQLvi8qnTDU/fxItPhtZVMbPV3lbCwjhIlNBe9Bbr5V+KHshvWmVSG9cxQ=="
@@ -1990,10 +1980,10 @@
   "resolved" "https://registry.npmjs.org/@types/color-name/-/color-name-1.1.1.tgz"
   "version" "1.1.1"
 
-"@types/color@3.0.2":
-  "integrity" "sha512-INiJl6sfNn8iyC5paxVzqiVUEj2boIlFki02uRTAkKwAj++7aAF+ZfEv/XrIeBa0XI/fTZuDHW8rEEcEVnON+Q=="
-  "resolved" "https://registry.npmjs.org/@types/color/-/color-3.0.2.tgz"
-  "version" "3.0.2"
+"@types/color@3.0.3":
+  "integrity" "sha512-X//qzJ3d3Zj82J9sC/C18ZY5f43utPbAJ6PhYt/M7uG6etcF6MRpKdN880KBy43B0BMzSfeT96MzrsNjFI3GbA=="
+  "resolved" "https://registry.npmjs.org/@types/color/-/color-3.0.3.tgz"
+  "version" "3.0.3"
   dependencies:
     "@types/color-convert" "*"
 
@@ -3332,7 +3322,7 @@
   "resolved" "https://registry.npmjs.org/color-name/-/color-name-1.1.3.tgz"
   "version" "1.1.3"
 
-"color-string@^1.6.0":
+"color-string@^1.9.0":
   "integrity" "sha512-9Mrz2AQLefkH1UvASKj6v6hj/7eWgjnT/cVsR8CumieLoT+g900exWeNogqtweI8dxloXN9BDQTYro1oWu/5CQ=="
   "resolved" "https://registry.npmjs.org/color-string/-/color-string-1.9.0.tgz"
   "version" "1.9.0"
@@ -3340,13 +3330,13 @@
     "color-name" "^1.0.0"
     "simple-swizzle" "^0.2.2"
 
-"color@4.0.1":
-  "integrity" "sha512-rpZjOKN5O7naJxkH2Rx1sZzzBgaiWECc6BYXjeCE6kF0kcASJYbUq02u7JqIHwCb/j3NhV+QhRL2683aICeGZA=="
-  "resolved" "https://registry.npmjs.org/color/-/color-4.0.1.tgz"
-  "version" "4.0.1"
+"color@4.2.0":
+  "integrity" "sha512-hHTcrbvEnGjC7WBMk6ibQWFVDgEFTVmjrz2Q5HlU6ltwxv0JJN2Z8I7uRbWeQLF04dikxs8zgyZkazRJvSMtyQ=="
+  "resolved" "https://registry.npmjs.org/color/-/color-4.2.0.tgz"
+  "version" "4.2.0"
   dependencies:
     "color-convert" "^2.0.1"
-    "color-string" "^1.6.0"
+    "color-string" "^1.9.0"
 
 "colord@^2.9.1":
   "integrity" "sha512-Uqbg+J445nc1TKn4FoDPS6ZZqAvEDnwrH42yo8B40JSOgSLxMZ/gt3h4nmCtPLQeXhjJJkqBx7SCY35WnIixaQ=="
@@ -4724,7 +4714,7 @@
   "resolved" "https://registry.npmjs.org/flatted/-/flatted-3.2.5.tgz"
   "version" "3.2.5"
 
-"focus-trap@~6.7.1":
+"focus-trap@~6.7.3":
   "integrity" "sha512-8xCEKndV4KrseGhFKKKmczVA14yx1/hnmFICPOjcFjToxCJYj/NHH43tPc3YE/PLnLRNZoFug0EcWkGQde/miQ=="
   "resolved" "https://registry.npmjs.org/focus-trap/-/focus-trap-6.7.3.tgz"
   "version" "6.7.3"
@@ -4763,6 +4753,11 @@
     "asynckit" "^0.4.0"
     "combined-stream" "^1.0.8"
     "mime-types" "^2.1.12"
+
+"form-request-submit-polyfill@2.0.0":
+  "integrity" "sha512-p0+M92y2gFnP0AuuL8VJ0GYVzAT0bYp3GsSkmPFhvUopdnfDLP/9xplQTBBc4w8qOjKRzdK7GaFcdL9IhlXdTQ=="
+  "resolved" "https://registry.npmjs.org/form-request-submit-polyfill/-/form-request-submit-polyfill-2.0.0.tgz"
+  "version" "2.0.0"
 
 "forwarded@0.2.0":
   "integrity" "sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow=="
@@ -4817,11 +4812,6 @@
   "integrity" "sha1-FQStJSMVjKpA20onh8sBQRmU6k8="
   "resolved" "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz"
   "version" "1.0.0"
-
-"fsevents@^2.3.2", "fsevents@~2.3.2":
-  "integrity" "sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA=="
-  "resolved" "https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz"
-  "version" "2.3.2"
 
 "function-bind@^1.1.1":
   "integrity" "sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A=="
@@ -6275,10 +6265,10 @@
   dependencies:
     "yallist" "^4.0.0"
 
-"luxon@^1.21.3 || ^2.x", "luxon@^1.28.0 || ^2.0.0", "luxon@~2.1.1":
-  "integrity" "sha512-6VQVNw7+kQu3hL1ZH5GyOhnk8uZm21xS7XJ/6vDZaFNcb62dpFDKcH8TI5NkoZOdMRxr7af7aYGrJlE/Wv0i1w=="
-  "resolved" "https://registry.npmjs.org/luxon/-/luxon-2.1.1.tgz"
-  "version" "2.1.1"
+"luxon@^1.21.3 || ^2.x", "luxon@^1.28.0 || ^2.0.0", "luxon@~2.3.1":
+  "integrity" "sha512-I8vnjOmhXsMSlNMZlMkSOvgrxKJl0uOsEzdGgGNZuZPaS9KlefpE9KV95QFftlJSC+1UyCC9/I69R02cz/zcCA=="
+  "resolved" "https://registry.npmjs.org/luxon/-/luxon-2.3.1.tgz"
+  "version" "2.3.1"
 
 "lz-string@^1.4.4":
   "integrity" "sha1-wNjq82BZ9wV5bh40SBHPTEmNOiY="
@@ -6421,7 +6411,7 @@
   dependencies:
     "minimist" "^1.2.5"
 
-"moment@^2.24.0", "moment@^2.29.1", "moment@~2.29.1":
+"moment@^2.24.0", "moment@^2.29.1":
   "integrity" "sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ=="
   "resolved" "https://registry.npmjs.org/moment/-/moment-2.29.1.tgz"
   "version" "2.29.1"
@@ -9402,9 +9392,9 @@
   "version" "2.2.0"
 
 "xss@^1.0.10":
-  "integrity" "sha512-qmoqrRksmzqSKvgqzN0055UFWY7OKx1/9JWeRswwEVX9fCG5jcYRxa/A2DHcmZX6VJvjzHRQ2STeeVcQkrmLSw=="
-  "resolved" "https://registry.npmjs.org/xss/-/xss-1.0.10.tgz"
-  "version" "1.0.10"
+  "integrity" "sha512-EimjrjThZeK2MO7WKR9mN5ZC1CSqivSl55wvUK5EtU6acf0rzEE1pN+9ZDrFXJ82BRp3JL38pPE6S4o/rpp1zQ=="
+  "resolved" "https://registry.npmjs.org/xss/-/xss-1.0.11.tgz"
+  "version" "1.0.11"
   dependencies:
     "commander" "^2.20.3"
     "cssfilter" "0.0.10"

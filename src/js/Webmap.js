@@ -41,7 +41,7 @@ const getMapServiceUrls = () => {
   let mapLayerUrlList = [];
 
   layers.mapLayers.forEach(({ layer }) => {
-    if (layer.visible) {
+    if (layer.visible === true) {
       if (!settings.ignoreIdentifyLayers.includes(layer.layer.id)) {
         if (layer.layer.capabilities && layer.layer.capabilities.operations.supportsQuery) {
           mapLayerUrlList.push({
@@ -85,22 +85,29 @@ view.on("click", ({ mapPoint }) => {
 
   const mapServiceUrlList = getMapServiceUrls();
 
-  const identifyParameters = new IdentifyParameters({
+  let params = new IdentifyParameters({
     tolerance: 5,
-    layerOption: "visible",
+    layerOption: "all",
     returnGeometry: true,
     spatialReference: view.spatialReference,
+    geometry: mapPoint,
     width: view.width,
     height: view.height,
     mapExtent: view.extent,
-    geometry: mapPoint,
   });
 
-  identifyParameters.layerIds = mapServiceUrlList[0].layerIds;
-  console.log(mapServiceUrlList[0].url);
-  identify
-    .identify(mapServiceUrlList[0].url, identifyParameters)
-    .then((response) => console.log(response));
+  mapServiceUrlList.forEach(({ url, layerIds }) => {
+    console.log(url);
+    console.log(`Service layerids: ${layerIds}`);
+    params.layerIds = layerIds;
+    // params.layerIds = [7];
+    console.log(`Param layerids: ${params.layerIds}`);
+    // params.sublayers = [{ id: params.layerIds[0] }];
+    identify.identify(url, params).then(({ results }) => {
+      if (results.length > 0) console.log(results);
+    });
+    console.log("----");
+  });
 });
 
 export const initialize = (container) => {
