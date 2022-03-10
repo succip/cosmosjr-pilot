@@ -35,7 +35,42 @@ view.when(() => {
   setMapThemeLayers("City Map");
 });
 
-const getMapServiceUrls = () => {};
+// REFACTOR INTO SEPARATE IDENTIFY MODULE
+const getMapServiceUrls = () => {
+  const { layers } = store.getState();
+  let mapLayerUrlList = [];
+
+  layers.mapLayers.forEach(({ layer }) => {
+    if (layer.visible) {
+      if (!settings.ignoreIdentifyLayers.includes(layer.layer.id)) {
+        if (layer.layer.capabilities && layer.layer.capabilities.operations.supportsQuery) {
+          mapLayerUrlList.push({
+            url: layer.layer.url,
+            layerId: layer.id,
+          });
+        }
+      }
+    }
+  });
+
+  const reduced = mapLayerUrlList.reduce((r, a) => {
+    r[a.url] = r[a.url] || [];
+    r[a.url].push(a);
+    return r;
+  }, Object.create(null));
+
+  let mapServiceUrlList = [];
+
+  Object.keys(reduced).forEach((group) => {
+    let layerIds = [];
+    reduced[group].forEach((item) => {
+      layerIds.push(item.layerId);
+    });
+    mapServiceUrlList.push({ url: group, layerIds });
+  });
+
+  return mapServiceUrlList;
+};
 
 view.on("click", ({ mapPoint }) => {
   if (mapPoint) {
@@ -48,6 +83,8 @@ view.on("click", ({ mapPoint }) => {
     csGraphicsLayer.add(g);
   }
 
+  const mapServiceUrlList = getMapServiceUrls();
+
   const identifyParameters = new IdentifyParameters({
     tolerance: 5,
     layerOption: "visible",
@@ -58,6 +95,12 @@ view.on("click", ({ mapPoint }) => {
     mapExtent: view.extent,
     geometry: mapPoint,
   });
+
+  identifyParameters.layerIds = mapServiceUrlList[0].layerIds;
+  console.log(mapServiceUrlList[0].url);
+  identify
+    .identify(mapServiceUrlList[0].url, identifyParameters)
+    .then((response) => console.log(response));
 });
 
 export const initialize = (container) => {

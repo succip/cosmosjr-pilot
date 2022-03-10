@@ -46,6 +46,7 @@ const settings = {
     "Road Surface",
   ],
   legendDisabledLayers: ["Building Shadow", "Address Search", "Road Names", "Intersection Search"],
+  ignoreIdentifyLayers: ["AerialImages", "Annotation_Dimensions", "CosGraphicsLayer"],
   startingExtent: new Extent({
     xmin: 505e3,
     ymin: 5425e3,
