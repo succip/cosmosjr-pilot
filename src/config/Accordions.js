@@ -1,5 +1,6 @@
 import LayerLegendPanel from "../components/LayerLegendPanel";
 import TestPanelContent from "../components/TestPanelContent";
+import IdentifyPanel from "../components/IdentifyPanel";
 
 const accordions = [
   {
@@ -16,7 +17,7 @@ const accordions = [
   },
   {
     title: "Identify",
-    component: <TestPanelContent />,
+    component: <IdentifyPanel />,
   },
 ];
 

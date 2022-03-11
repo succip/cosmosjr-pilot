@@ -1,5 +1,6 @@
 const initialState = {
   activePanel: null,
+  identifyResults: [],
 };
 
 const appReducer = (state = initialState, { type, payload }) => {
@@ -8,6 +9,11 @@ const appReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         activePanel: payload,
+      };
+    case "SET_IDENTIFY_RESULTS":
+      return {
+        ...state,
+        identifyResults: payload,
       };
     default:
       return state;

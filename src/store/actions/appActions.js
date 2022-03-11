@@ -4,3 +4,10 @@ export const setActivePanel = (panelId) => {
     payload: panelId,
   };
 };
+
+export const setIdentifyResults = (results) => {
+  return {
+    type: "SET_IDENTIFY_RESULTS",
+    payload: results,
+  };
+};

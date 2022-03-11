@@ -51,3 +51,5 @@ https://stackoverflow.com/questions/61067142/how-to-map-an-array-with-unknown-ne
 {mapLayers.map((mapLayer) => {
   return <LayerListItem key={mapLayer.ulid} mapLayer={mapLayer} />;
 })}
+
+https://js.arcgis.com/4.22/@arcgis/core/assets/esri/themes/light/main.css
