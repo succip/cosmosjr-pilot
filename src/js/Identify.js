@@ -68,11 +68,9 @@ export const identifyMapPoint = ({ mapPoint, view }) => {
     params.sublayers = [{ id: params.layerIds[0] }];
     identify.identify(url, params).then(({ results }) => {
       if (results.length > 0) {
-        console.log(results);
         results.forEach((result) => {
           const { displayFieldName, layerName, feature } = result;
           const idValue = feature.attributes[displayFieldName];
-          console.log(idValue);
           const idResult = { displayFieldName, layerName, feature, idValue };
           idResults.push(idResult);
           store.dispatch(setActivePanel(null));
