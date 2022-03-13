@@ -47,6 +47,10 @@ export const MapThemes = [
         source: "Lots",
       },
       {
+        title: "Lots (Yellow)",
+        source: "Lots",
+      },
+      {
         title: "Addresses (black)",
         source: "Annotation_Dimensions",
       },

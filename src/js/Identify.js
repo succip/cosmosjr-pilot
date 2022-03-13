@@ -52,8 +52,7 @@ export const identifyMapPoint = ({ mapPoint, view }) => {
   });
   view.map.findLayerById("CosGraphicsLayer").add(g);
 
-  const mapServiceUrlList = getMapServiceList();
-  mapServiceUrlList.forEach(({ url, layerIds }) => {
+  getMapServiceList().forEach(({ url, layerIds }) => {
     let params = new IdentifyParameters({
       tolerance: 5,
       layerOption: "visible",
@@ -69,10 +68,7 @@ export const identifyMapPoint = ({ mapPoint, view }) => {
     identify.identify(url, params).then(({ results }) => {
       if (results.length > 0) {
         results.forEach((result) => {
-          const { displayFieldName, layerName, feature } = result;
-          const idValue = feature.attributes[displayFieldName];
-          const idResult = { displayFieldName, layerName, feature, idValue };
-          idResults.push(idResult);
+          idResults.push(parseResult(result));
           store.dispatch(setActivePanel(null));
           store.dispatch(setActivePanel(3));
         });
@@ -80,4 +76,13 @@ export const identifyMapPoint = ({ mapPoint, view }) => {
     });
   });
   store.dispatch(setIdentifyResults(idResults));
+};
+
+const parseResult = (result) => {
+  const { displayFieldName, feature } = result;
+  const displayValue = feature.attributes[displayFieldName];
+  let { layerName } = result;
+  layerName = settings.lotLayerGroup.includes(layerName) ? "Lots" : layerName;
+  const idResult = { displayFieldName, layerName, feature, displayValue };
+  return idResult;
 };

@@ -16,6 +16,7 @@ const settings = {
   },
   lotOutlineLayerName: "Lots (Outline)",
   lotYellowLayerName: "Lots (Yellow)",
+  lotLayerGroup: ["Lots (Yellow)", "Lots(Outline"],
   lotOnAeriaLayerName: "Lot Ownership on Aerial",
   addressBlack: "Addresses (black)",
   addressYellow: "Addresses (yellow)",

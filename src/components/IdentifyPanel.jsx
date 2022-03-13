@@ -11,10 +11,10 @@ const IdentifyPanel = () => {
 
   return (
     <>
-      {idResults.map(({ layerName, idValue }, key) => {
+      {idResults.map(({ layerName, displayValue }, key) => {
         return (
           <p key={key}>
-            {layerName} {idValue ? idValue : null}
+            {layerName} {displayValue && displayValue}
           </p>
         );
       })}
