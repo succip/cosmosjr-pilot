@@ -41,7 +41,7 @@ const getMapServiceList = () => {
   return mapServiceUrlList;
 };
 
-export const identifyMapPoint = ({ mapPoint, view }) => {
+export const identifyMapPoint = async ({ mapPoint, view }) => {
   let idResults = [];
 
   const g = new Graphic({
@@ -52,7 +52,31 @@ export const identifyMapPoint = ({ mapPoint, view }) => {
   });
   view.map.findLayerById("CosGraphicsLayer").add(g);
 
-  getMapServiceList().forEach(({ url, layerIds }) => {
+  // getMapServiceList().forEach(({ url, layerIds }) => {
+  //   let params = new IdentifyParameters({
+  //     tolerance: 5,
+  //     layerOption: "visible",
+  //     returnGeometry: true,
+  //     spatialReference: view.spatialReference,
+  //     geometry: mapPoint,
+  //     width: view.width,
+  //     height: view.height,
+  //     mapExtent: view.extent,
+  //     layerIds,
+  //   });
+  //   params.sublayers = [{ id: params.layerIds[0] }];
+  //   identify.identify(url, params).then(({ results }) => {
+  //     if (results.length > 0) {
+  //       results.forEach((result) => {
+  //         idResults.push(parseResult(result));
+  //         store.dispatch(setActivePanel(null));
+  //         store.dispatch(setActivePanel(3));
+  //       });
+  //     }
+  //   });
+  // });
+  // store.dispatch(setIdentifyResults(idResults));
+  for (const { url, layerIds } of getMapServiceList()) {
     let params = new IdentifyParameters({
       tolerance: 5,
       layerOption: "visible",
@@ -65,17 +89,16 @@ export const identifyMapPoint = ({ mapPoint, view }) => {
       layerIds,
     });
     params.sublayers = [{ id: params.layerIds[0] }];
-    identify.identify(url, params).then(({ results }) => {
+    await identify.identify(url, params).then(({ results }) => {
       if (results.length > 0) {
         results.forEach((result) => {
           idResults.push(parseResult(result));
-          store.dispatch(setActivePanel(null));
-          store.dispatch(setActivePanel(3));
         });
       }
     });
-  });
+  }
   store.dispatch(setIdentifyResults(idResults));
+  store.dispatch(setActivePanel(3));
 };
 
 const parseResult = (result) => {
