@@ -170,6 +170,142 @@ const LayerStore = [
     ],
   },
   {
+    name: "Images",
+    id: nanoid(),
+    children: [
+      {
+        name: "Aerial Photo April 2021",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Aerial Photo April 2020",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Aerial Photo March 2019",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Aerial Photo April 2018",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Aerial Photo May 2017",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Aerial Photo March 2016",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Aerial Photo 2016 Metro Vancouver",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Aerial Photo April 2015",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Aerial Photo April 2013",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Lidar Hillshade 2018",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Lidar Hillshade 2017",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Lidar Hillshade 2013",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Lidar Hillshade 2009",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Aerial Photo April 2012",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Aerial Photo April/May 2011",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Aerial Photo May 2010",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Aerial Photo April 2009",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Aerial Photo April 2008",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Aerial Photo April 2007",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Aerial Photo April 2006",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Aerial Photo April 2005",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Aerial Photo April 2004",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Satellite Image Summer 2003",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Aerial Photo April 2001",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Aerial Photo 1998",
+        id: nanoid(),
+        leaf: true,
+      },
+      {
+        name: "Aerial Photo 1949",
+        id: nanoid(),
+        leaf: true,
+      },
+    ],
+  },
+  {
     name: "Parks and Recreation",
     id: nanoid(),
     children: [
@@ -453,17 +589,6 @@ const LayerStore = [
       },
       {
         name: "Drainage Mains",
-        id: nanoid(),
-        leaf: true,
-      },
-    ],
-  },
-  {
-    name: "Images",
-    id: nanoid(),
-    children: [
-      {
-        name: "Aerial Photo April 2021",
         id: nanoid(),
         leaf: true,
       },

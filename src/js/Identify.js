@@ -86,9 +86,9 @@ export const identifyMapPoint = async ({ mapPoint, view }) => {
 
 const parseResult = (result) => {
   const { displayFieldName, feature } = result;
-  const displayValue = feature.attributes[displayFieldName];
-  let { layerName } = result;
-  layerName = settings.lotLayerGroup.includes(layerName) ? "Lots" : layerName;
-  const idResult = { displayFieldName, layerName, feature, displayValue };
-  return idResult;
+  const { attributes } = feature;
+  const layerName = settings.lotLayerGroup.includes(result.layerName) ? "Lots" : result.layerName;
+  let displayValue = feature.attributes[displayFieldName];
+  displayValue = !displayValue || displayValue === "Null" ? attributes.OBJECTID : displayValue;
+  return { displayFieldName, layerName, feature, displayValue };
 };
