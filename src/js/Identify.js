@@ -52,30 +52,6 @@ export const identifyMapPoint = async ({ mapPoint, view }) => {
   });
   view.map.findLayerById("CosGraphicsLayer").add(g);
 
-  // getMapServiceList().forEach(({ url, layerIds }) => {
-  //   let params = new IdentifyParameters({
-  //     tolerance: 5,
-  //     layerOption: "visible",
-  //     returnGeometry: true,
-  //     spatialReference: view.spatialReference,
-  //     geometry: mapPoint,
-  //     width: view.width,
-  //     height: view.height,
-  //     mapExtent: view.extent,
-  //     layerIds,
-  //   });
-  //   params.sublayers = [{ id: params.layerIds[0] }];
-  //   identify.identify(url, params).then(({ results }) => {
-  //     if (results.length > 0) {
-  //       results.forEach((result) => {
-  //         idResults.push(parseResult(result));
-  //         store.dispatch(setActivePanel(null));
-  //         store.dispatch(setActivePanel(3));
-  //       });
-  //     }
-  //   });
-  // });
-  // store.dispatch(setIdentifyResults(idResults));
   for (const { url, layerIds } of getMapServiceList()) {
     let params = new IdentifyParameters({
       tolerance: 5,
@@ -97,7 +73,14 @@ export const identifyMapPoint = async ({ mapPoint, view }) => {
       }
     });
   }
-  store.dispatch(setIdentifyResults(idResults));
+  const uniqueIdResults = idResults.filter(function (result) {
+    var key = result.layerName + "|" + result.displayValue;
+    if (!this[key]) {
+      this[key] = true;
+      return true;
+    }
+  }, Object.create(null));
+  store.dispatch(setIdentifyResults(uniqueIdResults));
   store.dispatch(setActivePanel(3));
 };
 
