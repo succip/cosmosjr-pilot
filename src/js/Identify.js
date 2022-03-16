@@ -81,6 +81,7 @@ export const identifyMapPoint = async ({ mapPoint, view }) => {
     }
   }, Object.create(null));
   store.dispatch(setIdentifyResults(uniqueIdResults));
+  store.dispatch(setActivePanel(null));
   store.dispatch(setActivePanel(3));
 };
 

@@ -9,6 +9,7 @@ import {
   setMapThemeLayers,
 } from "./Layers";
 import { identifyMapPoint } from "./Identify";
+const axios = require("axios");
 
 const onViewStationary = () => {
   updateLayerListInScale(view.scale);

@@ -53,3 +53,6 @@ https://stackoverflow.com/questions/61067142/how-to-map-an-array-with-unknown-ne
 })}
 
 https://js.arcgis.com/4.22/@arcgis/core/assets/esri/themes/light/main.css
+
+https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetPropertyDataAll/5327;
+https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetAddressData/5327;
