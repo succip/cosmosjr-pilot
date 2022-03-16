@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import ResultTitle from "./IdentifyResultsPanel/ResultTitle";
+import ResultTitle from "./ResultTitle";
 
 const IdentifyPanel = () => {
   const [idResults, setIdResults] = useState([]);

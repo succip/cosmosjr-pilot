@@ -39,11 +39,11 @@ view.on("click", ({ mapPoint }) => {
 
 export const initialize = (container) => {
   view.container = container;
-  const url =
-    "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetPropertyDataAll/5327;";
-  const url2 = "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetAddressData/5327";
+  // const url =
+  //   "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetPropertyDataAll/5327;";
+  // const url2 = "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetAddressData/5327";
 
-  axios.get(url).then(({ data }) => console.log("GetPropertyDataAll", data));
-  axios.get(url2).then(({ data }) => console.log("GetAddressData", data));
+  // axios.get(url).then(({ data }) => console.log("GetPropertyDataAll", data));
+  // axios.get(url2).then(({ data }) => console.log("GetAddressData", data));
   return view;
 };
