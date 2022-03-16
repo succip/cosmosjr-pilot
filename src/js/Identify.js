@@ -4,6 +4,7 @@ import IdentifyParameters from "@arcgis/core/rest/support/IdentifyParameters";
 import * as identify from "@arcgis/core/rest/identify";
 import settings from "../config/Settings";
 import store from "../store/store";
+import axios from "axios";
 
 const getMapServiceList = () => {
   const { layers } = store.getState();
@@ -89,7 +90,8 @@ const parseResult = (result) => {
   const { displayFieldName, feature } = result;
   const { attributes } = feature;
   const layerName = settings.lotLayerGroup.includes(result.layerName) ? "Lots" : result.layerName;
+  const isLotLayer = layerName === "Lots";
   let displayValue = feature.attributes[displayFieldName];
   displayValue = !displayValue || displayValue === "Null" ? attributes.OBJECTID : displayValue;
-  return { displayFieldName, layerName, feature, displayValue };
+  return { displayFieldName, layerName, feature, displayValue, isLotLayer };
 };

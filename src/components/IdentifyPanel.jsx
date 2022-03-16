@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import ResultTitle from "./IdentifyResultsPanel/ResultTitle";
 
 const IdentifyPanel = () => {
   const [idResults, setIdResults] = useState([]);
@@ -11,12 +12,8 @@ const IdentifyPanel = () => {
 
   return (
     <>
-      {idResults.map(({ layerName, displayValue }, key) => {
-        return (
-          <p key={key}>
-            {layerName} {displayValue && displayValue}
-          </p>
-        );
+      {idResults.map((result, key) => {
+        return <ResultTitle result={result} key={key} />;
       })}
     </>
   );

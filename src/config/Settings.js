@@ -5,7 +5,7 @@ const settings = {
   appName: "COSMOS",
   version: "4.5.1",
   serverName: "cosmos.surrey.ca",
-  geometryServerurl:
+  geometryServerUrl:
     "https://gisservices.surrey.ca/arcgis/rest/services/Utilities/Geometry/GeometryServer",
   currentYearAerialLayerName: "Aerial Photo April 2021",
   aerialStreetViewTools: "Aerial,StreetView,Pictomerty",
