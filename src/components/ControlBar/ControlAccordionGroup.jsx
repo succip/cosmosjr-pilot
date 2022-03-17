@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import ControlAccordion from "./ControlAccordion";
-import accordions from "../config/Accordions";
+import accordions from "../../config/Accordions";
 import { useDispatch, useSelector } from "react-redux";
-import { setActivePanel } from "../store/actions/appActions";
+import { setActivePanel } from "../../store/actions/appActions";
 
 const ControlAccordionGroup = () => {
   const [curAccordionId, setCurAccordionId] = useState(null);

@@ -11,12 +11,18 @@ const ControlAccordion = ({ title, panel, accordionId, handleChange, expanded })
   };
 
   return (
-    <Accordion expanded={expanded} onChange={() => handleChange(accordionId)} disableGutters={true}>
-      <AccordionSummary sx={accordionTitleStyle} expandIcon={<ExpandMoreIcon />}>
-        <Typography>{title}</Typography>
-      </AccordionSummary>
-      <AccordionDetails sx={{ p: 0 }}>{panel}</AccordionDetails>
-    </Accordion>
+    <>
+      <Accordion
+        expanded={expanded}
+        onChange={() => handleChange(accordionId)}
+        disableGutters={true}
+      >
+        <AccordionSummary sx={accordionTitleStyle} expandIcon={<ExpandMoreIcon />}>
+          <Typography>{title}</Typography>
+        </AccordionSummary>
+        <AccordionDetails sx={{ p: 0 }}>{panel}</AccordionDetails>
+      </Accordion>
+    </>
   );
 };
 

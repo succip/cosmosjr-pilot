@@ -1,5 +1,5 @@
 import MapFrame from "./components/MapFrame";
-import Controlbar from "./components/ControlBar";
+import Controlbar from "./components/ControlBar/ControlBar";
 import "./app.css";
 
 function App() {

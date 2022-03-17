@@ -1,7 +1,8 @@
 import React from "react";
+import Typography from "@mui/material/Typography";
 
 const TestPanelContent = () => {
-  return <p>Test panel content is here.</p>;
+  return <Typography>Test panel content is here.</Typography>;
 };
 
 export default TestPanelContent;
