@@ -5,12 +5,17 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const ControlAccordion = ({ title, panel, accordionId, handleChange, expanded }) => {
+  const accordionTitleStyle = {
+    color: "#666666",
+    textTransform: "uppercase",
+  };
+
   return (
     <Accordion expanded={expanded} onChange={() => handleChange(accordionId)} disableGutters={true}>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+      <AccordionSummary sx={accordionTitleStyle} expandIcon={<ExpandMoreIcon />}>
         <Typography>{title}</Typography>
       </AccordionSummary>
-      <AccordionDetails>{panel}</AccordionDetails>
+      <AccordionDetails sx={{ p: 0 }}>{panel}</AccordionDetails>
     </Accordion>
   );
 };

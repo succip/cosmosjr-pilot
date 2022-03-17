@@ -9,6 +9,8 @@ import {
   setMapThemeLayers,
 } from "./Layers";
 import { identifyMapPoint } from "./Identify";
+import store from "../store/store";
+import { setActivePanel, setIdentifyResults } from "../store/actions/appActions";
 const axios = require("axios");
 
 const onViewStationary = () => {
@@ -41,9 +43,22 @@ export const initialize = (container) => {
   view.container = container;
   // const url =
   //   "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetPropertyDataAll/5327;";
-  // const url2 = "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetAddressData/5327";
+  // const url2 = "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetAddressData/3211";
 
   // axios.get(url).then(({ data }) => console.log("GetPropertyDataAll", data));
   // axios.get(url2).then(({ data }) => console.log("GetAddressData", data));
+
+  const testId = [
+    {
+      displayFieldName: "Lots",
+      layerName: "Lots",
+      isLotLayer: true,
+      displayValue: 3211,
+    },
+  ];
+
+  store.dispatch(setIdentifyResults(testId));
+  store.dispatch(setActivePanel(null));
+  store.dispatch(setActivePanel(3));
   return view;
 };
