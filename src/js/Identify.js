@@ -4,7 +4,6 @@ import IdentifyParameters from "@arcgis/core/rest/support/IdentifyParameters";
 import * as identify from "@arcgis/core/rest/identify";
 import settings from "../config/Settings";
 import store from "../store/store";
-import axios from "axios";
 
 const getMapServiceList = () => {
   const { layers } = store.getState();
@@ -12,7 +11,10 @@ const getMapServiceList = () => {
 
   layers.mapLayers.forEach(({ layer }) => {
     if (layer.visible === true) {
-      if (!settings.ignoreIdentifyLayers.includes(layer.layer.id)) {
+      if (
+        !settings.ignoreIdentifyServices.includes(layer.layer.id) &&
+        !settings.ignoreIdentifyLayers.includes(layer.title)
+      ) {
         if (layer.layer.capabilities && layer.layer.capabilities.operations.supportsQuery) {
           mapLayerUrlList.push({
             url: layer.layer.url,
@@ -40,6 +42,35 @@ const getMapServiceList = () => {
   });
 
   return mapServiceUrlList;
+};
+
+export const parseResult = (result) => {
+  const { displayFieldName, feature } = result;
+  const attributes = formatAttributes(feature.attributes);
+  const layerName = settings.lotLayerGroup.includes(result.layerName) ? "Lots" : result.layerName;
+  const isLotLayer = layerName === "Lots";
+  let displayValue = feature.attributes[displayFieldName];
+  displayValue =
+    !displayValue || displayValue === "Null" ? feature.attributes.OBJECTID : displayValue;
+  return { displayFieldName, layerName, feature, displayValue, attributes, isLotLayer };
+};
+
+const formatAttributes = (attributes) => {
+  const formattedAttributes = [];
+  Object.keys(attributes).forEach((key) => {
+    let field = key;
+    let value = attributes[key];
+
+    if (value !== null && field !== "OBJECTID" && field !== "SHAPE") {
+      if (field === "SHAPE_Area") field = "AREA (m²)";
+      if (field === "SHAPE_Length") field = "LENGTH (m)";
+      field = field.replace("_", " ");
+
+      formattedAttributes.push({ field, value });
+    }
+  });
+
+  return formattedAttributes;
 };
 
 export const identifyMapPoint = async ({ mapPoint, view }) => {
@@ -84,14 +115,4 @@ export const identifyMapPoint = async ({ mapPoint, view }) => {
   store.dispatch(setIdentifyResults(uniqueIdResults));
   store.dispatch(setActivePanel(null));
   store.dispatch(setActivePanel(3));
-};
-
-const parseResult = (result) => {
-  const { displayFieldName, feature } = result;
-  const { attributes } = feature;
-  const layerName = settings.lotLayerGroup.includes(result.layerName) ? "Lots" : result.layerName;
-  const isLotLayer = layerName === "Lots";
-  let displayValue = feature.attributes[displayFieldName];
-  displayValue = !displayValue || displayValue === "Null" ? attributes.OBJECTID : displayValue;
-  return { displayFieldName, layerName, feature, displayValue, isLotLayer };
 };

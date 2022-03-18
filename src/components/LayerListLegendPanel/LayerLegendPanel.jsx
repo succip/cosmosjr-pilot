@@ -2,8 +2,8 @@ import { useState } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import MapLayerList from "./LayerListLegendPanel/MapLayerList";
-import MapLegend from "./LayerListLegendPanel/MapLegend";
+import MapLayerList from "./MapLayerList";
+import MapLegend from "./MapLegend";
 
 function TabPanel(props) {
   const { children, value, index } = props;

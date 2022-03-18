@@ -56,3 +56,17 @@ https://js.arcgis.com/4.22/@arcgis/core/assets/esri/themes/light/main.css
 
 https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetPropertyDataAll/5327;
 https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetAddressData/5327;
+
+GROUP:
+{
+  name: '',
+  id: nanoid(),
+  children: []
+},
+
+LEAF:
+{
+  name: '',
+  id: nanoid(),
+  leaf: true
+},

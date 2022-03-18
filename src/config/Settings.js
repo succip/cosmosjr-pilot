@@ -36,7 +36,6 @@ const settings = {
   whiteRockBoundary: "511294.066,5427706.736,516141.034,5430935.986",
   surreyBoundary: "504000, 5425000, 524000, 5455000",
   surreyBoundaryLatLon: "-123.4789, 48.627, -122.004, 49.496,",
-  ignoreIdentifyLayers: ["AerialImages", "Annotation_Dimensions", "CosGraphicsLayer"],
   startingExtent: new Extent({
     xmin: 505e3,
     ymin: 5425e3,
@@ -55,7 +54,8 @@ const settings = {
       width: 1, // points
     },
   },
-  noIdentifyLayerNames: [
+  ignoreIdentifyServices: ["AerialImages", "Annotation_Dimensions", "CosGraphicsLayer"],
+  ignoreIdentifyLayers: [
     "Road Names",
     "Building Shadow",
     "Aerial Photo",

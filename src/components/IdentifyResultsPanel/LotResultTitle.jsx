@@ -10,10 +10,10 @@ const ResultTitle = ({ result }) => {
   const [addrList, setAddrList] = useState([]);
 
   const expandResultTitle = async () => {
-    setExpanded(!expanded);
     const url = `${Settings.dataServiceUrl}/GetAddressData/${displayValue}`;
     const { data } = await axios.get(url);
     setAddrList(data);
+    setExpanded(!expanded);
   };
 
   useEffect(() => {

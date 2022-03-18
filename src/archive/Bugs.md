@@ -1,0 +1,1 @@
+- LAP/NCPs don't show symbology on map

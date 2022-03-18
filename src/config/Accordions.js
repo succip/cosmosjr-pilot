@@ -1,4 +1,4 @@
-import LayerLegendPanel from "../components/LayerLegendPanel";
+import LayerLegendPanel from "../components/LayerListLegendPanel/LayerLegendPanel";
 import TestPanelContent from "../components/TestPanelContent";
 import IdentifyPanel from "../components/IdentifyResultsPanel/IdentifyPanel";
 

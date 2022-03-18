@@ -1,25 +1,27 @@
 import React, { useEffect, useState } from "react";
-import TestPanelContent from "../TestPanelContent";
 import ResultAccordion from "../Common/ResultAccordion";
+import AttributeTable from "./AttributeTable";
 
 const ResultTitle = ({ result }) => {
-  const { layerName, displayValue } = result;
-  const [expanded, setExpanded] = useState(false);
+  const { layerName, displayValue, attributes } = result;
+  const wrapperTitle = `${layerName} - ${displayValue}`;
 
-  const expandResultTitle = async () => {
+  const [expanded, setExpanded] = useState(false);
+  const [attList, setAttList] = useState([]);
+
+  const expandResultTitle = () => {
     setExpanded(!expanded);
+    setAttList(attributes);
   };
 
   useEffect(() => {
     setExpanded(false);
   }, [result]);
 
-  const wrapperTitle = `${layerName} - ${displayValue}`;
-
   return (
     <>
       <ResultAccordion expanded={expanded} onChange={expandResultTitle} title={wrapperTitle}>
-        <TestPanelContent />
+        {attList && <AttributeTable attributes={attList} />}
       </ResultAccordion>
     </>
   );
