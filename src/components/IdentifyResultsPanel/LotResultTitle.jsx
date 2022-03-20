@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
 import ResultAccordion from "../Common/ResultAccordion";
 import Settings from "../../config/Settings";
+import { highlightFeature } from "../../js/Identify";
 const axios = require("axios");
 
 const ResultTitle = ({ result }) => {
-  const { layerName, displayValue } = result;
+  const { layerName, displayValue, feature } = result;
   const [expanded, setExpanded] = useState(false);
   const [addrList, setAddrList] = useState([]);
 
@@ -13,6 +14,7 @@ const ResultTitle = ({ result }) => {
     const url = `${Settings.dataServiceUrl}/GetAddressData/${displayValue}`;
     const { data } = await axios.get(url);
     setAddrList(data);
+    highlightFeature(feature);
     setExpanded(!expanded);
   };
 

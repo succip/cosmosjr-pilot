@@ -74,12 +74,29 @@ const formatAttributes = (attributes) => {
   return formattedAttributes;
 };
 
+export const highlightFeature = ({ geometry }) => {
+  const { mapView } = store.getState();
+  const map = mapView.mapView.map;
+  const csGraphicsLayer = map.findLayerById("CosGraphicsLayer");
+
+  const existingGraphic = csGraphicsLayer.graphics.find((g) => g.attributes.id === "hg");
+  if (existingGraphic) csGraphicsLayer.graphics.remove(existingGraphic);
+
+  const highlightGraphic = new Graphic({
+    geometry,
+    attributes: { id: "hg" },
+    symbol: settings.searchMarkerSymbols[geometry.type],
+  });
+  csGraphicsLayer.add(highlightGraphic);
+  mapView.mapView.goTo(geometry, { duration: 1200 });
+};
+
 export const identifyMapPoint = async ({ mapPoint, view }) => {
   let idResults = [];
 
   const g = new Graphic({
     geometry: mapPoint,
-    symbol: settings.searchMarkerSymbol,
+    symbol: settings.searchMarkerSymbols.point,
     attributes: { name: "select" },
     spatialReference: view.spatialReference,
   });

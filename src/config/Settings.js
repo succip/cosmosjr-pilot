@@ -43,15 +43,31 @@ const settings = {
     ymax: 5455e3,
     spatialReference: { wkid: 26910 },
   }),
-  searchMarkerSymbol: {
-    type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
-    style: "diamond",
-    color: [255, 0, 0],
-    size: "12px", // pixels
-    outline: {
-      // autocasts as new SimpleLineSymbol()
-      color: [255, 255, 0],
-      width: 1, // points
+  searchMarkerSymbols: {
+    point: {
+      type: "simple-marker",
+      style: "diamond",
+      color: [255, 0, 0],
+      size: "12px",
+      outline: {
+        color: [255, 255, 0],
+        width: 1,
+      },
+    },
+    polyline: {
+      type: "simple-line",
+      color: [255, 105, 105],
+      width: "4px",
+      style: "dash",
+    },
+    polygon: {
+      type: "simple-fill",
+      color: [227, 127, 28, 0.1],
+      style: "solid",
+      outline: {
+        color: [255, 0, 0],
+        width: 2,
+      },
     },
   },
   ignoreIdentifyServices: ["AerialImages", "Annotation_Dimensions", "CosGraphicsLayer"],

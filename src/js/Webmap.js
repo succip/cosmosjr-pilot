@@ -9,8 +9,6 @@ import {
   setMapThemeLayers,
 } from "./Layers";
 import { identifyMapPoint } from "./Identify";
-import store from "../store/store";
-import { setActivePanel, setIdentifyResults } from "../store/actions/appActions";
 
 const onViewStationary = () => {
   updateLayerListInScale(view.scale);
