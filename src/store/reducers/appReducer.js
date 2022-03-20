@@ -1,4 +1,5 @@
 const initialState = {
+  view: null,
   activePanel: null,
   identifyResults: [],
 };
@@ -15,6 +16,8 @@ const appReducer = (state = initialState, { type, payload }) => {
         ...state,
         identifyResults: payload,
       };
+    case "SET_VIEW":
+      return { ...state, view: payload };
     default:
       return state;
   }

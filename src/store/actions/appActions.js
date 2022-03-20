@@ -11,3 +11,10 @@ export const setIdentifyResults = (results) => {
     payload: results,
   };
 };
+
+export const setView = (view) => {
+  return {
+    type: "SET_MAPVIEW",
+    payload: view,
+  };
+};
