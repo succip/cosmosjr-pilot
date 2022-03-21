@@ -88,7 +88,6 @@ export const highlightFeature = ({ geometry }) => {
     symbol: settings.searchMarkerSymbols[geometry.type],
   });
   csGraphicsLayer.add(highlightGraphic);
-  mapView.mapView.goTo(geometry, { duration: 1200 });
 };
 
 export const identifyMapPoint = async ({ mapPoint, view }) => {
