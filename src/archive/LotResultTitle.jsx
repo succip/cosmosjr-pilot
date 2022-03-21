@@ -5,21 +5,19 @@ import Settings from "../../config/Settings";
 import { highlightFeature } from "../../js/Identify";
 const axios = require("axios");
 
-const ResultTitle = ({ result }) => {
+const ResultTitle = ({ result, handleChange, accordionId, expanded }) => {
   const { layerName, displayValue, feature } = result;
-  const [expanded, setExpanded] = useState(false);
   const [addrList, setAddrList] = useState([]);
 
   const expandResultTitle = async () => {
     const url = `${Settings.dataServiceUrl}/GetAddressData/${displayValue}`;
     const { data } = await axios.get(url);
     setAddrList(data);
+    handleChange(accordionId);
     highlightFeature(feature);
-    setExpanded(!expanded);
   };
 
   useEffect(() => {
-    setExpanded(false);
     setAddrList([]);
   }, [result]);
 

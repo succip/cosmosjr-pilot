@@ -70,3 +70,11 @@ LEAF:
   id: nanoid(),
   leaf: true
 },
+
+      {idResults.map((result, key) => {
+        return result.isLotLayer ? (
+          <LotResultTitle result={result} key={key} />
+        ) : (
+          <ResultTitle result={result} key={key} />
+        );
+      })}

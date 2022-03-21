@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import ResultTitle from "./ResultTitle";
-import LotResultTitle from "./LotResultTitle";
+import ResultAccordionGroup from "../Common/ResultAccordionGroup";
 
 const IdentifyPanel = () => {
   const [idResults, setIdResults] = useState([]);
@@ -13,13 +12,7 @@ const IdentifyPanel = () => {
 
   return (
     <>
-      {idResults.map((result, key) => {
-        return result.isLotLayer ? (
-          <LotResultTitle result={result} key={key} />
-        ) : (
-          <ResultTitle result={result} key={key} />
-        );
-      })}
+      <ResultAccordionGroup results={idResults} />
     </>
   );
 };

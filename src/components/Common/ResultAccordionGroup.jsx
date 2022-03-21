@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import ControlAccordion from "./ControlAccordion";
+import ResultTitle from "../IdentifyResultsPanel/ResultTitle";
 
-const AccordionGroup = (accordions) => {
+const AccordionGroup = ({ results }) => {
   const [curAccordionId, setCurAccordionId] = useState(null);
 
   const handleChange = (id) => {
@@ -12,13 +12,16 @@ const AccordionGroup = (accordions) => {
     setCurAccordionId(curAccordionId);
   }, [curAccordionId]);
 
-  return accordions.map((accordion, index) => {
+  useEffect(() => {
+    setCurAccordionId(null);
+  }, [results]);
+
+  return results.map((result, index) => {
     return (
-      <ControlAccordion
+      <ResultTitle
         accordionId={index}
         key={index}
-        title={accordion.title}
-        panel={accordion.component}
+        result={result}
         handleChange={handleChange}
         expanded={curAccordionId === index}
       />
