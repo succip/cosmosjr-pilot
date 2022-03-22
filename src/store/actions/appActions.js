@@ -14,7 +14,7 @@ export const setIdentifyResults = (results) => {
 
 export const setView = (view) => {
   return {
-    type: "SET_MAPVIEW",
+    type: "SET_VIEW",
     payload: view,
   };
 };

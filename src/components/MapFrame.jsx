@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { initialize } from "../js/Webmap";
 import { useDispatch } from "react-redux";
-import { addMapView } from "../store/actions/mapActions";
+import { setView } from "../store/actions/appActions";
 
 const MapFrame = () => {
   const mapRef = useRef(null);
@@ -10,7 +10,7 @@ const MapFrame = () => {
   useEffect(() => {
     if (mapRef.current) {
       const view = initialize(mapRef.current);
-      mapDispatch(addMapView(view));
+      mapDispatch(setView(view));
     }
   }, []);
 

@@ -75,8 +75,8 @@ const formatAttributes = (attributes) => {
 };
 
 export const highlightFeature = ({ geometry }) => {
-  const { mapView } = store.getState();
-  const map = mapView.mapView.map;
+  const { app } = store.getState();
+  const map = app.view.map;
   const csGraphicsLayer = map.findLayerById("CosGraphicsLayer");
 
   const existingGraphic = csGraphicsLayer.graphics.find((g) => g.attributes.id === "hg");
