@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const AccordionGroup = ({ children }) => {
+const AccordionGroup = ({ accordionType, content }) => {
   const [curAccordionId, setCurAccordionId] = useState(null);
 
   const handleChange = (id) => {
@@ -13,18 +13,17 @@ const AccordionGroup = ({ children }) => {
 
   useEffect(() => {
     setCurAccordionId(null);
-  }, [children]);
+  }, [content]);
 
-  const childrenWithProps = React.Children.map(children, (child, index) => {
-    return React.cloneElement(child, {
+  return content.map((data, index) => {
+    return React.createElement(accordionType, {
       key: index,
       accordionId: index,
       handleChange,
       expanded: curAccordionId === index,
+      data,
     });
   });
-
-  return <>{childrenWithProps}</>;
 };
 
 export default AccordionGroup;

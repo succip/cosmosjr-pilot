@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import AccordionGroup from "../Common/AccordionGroup";
-import ResultAccordionGroup from "../Common/ResultAccordionGroup";
+import ResultTitle from "./ResultTitle";
 
 const IdentifyPanel = () => {
   const [idResults, setIdResults] = useState([]);
@@ -13,7 +13,11 @@ const IdentifyPanel = () => {
 
   return (
     <>
-      <ResultAccordionGroup results={idResults} />
+      <AccordionGroup>
+        {idResults.map((result, index) => {
+          return <ResultTitle key={index} result={result} />;
+        })}
+      </AccordionGroup>
     </>
   );
 };

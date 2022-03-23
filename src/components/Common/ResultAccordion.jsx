@@ -8,7 +8,7 @@ const resultTitleStyle = {
   textDecoration: "underline",
 };
 
-const AccordionWrapper = ({
+const ResultAccordion = ({
   children,
   title,
   expanded,
@@ -27,4 +27,4 @@ const AccordionWrapper = ({
   );
 };
 
-export default AccordionWrapper;
+export default ResultAccordion;

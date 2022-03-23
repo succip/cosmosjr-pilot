@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ResultTitle from "../IdentifyResultsPanel/ResultTitle";
+import ResultTitle from "../components/IdentifyResultsPanel/ResultTitle";
 
 const ResultAccordionGroup = ({ results }) => {
   const [curAccordionId, setCurAccordionId] = useState(null);
