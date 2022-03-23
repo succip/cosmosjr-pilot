@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ResultTitle from "../IdentifyResultsPanel/ResultTitle";
 
-const AccordionGroup = ({ results }) => {
+const ResultAccordionGroup = ({ results }) => {
   const [curAccordionId, setCurAccordionId] = useState(null);
 
   const handleChange = (id) => {
@@ -29,4 +29,4 @@ const AccordionGroup = ({ results }) => {
   });
 };
 
-export default AccordionGroup;
+export default ResultAccordionGroup;
