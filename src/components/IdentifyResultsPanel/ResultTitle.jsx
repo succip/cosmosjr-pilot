@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { highlightFeature } from "../../js/Identify";
 import ResultAccordion from "../Common/ResultAccordion";
 import AttributeTable from "./AttributeTable";
-import AccordionGroup from "../Common/AccordionGroup";
 import settings from "../../config/Settings";
 import AddressList from "./AddressList";
 const axios = require("axios");
@@ -18,7 +17,6 @@ const ResultTitle = ({ result, handleChange, accordionId, expanded }) => {
     if (isLotLayer) {
       const url = `${settings.dataServiceUrl}/GetAddressData/${displayValue}`;
       const { data } = await axios.get(url);
-      console.log(data);
       setAddrList(data);
     } else {
       setAttList(attributes);
@@ -36,11 +34,7 @@ const ResultTitle = ({ result, handleChange, accordionId, expanded }) => {
     <>
       <ResultAccordion expanded={expanded} onChange={expandResultTitle} title={wrapperTitle}>
         {attList && <AttributeTable attributes={attList} />}
-        {addrList && (
-          <AccordionGroup>
-            <AddressList addresses={addrList} />
-          </AccordionGroup>
-        )}
+        {addrList && <AddressList addresses={addrList} />}
       </ResultAccordion>
     </>
   );
