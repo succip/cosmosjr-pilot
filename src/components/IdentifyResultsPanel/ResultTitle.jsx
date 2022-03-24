@@ -34,7 +34,7 @@ const ResultTitle = ({ result, handleChange, accordionId, expanded }) => {
     <>
       <ResultAccordion expanded={expanded} onChange={expandResultTitle} title={wrapperTitle}>
         {attList && <AttributeTable attributes={attList} />}
-        {addrList && <AddressList addresses={addrList} />}
+        {addrList && <AddressList addresses={addrList} mslink={result.displayValue} />}
       </ResultAccordion>
     </>
   );
