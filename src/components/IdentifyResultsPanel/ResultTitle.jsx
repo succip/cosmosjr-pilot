@@ -4,9 +4,10 @@ import ResultAccordion from "../Common/ResultAccordion";
 import AttributeTable from "./AttributeTable";
 import settings from "../../config/Settings";
 import AddressList from "./AddressList";
+import AccordionItem from "../Common/AccordionItem";
 const axios = require("axios");
 
-const ResultTitle = ({ result, handleChange, accordionId, expanded }) => {
+const ResultTitle = ({ result, onChange, expanded }) => {
   const { layerName, displayValue, feature, attributes, isLotLayer } = result;
   const wrapperTitle = `${layerName} - ${displayValue}`;
 
@@ -14,14 +15,14 @@ const ResultTitle = ({ result, handleChange, accordionId, expanded }) => {
   const [addrList, setAddrList] = useState([]);
 
   const expandResultTitle = async () => {
-    if (isLotLayer) {
+    if (isLotLayer && !expanded) {
       const url = `${settings.dataServiceUrl}/GetAddressData/${displayValue}`;
       const { data } = await axios.get(url);
       setAddrList(data);
-    } else {
+    } else if (!isLotLayer) {
       setAttList(attributes);
     }
-    handleChange(accordionId);
+    onChange();
     highlightFeature(feature);
   };
 
@@ -32,10 +33,10 @@ const ResultTitle = ({ result, handleChange, accordionId, expanded }) => {
 
   return (
     <>
-      <ResultAccordion expanded={expanded} onChange={expandResultTitle} title={wrapperTitle}>
+      <AccordionItem expanded={expanded} onChange={expandResultTitle} title={wrapperTitle}>
         {attList && <AttributeTable attributes={attList} />}
         {addrList && <AddressList addresses={addrList} mslink={result.displayValue} />}
-      </ResultAccordion>
+      </AccordionItem>
     </>
   );
 };

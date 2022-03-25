@@ -11,19 +11,18 @@ const resultTitleStyle = {
 const AddressResultAccordion = ({
   children,
   title,
-  handleChange,
-  accordionId,
+  onChange,
   expanded,
   style = resultTitleStyle,
 }) => {
   const expand = () => {
-    handleChange(accordionId);
+    onChange();
   };
   return (
     <>
       <Accordion expanded={expanded} onChange={expand} disableGutters={true}>
         <AccordionSummary>
-          <Typography sx={style}>{title}</Typography>
+          <Typography>{title}</Typography>
         </AccordionSummary>
         <AccordionDetails>{children}</AccordionDetails>
       </Accordion>

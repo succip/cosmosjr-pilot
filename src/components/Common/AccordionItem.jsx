@@ -4,16 +4,11 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 
 const AccordionItem = (props) => {
-  const { title, children, onChange, onClick } = props;
-
-  const onAccordionClick = () => {
-    onClick();
-    onChange();
-  };
+  const { title, children } = props;
 
   return (
     <>
-      <Accordion {...props} onChange={onAccordionClick} disableGutters={true}>
+      <Accordion {...props} disableGutters={true}>
         <AccordionSummary>
           <Typography>{title}</Typography>
         </AccordionSummary>
