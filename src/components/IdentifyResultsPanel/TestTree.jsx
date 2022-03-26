@@ -5,6 +5,22 @@ import TreeView from "@mui/lab/TreeView";
 import FolderIcon from "@mui/icons-material/Folder";
 import FolderOpenIcon from "@mui/icons-material/FolderOpen";
 import AttributeTable from "./AttributeTable";
+import { highlightFeature } from "../../js/Identify";
+
+const ResultTreeItem = ({ result, index, onFolderClick }) => {
+  const onResultClick = (nodeId) => {
+    onFolderClick(nodeId);
+    highlightFeature(result.feature);
+  };
+  return (
+    <TreeItem
+      nodeId={index.toString()}
+      label={result.displayValue}
+      onClick={() => onResultClick(index)}
+      children={<p>{result.displayValue}</p>}
+    />
+  );
+};
 
 const TestTree = () => {
   const [idResults, setIdResults] = useState([]);
@@ -15,10 +31,9 @@ const TestTree = () => {
     setIdResults(identifyResults);
   }, [identifyResults]);
 
-  const onNodeToggle = (undefined, nodeIds) => {
-    console.log(nodeIds);
-    setExpanded([]);
-    setExpanded(nodeIds);
+  const onFolderClick = (nodeId) => {
+    const expandNodes = [nodeId.toString()];
+    expandNodes[0] === expanded[0] ? setExpanded([]) : setExpanded(expandNodes);
   };
 
   useEffect(() => {
@@ -28,18 +43,17 @@ const TestTree = () => {
   return (
     <>
       <TreeView
-        onNodeToggle={onNodeToggle}
-        expanded={expanded && expanded}
+        expanded={expanded}
         defaultCollapseIcon={<FolderOpenIcon />}
         defaultExpandIcon={<FolderIcon />}
       >
         {idResults.map((result, index) => {
           return (
-            <TreeItem
-              nodeId={index.toString()}
+            <ResultTreeItem
               key={index}
-              label={result.displayValue}
-              children={<AttributeTable attributes={result.attributes} />}
+              result={result}
+              index={index}
+              onFolderClick={onFolderClick}
             />
           );
         })}
