@@ -304,32 +304,32 @@ const testObject = [
     displayValue: 269063,
     attributes: [
       {
-        field: "CIVIC FACILITY",
-        value: "No",
+        Field: "CIVIC FACILITY",
+        Value: "No",
       },
       {
-        field: "FACILITYID",
-        value: "1001237667",
+        Field: "FACILITYID",
+        Value: "1001237667",
       },
       {
-        field: "STATUS",
-        value: "In Service",
+        Field: "STATUS",
+        Value: "In Service",
       },
       {
-        field: "GROUND ELEVATION",
-        value: "72.230000",
+        Field: "GROUND ELEVATION",
+        Value: "72.230000",
       },
       {
-        field: "BUILDING HEIGHT",
-        value: "2.7700000",
+        Field: "BUILDING HEIGHT",
+        Value: "2.7700000",
       },
       {
-        field: "LENGTH (m)",
-        value: "17.663424",
+        Field: "LENGTH (m)",
+        Value: "17.663424",
       },
       {
-        field: "AREA (m²)",
-        value: "18.813842",
+        Field: "AREA (m²)",
+        Value: "18.813842",
       },
     ],
     isLotLayer: false,
@@ -428,32 +428,32 @@ const testObject = [
     displayValue: 269064,
     attributes: [
       {
-        field: "CIVIC FACILITY",
-        value: "No",
+        Field: "CIVIC FACILITY",
+        Value: "No",
       },
       {
-        field: "FACILITYID",
-        value: "1001237668",
+        Field: "FACILITYID",
+        Value: "1001237668",
       },
       {
-        field: "STATUS",
-        value: "In Service",
+        Field: "STATUS",
+        Value: "In Service",
       },
       {
-        field: "GROUND ELEVATION",
-        value: "72.540000",
+        Field: "GROUND ELEVATION",
+        Value: "72.540000",
       },
       {
-        field: "BUILDING HEIGHT",
-        value: "9.4600000",
+        Field: "BUILDING HEIGHT",
+        Value: "9.4600000",
       },
       {
-        field: "LENGTH (m)",
-        value: "82.407124",
+        Field: "LENGTH (m)",
+        Value: "82.407124",
       },
       {
-        field: "AREA (m²)",
-        value: "242.97740",
+        Field: "AREA (m²)",
+        Value: "242.97740",
       },
     ],
     isLotLayer: false,

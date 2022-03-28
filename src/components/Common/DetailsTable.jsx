@@ -1,5 +1,6 @@
 import React from "react";
 import Table from "@mui/material/Table";
+import TableHead from "@mui/material/TableHead";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
@@ -8,7 +9,7 @@ import Paper from "@mui/material/Paper";
 const tableStyle = {
   p: 0.5,
 };
-const AttributeTable = ({ attributes }) => {
+const DetailsTable = ({ attributes }) => {
   return (
     <TableContainer component={Paper}>
       <Table>
@@ -27,4 +28,4 @@ const AttributeTable = ({ attributes }) => {
   );
 };
 
-export default AttributeTable;
+export default DetailsTable;
