@@ -1,6 +1,6 @@
-import AccordionGroup from "../Common/AccordionGroup";
+import AccordionGroup from "../components/Common/AccordionGroup";
 import AddressResultAccordion from "./AddressResultAccordion";
-import AddressDetailsPanel from "./AddressDetailsPanel";
+import AddressDetailsPanel from "../components/IdentifyResultsPanel/AddressDetailsPanel";
 
 const AddressList = ({ addresses, mslink }) => {
   return (

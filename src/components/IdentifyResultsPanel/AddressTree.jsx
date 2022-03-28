@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import TreeView from "@mui/lab/TreeView";
-import FolderIcon from "@mui/icons-material/Folder";
-import FolderOpenIcon from "@mui/icons-material/FolderOpen";
+import HomeWorkIcon from "@mui/icons-material/HomeWork";
+import HomeWorkOutlinedIcon from "@mui/icons-material/HomeWorkOutlined";
 import AddressTreeItem from "./AddressTreeItem";
 
-const ResultTree = ({ addresses }) => {
+const ResultTree = ({ addresses, mslink }) => {
   const [expanded, setExpanded] = useState([]);
 
   const onNodeClick = (nodeId) => {
@@ -20,8 +20,8 @@ const ResultTree = ({ addresses }) => {
     <>
       <TreeView
         expanded={expanded}
-        defaultCollapseIcon={<FolderOpenIcon />}
-        defaultExpandIcon={<FolderIcon />}
+        defaultCollapseIcon={<HomeWorkOutlinedIcon />}
+        defaultExpandIcon={<HomeWorkIcon />}
       >
         {addresses.map((address, index) => {
           return (
@@ -30,6 +30,7 @@ const ResultTree = ({ addresses }) => {
               address={address}
               index={index}
               onNodeClick={onNodeClick}
+              mslink={mslink}
             />
           );
         })}

@@ -12,11 +12,11 @@ const AttributeTable = ({ attributes }) => {
       <Table>
         <TableBody>
           {attributes.map((row) => (
-            <TableRow key={row.field}>
+            <TableRow key={row.Field}>
               <TableCell component="th" scope="row">
-                {row.field}
+                {row.Field}
               </TableCell>
-              <TableCell>{row.value}</TableCell>
+              <TableCell>{row.Value}</TableCell>
             </TableRow>
           ))}
         </TableBody>

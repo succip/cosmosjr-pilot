@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { highlightFeature } from "../../js/Identify";
-import ResultAccordion from "../Common/ResultAccordion";
-import AttributeTable from "./AttributeTable";
-import settings from "../../config/Settings";
+import { highlightFeature } from "../js/Identify";
+import ResultAccordion from "../components/Common/ResultAccordion";
+import AttributeTable from "../components/IdentifyResultsPanel/AttributeTable";
+import settings from "../config/Settings";
 import AddressList from "./AddressList";
-import AccordionItem from "../Common/AccordionItem";
+import AccordionItem from "../components/Common/AccordionItem";
 const axios = require("axios");
 
 const ResultTitle = ({ result, onChange, expanded }) => {

@@ -58,19 +58,18 @@ export const parseResult = (result) => {
 const formatAttributes = (attributes) => {
   const formattedAttributes = [];
   Object.keys(attributes).forEach((key) => {
-    let field = key;
-    let value = attributes[key];
+    let Field = key;
+    let Value = attributes[key];
 
-    if (value !== null && field !== "OBJECTID" && field !== "SHAPE") {
-      if (field === "SHAPE_Area") field = "AREA (m²)";
-      if (field === "SHAPE_Length") field = "LENGTH (m)";
-      if (typeof value === "number") value = value.toPrecision(8);
-      field = field.replace(/_/g, " ");
+    if (Value !== null && Field !== "OBJECTID" && Field !== "SHAPE") {
+      if (Field === "SHAPE_Area") Field = "AREA (m²)";
+      if (Field === "SHAPE_Length") Field = "LENGTH (m)";
+      if (typeof Value === "number") Value = Value.toPrecision(8);
+      Field = Field.replace(/_/g, " ");
 
-      formattedAttributes.push({ field, value });
+      formattedAttributes.push({ Field, Value });
     }
   });
-
   return formattedAttributes;
 };
 

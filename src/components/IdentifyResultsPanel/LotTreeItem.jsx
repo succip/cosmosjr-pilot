@@ -23,7 +23,7 @@ const ResultTreeItem = ({ result, index, onNodeClick }) => {
       nodeId={index.toString()}
       label={`${layerName} - ${displayValue}`}
       onClick={() => onResultClick(index)}
-      children={<AddressTree addresses={addressList} />}
+      children={<AddressTree mslink={result.displayValue} addresses={addressList} />}
     />
   );
 };

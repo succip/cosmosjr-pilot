@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import TreeView from "@mui/lab/TreeView";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import ResultTreeItem from "./ResultTreeItem";
 import LotTreeItem from "./LotTreeItem";
 
@@ -21,8 +21,8 @@ const ResultTree = ({ results }) => {
     <>
       <TreeView
         expanded={expanded}
-        defaultCollapseIcon={<KeyboardArrowDownIcon />}
-        defaultExpandIcon={<KeyboardArrowRightIcon />}
+        defaultCollapseIcon={<LocationOnOutlinedIcon />}
+        defaultExpandIcon={<LocationOnIcon />}
       >
         {results.map((result, index) => {
           return result.isLotLayer ? (
