@@ -5,9 +5,12 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+
 const tableStyle = {
   p: 0.5,
+  fontSize: 12,
 };
+
 const AttributeTable = ({ attributes }) => {
   return (
     <TableContainer component={Paper}>

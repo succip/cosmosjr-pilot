@@ -205,4 +205,33 @@ const settings = {
   ],
 };
 
+export const dataServices = {
+  addresses: {
+    url: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetAddressData",
+  },
+  property: {
+    url: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetPropertyDataAll",
+  },
+  assessment: {
+    url: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetAssessmentData",
+    headings: ["Year", "Gross Land", "Gross Improvements", "Gross Assessments"],
+  },
+  servicing: {
+    url: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetServicetData",
+    headings: ["Service", "Start Date", "End Date"],
+  },
+  ocp: {
+    url: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetNCPData",
+    headings: ["Land Use", "% of Lot"],
+  },
+  zoning: {
+    url: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetZoningData",
+    headings: ["Zone", "% of Lot", "Zone Bylaws", "Zone LUC"],
+  },
+  secondaryPlan: {
+    url: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetSecondaryPlanData",
+    headings: ["Land Use", "% of Lot", "Plan Area", "Plan Type"],
+  },
+};
+
 export default settings;

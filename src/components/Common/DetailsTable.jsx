@@ -6,20 +6,37 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+
 const tableStyle = {
   p: 0.5,
+  fontSize: 12,
 };
-const DetailsTable = ({ attributes }) => {
+
+const DetailsTable = ({ headings, data }) => {
   return (
     <TableContainer component={Paper}>
       <Table>
+        {headings && (
+          <TableHead>
+            <TableRow>
+              {headings.map((heading, index) => (
+                <TableCell sx={tableStyle} key={index}>
+                  {heading}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+        )}
         <TableBody>
-          {attributes.map((row, index) => (
+          {data.map((row, index) => (
             <TableRow key={index}>
-              <TableCell sx={tableStyle} component="th" scope="row">
-                {row.Field}
-              </TableCell>
-              <TableCell sx={tableStyle}>{row.Value}</TableCell>
+              {Object.keys(row).map((key, index) => {
+                return (
+                  <TableCell sx={tableStyle} key={index}>
+                    {row[key]}
+                  </TableCell>
+                );
+              })}
             </TableRow>
           ))}
         </TableBody>

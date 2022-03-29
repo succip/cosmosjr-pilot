@@ -1,5 +1,5 @@
 import TreeItem from "@mui/lab/TreeItem";
-import AddressDetailsPanel from "./AddressDetailsPanel";
+import AddressDetailsTree from "./AddressDetailsTree";
 
 const AddressTreeItem = ({ address, index, onNodeClick, mslink }) => {
   const onAddressClick = (nodeId) => {
@@ -11,7 +11,7 @@ const AddressTreeItem = ({ address, index, onNodeClick, mslink }) => {
       nodeId={index.toString()}
       label={address.Field}
       onClick={() => onAddressClick(index)}
-      children={<AddressDetailsPanel mslink={mslink} />}
+      children={<AddressDetailsTree propertyNumber={address.Value} mslink={mslink} />}
     />
   );
 };
