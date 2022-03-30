@@ -5,7 +5,6 @@ import TreeView from "@mui/lab/TreeView";
 import TreeItem from "@mui/lab/TreeItem";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import AttributeTable from "./AttributeTable";
 import DetailsTable from "../Common/DetailsTable";
 const axios = require("axios");
 
@@ -24,9 +23,8 @@ const AddressDetailsPanel = ({ mslink, propertyNumber }) => {
     setPropertyData(data);
   };
 
-  const onNodeToggle = (undefiend, nodeIds) => {
-    const newestNode = nodeIds[0];
-    console.log(nodeIds);
+  const onNodeToggle = async (event = undefined, nodeIds) => {
+    if (nodeIds.length > expanded.length) await fetchData(nodeIds[0]);
     setExpanded(nodeIds);
   };
 
@@ -76,43 +74,38 @@ const AddressDetailsPanel = ({ mslink, propertyNumber }) => {
         onNodeToggle={onNodeToggle}
       >
         <TreeItem
-          nodeId={"0"}
+          nodeId={"property"}
           label={"Property Details"}
-          children={<AttributeTable attributes={propertyData} />}
+          children={<DetailsTable data={propertyData} />}
         />
         <TreeItem
-          nodeId={"1"}
+          nodeId={"assessment"}
           label={"Assessment Details"}
-          onClick={() => fetchData("assessment")}
           children={
             <DetailsTable headings={dataServices.assessment.headings} data={assessmentData} />
           }
         />
         <TreeItem
-          nodeId={"2"}
+          nodeId={"servicing"}
           label={"Servicing Details"}
-          onClick={() => fetchData("servicing")}
           children={
             <DetailsTable headings={dataServices.servicing.headings} data={servicingData} />
           }
         />
         <TreeItem
-          nodeId={"3"}
+          nodeId={"ocp"}
           label={"OCP Details"}
-          onClick={() => fetchData("ocp")}
           children={<DetailsTable headings={dataServices.ocp.headings} data={ocpData} />}
         />
         <TreeItem
-          nodeId={"4"}
+          nodeId={"zoning"}
           label={"Zoning Details"}
-          onClick={() => fetchData("zoning")}
           children={<DetailsTable headings={dataServices.zoning.headings} data={zoningData} />}
         />
         {secondaryPlanData.length > 0 && (
           <TreeItem
-            nodeId={"5"}
+            nodeId={"secondaryPlan"}
             label={"Secondary Plan Details"}
-            onClick={() => fetchData("secondaryPlan")}
             children={
               <DetailsTable
                 headings={dataServices.secondaryPlan.headings}

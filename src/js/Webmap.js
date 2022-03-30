@@ -461,7 +461,7 @@ const testObject = [
 ];
 
 view.when(() => {
-  setMapThemeLayers("City Map");
+  setMapThemeLayers("City");
   store.dispatch(setIdentifyResults(testObject));
   store.dispatch(setActivePanel(3));
 });

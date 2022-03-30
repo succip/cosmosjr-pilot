@@ -1,7 +1,7 @@
 import { useState } from "react";
 import TreeItem from "@mui/lab/TreeItem";
 import { highlightFeature } from "../../js/Identify";
-import AttributeTable from "./AttributeTable";
+import DetailsTable from "../Common/DetailsTable";
 
 const ResultTreeItem = ({ result, index, onNodeClick }) => {
   const { layerName, feature, attributes, displayValue } = result;
@@ -18,7 +18,7 @@ const ResultTreeItem = ({ result, index, onNodeClick }) => {
       nodeId={index.toString()}
       label={`${layerName} - ${displayValue}`}
       onClick={() => onResultClick(index)}
-      children={<AttributeTable attributes={attributeList} />}
+      children={<DetailsTable data={attributeList} />}
     />
   );
 };

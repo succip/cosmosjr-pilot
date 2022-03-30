@@ -64,7 +64,6 @@ const formatAttributes = (attributes) => {
     if (Value !== null && Field !== "OBJECTID" && Field !== "SHAPE") {
       if (Field === "SHAPE_Area") Field = "AREA (m²)";
       if (Field === "SHAPE_Length") Field = "LENGTH (m)";
-      if (typeof Value === "number") Value = Value.toPrecision(8);
       Field = Field.replace(/_/g, " ");
 
       formattedAttributes.push({ Field, Value });
