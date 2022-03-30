@@ -6,11 +6,6 @@ import TreeItem from "@mui/lab/TreeItem";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import AttributeTable from "./AttributeTable";
-import AssessmentTable from "./DataTables/AssessmentTable";
-import ServicingTable from "./DataTables/ServicingTable";
-import OcpTable from "./DataTables/OcpTable";
-import ZoningTable from "./DataTables/ZoningTable";
-import SecondaryPlanTable from "./DataTables/SecondaryPlanTable";
 import DetailsTable from "../Common/DetailsTable";
 const axios = require("axios");
 
@@ -21,11 +16,18 @@ const AddressDetailsPanel = ({ mslink, propertyNumber }) => {
   const [ocpData, setOcpData] = useState([]);
   const [zoningData, setZoningData] = useState([]);
   const [secondaryPlanData, setSecondaryPlanData] = useState([]);
+  const [expanded, setExpanded] = useState([]);
 
   const fetchPropertyData = async () => {
     const url = `${settings.dataServiceUrl}/GetPropertyDataAll/${mslink};`;
     const { data } = await axios.get(url);
     setPropertyData(data);
+  };
+
+  const onNodeToggle = (undefiend, nodeIds) => {
+    const newestNode = nodeIds[0];
+    console.log(nodeIds);
+    setExpanded(nodeIds);
   };
 
   useEffect(() => {
@@ -38,27 +40,27 @@ const AddressDetailsPanel = ({ mslink, propertyNumber }) => {
       case "assessment": {
         const { data } = await axios.get(`${settings.dataServiceUrls[type]}/${propertyNumber}`);
         setAssessmentData(data);
-        return;
+        break;
       }
       case "servicing": {
         const { data } = await axios.get(`${settings.dataServiceUrls[type]}/${propertyNumber}`);
         setServicingData(data);
-        return;
+        break;
       }
       case "ocp": {
         const { data } = await axios.get(`${settings.dataServiceUrls[type]}/${mslink}`);
         setOcpData(data);
-        return;
+        break;
       }
       case "zoning": {
         const { data } = await axios.get(`${settings.dataServiceUrls[type]}/${mslink}`);
         setZoningData(data);
-        return;
+        break;
       }
       case "secondaryPlan": {
         const { data } = await axios.get(`${settings.dataServiceUrls[type]}/${mslink}`);
         setSecondaryPlanData(data);
-        return;
+        break;
       }
       default:
         return type;
@@ -70,6 +72,8 @@ const AddressDetailsPanel = ({ mslink, propertyNumber }) => {
       <TreeView
         defaultCollapseIcon={<KeyboardArrowDownIcon />}
         defaultExpandIcon={<KeyboardArrowRightIcon />}
+        expanded={expanded}
+        onNodeToggle={onNodeToggle}
       >
         <TreeItem
           nodeId={"0"}
@@ -88,26 +92,35 @@ const AddressDetailsPanel = ({ mslink, propertyNumber }) => {
           nodeId={"2"}
           label={"Servicing Details"}
           onClick={() => fetchData("servicing")}
-          children={<ServicingTable data={servicingData} />}
+          children={
+            <DetailsTable headings={dataServices.servicing.headings} data={servicingData} />
+          }
         />
         <TreeItem
           nodeId={"3"}
           label={"OCP Details"}
           onClick={() => fetchData("ocp")}
-          children={<OcpTable data={ocpData} />}
+          children={<DetailsTable headings={dataServices.ocp.headings} data={ocpData} />}
         />
         <TreeItem
           nodeId={"4"}
           label={"Zoning Details"}
           onClick={() => fetchData("zoning")}
-          children={<ZoningTable data={zoningData} />}
+          children={<DetailsTable headings={dataServices.zoning.headings} data={zoningData} />}
         />
-        <TreeItem
-          nodeId={"5"}
-          label={"Secondary Plan Details"}
-          onClick={() => fetchData("secondaryPlan")}
-          children={<SecondaryPlanTable data={secondaryPlanData} />}
-        />
+        {secondaryPlanData.length > 0 && (
+          <TreeItem
+            nodeId={"5"}
+            label={"Secondary Plan Details"}
+            onClick={() => fetchData("secondaryPlan")}
+            children={
+              <DetailsTable
+                headings={dataServices.secondaryPlan.headings}
+                data={secondaryPlanData}
+              />
+            }
+          />
+        )}
       </TreeView>
     </>
   );
