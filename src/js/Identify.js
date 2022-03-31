@@ -55,8 +55,9 @@ export const parseResult = (result) => {
   return { displayFieldName, layerName, feature, displayValue, attributes, isLotLayer };
 };
 
-const formatAttributes = (attributes) => {
+export const formatAttributes = (attributes) => {
   const formattedAttributes = [];
+
   Object.keys(attributes).forEach((key) => {
     let Field = key;
     let Value = attributes[key];
@@ -64,11 +65,25 @@ const formatAttributes = (attributes) => {
     if (Value !== null && Field !== "OBJECTID" && Field !== "SHAPE") {
       if (Field === "SHAPE_Area") Field = "AREA (m²)";
       if (Field === "SHAPE_Length") Field = "LENGTH (m)";
+
       Field = Field.replace(/_/g, " ");
 
       formattedAttributes.push({ Field, Value });
     }
   });
+  return formattedAttributes;
+};
+
+export const formatPropertyAttributes = (attributes) => {
+  const formattedAttributes = [];
+  attributes.forEach((attribute) => {
+    let { Field, Value } = attribute;
+
+    if (Field === "PLAN") Value = "plan here!";
+
+    formattedAttributes.push({ Field, Value });
+  });
+
   return formattedAttributes;
 };
 

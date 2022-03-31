@@ -6,6 +6,7 @@ import TreeItem from "@mui/lab/TreeItem";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import DetailsTable from "../Common/DetailsTable";
+import { formatPropertyAttributes } from "../../js/Identify";
 const axios = require("axios");
 
 const AddressDetailsPanel = ({ mslink, propertyNumber }) => {
@@ -20,7 +21,7 @@ const AddressDetailsPanel = ({ mslink, propertyNumber }) => {
   const fetchPropertyData = async () => {
     const url = `${settings.dataServiceUrl}/GetPropertyDataAll/${mslink};`;
     const { data } = await axios.get(url);
-    setPropertyData(data);
+    setPropertyData(formatPropertyAttributes(data));
   };
 
   const onNodeToggle = async (event = undefined, nodeIds) => {

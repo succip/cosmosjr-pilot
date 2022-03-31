@@ -1,10 +1,10 @@
 @import "https://js.arcgis.com/4.22/@arcgis/core/assets/esri/themes/light/main.css";
 
 .viewDiv {
-  height: 100vh;
+  height: 92vh;
 }
 
 .controlDiv {
-  max-height: 100vh;
+  max-height: 92vh;
   overflow: scroll;
 }
