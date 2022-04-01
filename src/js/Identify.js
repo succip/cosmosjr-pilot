@@ -4,6 +4,11 @@ import IdentifyParameters from "@arcgis/core/rest/support/IdentifyParameters";
 import * as identify from "@arcgis/core/rest/identify";
 import settings from "../config/Settings";
 import store from "../store/store";
+import Link from "@mui/material/Link";
+
+const createLink = (text) => {
+  let el = document.createElement(text);
+};
 
 const getMapServiceList = () => {
   const { layers } = store.getState();
@@ -79,7 +84,9 @@ export const formatPropertyAttributes = (attributes) => {
   attributes.forEach((attribute) => {
     let { Field, Value } = attribute;
 
-    if (Field === "PLAN") Value = "plan here!";
+    if (Field === "PLAN") {
+      createLink(Value);
+    }
 
     formattedAttributes.push({ Field, Value });
   });
