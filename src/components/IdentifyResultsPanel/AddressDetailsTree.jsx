@@ -53,7 +53,7 @@ const AddressDetailsPanel = ({ mslink, propertyNumber }) => {
       }
       case "zoning": {
         const { data } = await axios.get(`${settings.dataServiceUrls[type]}/${mslink}`);
-        setZoningData(data);
+        setZoningData(formatPropertyAttributes(data));
         break;
       }
       case "secondaryPlan": {

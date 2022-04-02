@@ -6,8 +6,16 @@ import settings from "../config/Settings";
 import store from "../store/store";
 import Link from "@mui/material/Link";
 
-const createLink = (text) => {
-  let el = document.createElement(text);
+const createAttributeLink = (value) => {
+  value = value.trim();
+  let el = document.createElement("html");
+  el.innerHTML = value;
+  const { href, innerHTML } = el.getElementsByTagName("a")[0];
+  return (
+    <Link target="_blank" href={href}>
+      {innerHTML}
+    </Link>
+  );
 };
 
 const getMapServiceList = () => {
@@ -84,9 +92,8 @@ export const formatPropertyAttributes = (attributes) => {
   attributes.forEach((attribute) => {
     let { Field, Value } = attribute;
 
-    if (Field === "PLAN") {
-      createLink(Value);
-    }
+    if (Field === "PLAN") Value = createAttributeLink(Value);
+    if (Field.includes("<a href=")) Field = createAttributeLink(Field);
 
     formattedAttributes.push({ Field, Value });
   });
