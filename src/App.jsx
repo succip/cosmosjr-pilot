@@ -1,20 +1,21 @@
+import Grid from "@mui/material/Grid";
 import MapFrame from "./components/MapFrame";
 import Controlbar from "./components/ControlBar/ControlBar";
-import "./app.css";
 import AppTitleBar from "./components/AppTitleBar/AppTitleBar";
+import "./app.css";
 
 function App() {
   return (
     <>
-      <AppTitleBar />
-      <div className="row g-0">
-        <div className="col-3 controlDiv">
+      <AppTitleBar xs={12} />
+      <Grid container direction="row">
+        <Grid item className="controlDiv" xs={3} md={4} lg={3}>
           <Controlbar />
-        </div>
-        <div className="col-9">
+        </Grid>
+        <Grid item className="viewDiv" xs={9} md={8} lg={9}>
           <MapFrame />
-        </div>
-      </div>
+        </Grid>
+      </Grid>
     </>
   );
 }
