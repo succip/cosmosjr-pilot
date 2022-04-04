@@ -5,6 +5,7 @@ import * as identify from "@arcgis/core/rest/identify";
 import settings from "../config/Settings";
 import store from "../store/store";
 import Link from "@mui/material/Link";
+const queryString = require("query-string");
 
 const createAttributeLink = (value) => {
   value = value.trim();
@@ -78,6 +79,10 @@ export const formatAttributes = (attributes) => {
     if (Value !== null && Field !== "OBJECTID" && Field !== "SHAPE") {
       if (Field === "SHAPE_Area") Field = "AREA (m²)";
       if (Field === "SHAPE_Length") Field = "LENGTH (m)";
+      if (Field === "WEBLINK") {
+        const parsed = queryString.parse(Value.split("?")[1]);
+        console.log("seq", parsed.seq, "year", parsed.year);
+      }
 
       Field = Field.replace(/_/g, " ");
 

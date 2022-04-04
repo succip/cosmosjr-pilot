@@ -7,6 +7,11 @@ import Select from "@mui/material/Select";
 import MapThemes from "../../config/MapThemes";
 import { setMapThemeLayers } from "../../js/Layers";
 
+const mapThemeSelectStyle = {
+  backgroundColor: "white",
+  mr: 1,
+};
+
 const MapThemeSelect = () => {
   const [theme, setTheme] = useState("");
 
@@ -18,13 +23,16 @@ const MapThemeSelect = () => {
   return (
     <Box sx={{ minWidth: 180 }}>
       <FormControl fullWidth>
-        <InputLabel id="mapThemeSelectLabel">Select Map</InputLabel>
+        <InputLabel id="mapThemeSelectLabel" variant="outlined">
+          Select Map
+        </InputLabel>
         <Select
           labelId="mapThemeSelectLabel"
           id="demo-simple-select"
           value={theme}
           label="Map Theme"
           onChange={handleChange}
+          sx={mapThemeSelectStyle}
         >
           {MapThemes.map(({ themeTitle }, index) => (
             <MenuItem key={index} value={themeTitle}>
