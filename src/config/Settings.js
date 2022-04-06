@@ -81,7 +81,7 @@ const settings = {
     "Road Surface",
   ],
   legendDisabledLayers: ["Building Shadow", "Address Search", "Road Names", "Intersection Search"],
-  dataServiceUrl: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/",
+  dataServiceUrl: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc",
   dataServiceUrls: {
     addresses: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetAddressData",
     property: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetPropertyDataAll",
