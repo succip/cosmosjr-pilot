@@ -40,6 +40,7 @@ const SearchBar = () => {
     if (value) {
       setOpen(false);
       findRecord(value);
+      console.log(value);
     }
   }, [value]);
 
