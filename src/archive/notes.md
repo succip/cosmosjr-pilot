@@ -78,3 +78,13 @@ LEAF:
           <ResultTitle result={result} key={key} />
         );
       })}
+
+
+example output from searchBar: 
+{
+    "FieldName": "ADDRESSID",
+    "FieldValue": "28742",
+    "LayerName": "Address Search",
+    "ListValue": "2949 KING GEORGE BLVD - Address",
+    "key": "197400"
+}

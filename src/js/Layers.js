@@ -24,6 +24,7 @@ const onAddServiceLayer = (layer) => {
       layer: sublayer,
       inScale: false,
       title: sublayer.title,
+      id: sublayer.id,
       ulid: nanoid(),
     };
     store.dispatch(addLayer(newLayer));

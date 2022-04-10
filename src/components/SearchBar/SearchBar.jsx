@@ -3,7 +3,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import settings from "../../config/Settings";
 import { customAlphabet } from "nanoid";
-import { getMapLayerByTitle } from "../../js/Layers";
+import { findFeature } from "../../js/Search";
 const nanoid = customAlphabet("1234567890abcdef", 6);
 const axios = require("axios");
 const _ = require("lodash");
@@ -39,17 +39,10 @@ const SearchBar = () => {
   useEffect(() => {
     if (value) {
       setOpen(false);
-      findRecord(value);
+      findFeature(value);
       console.log(value);
     }
   }, [value]);
-
-  const findRecord = ({ ListValue, LayerName }) => {
-    if (ListValue.includes("Layer")) {
-      const layer = getMapLayerByTitle(LayerName);
-      console.log("Layer Found: ", layer);
-    }
-  };
 
   useEffect(() => {}, [options]);
 
