@@ -5,6 +5,7 @@ import store from "../store/store";
 import LayerTree from "../config/LayerTree";
 import { customAlphabet } from "nanoid";
 import {
+  addAddressLayer,
   addLayer,
   addMapLayer,
   setLayerVisible,
@@ -25,8 +26,10 @@ const onAddServiceLayer = (layer) => {
       inScale: false,
       title: sublayer.title,
       id: sublayer.id,
+      serviceUrl: layer.url,
       ulid: nanoid(),
     };
+    if (newLayer.title === "Address Search") store.dispatch(addAddressLayer(newLayer));
     store.dispatch(addLayer(newLayer));
     checkMapLayers(LayerTree, newLayer);
   });

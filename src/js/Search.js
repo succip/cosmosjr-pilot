@@ -1,18 +1,32 @@
 import * as find from "@arcgis/core/rest/find";
 import FindParameters from "@arcgis/core/rest/support/FindParameters";
-import { getMapLayerByTitle } from "./Layers";
 import store from "../store/store";
+import { getMapLayerByTitle } from "./Layers";
 
-export const findFeature = ({ ListValue, LayerName }) => {
-  const { app } = store.getState();
+export const findFeature = async ({ LayerName, FieldName, FieldValue }) => {
+  const { layers, app } = store.getState();
   const outSpatialReference = app.view.spatialReference;
+  let layer;
 
-  const layer = getAllLayerByMapTitle(LayerName);
-  console.log("Layer Found: ", layer);
+  if (LayerName === "Address Search") {
+    layer = layers.addressLayer;
+  } else {
+    layer = getMapLayerByTitle(LayerName);
+  }
+  let findParameters = new FindParameters({
+    returnGeometry: true,
+    contains: false,
+    layerIds: [layer.id],
+    searchFields: [FieldName],
+    searchText: FieldValue,
+    outSpatialReference,
+  });
+
+  const { results } = await find.find(layer.serviceUrl, findParameters);
+  zoomToFeature(results[0].feature);
 };
 
-const getAllLayerByMapTitle = (allLayerTitle) => {
-  const { layers } = store.getState();
-  const { allLayers } = layers;
-  return allLayers.find((allLayer) => allLayer.title === allLayerTitle);
+const zoomToFeature = (feature) => {
+  const { app } = store.getState();
+  app.view.goTo(feature.geometry);
 };

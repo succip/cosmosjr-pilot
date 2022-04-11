@@ -5,7 +5,6 @@ import * as identify from "@arcgis/core/rest/identify";
 import settings from "../config/Settings";
 import store from "../store/store";
 import Link from "@mui/material/Link";
-const queryString = require("query-string");
 
 const createAttributeLink = (value) => {
   value = value.trim();

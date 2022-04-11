@@ -12,6 +12,13 @@ export const addMapLayer = (layer) => {
   };
 };
 
+export const addAddressLayer = (layer) => {
+  return {
+    type: "ADD_ADDRESS_LAYER",
+    payload: layer,
+  };
+};
+
 export const setLayerVisible = ({ ulid, layer }, visible) => {
   return {
     type: "SET_LAYER_VISIBLE",
