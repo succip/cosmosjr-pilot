@@ -10,9 +10,12 @@ export const findFeature = async ({ LayerName, FieldName, FieldValue }) => {
 
   if (LayerName === "Address Search") {
     layer = layers.addressLayer;
+  } else if (LayerName === "Intersection Search") {
+    layer = layers.intersectionLayer;
   } else {
     layer = getMapLayerByTitle(LayerName);
   }
+
   let findParameters = new FindParameters({
     returnGeometry: true,
     contains: false,
@@ -23,7 +26,10 @@ export const findFeature = async ({ LayerName, FieldName, FieldValue }) => {
   });
 
   const { results } = await find.find(layer.serviceUrl, findParameters);
-  zoomToFeature(results[0].feature);
+
+  if (results.length) {
+    zoomToFeature(results[0].feature);
+  }
 };
 
 const zoomToFeature = (feature) => {

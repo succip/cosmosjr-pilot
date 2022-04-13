@@ -6,6 +6,7 @@ import LayerTree from "../config/LayerTree";
 import { customAlphabet } from "nanoid";
 import {
   addAddressLayer,
+  addIntersectionLayer,
   addLayer,
   addMapLayer,
   setLayerVisible,
@@ -30,6 +31,7 @@ const onAddServiceLayer = (layer) => {
       ulid: nanoid(),
     };
     if (newLayer.title === "Address Search") store.dispatch(addAddressLayer(newLayer));
+    if (newLayer.title === "Intersection Search") store.dispatch(addIntersectionLayer(newLayer));
     store.dispatch(addLayer(newLayer));
     checkMapLayers(LayerTree, newLayer);
   });

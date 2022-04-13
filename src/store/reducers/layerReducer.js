@@ -12,6 +12,8 @@ const layerReducer = (state = initialState, { type, payload }) => {
       return { ...state, mapLayers: [...state.mapLayers, payload] };
     case "ADD_ADDRESS_LAYER":
       return { ...state, addressLayer: payload };
+    case "ADD_INTERSECTION_LAYER":
+      return { ...state, intersectionLayer: payload };
     case "SET_LAYER_VISIBLE": {
       let { layer } = payload;
       layer.visible = payload.visible;

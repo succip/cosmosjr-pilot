@@ -10,6 +10,7 @@ const ControlAccordionGroup = () => {
   const dispatch = useDispatch();
 
   const handleChange = (id) => {
+    console.log("changed", activePanel, curAccordionId);
     setCurAccordionId(curAccordionId === id ? null : id);
     dispatch(setActivePanel(id));
   };

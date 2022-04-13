@@ -19,6 +19,13 @@ export const addAddressLayer = (layer) => {
   };
 };
 
+export const addIntersectionLayer = (layer) => {
+  return {
+    type: "ADD_INTERSECTION_LAYER",
+    payload: layer,
+  };
+};
+
 export const setLayerVisible = ({ ulid, layer }, visible) => {
   return {
     type: "SET_LAYER_VISIBLE",

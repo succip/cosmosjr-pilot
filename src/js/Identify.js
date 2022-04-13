@@ -1,10 +1,11 @@
-import { setActivePanel, setIdentifyResults } from "../store/actions/appActions";
+import { setIdentifyResults } from "../store/actions/appActions";
 import Graphic from "@arcgis/core/Graphic";
 import IdentifyParameters from "@arcgis/core/rest/support/IdentifyParameters";
 import * as identify from "@arcgis/core/rest/identify";
 import settings from "../config/Settings";
 import store from "../store/store";
 import Link from "@mui/material/Link";
+const _ = require("lodash");
 
 const createAttributeLink = (value) => {
   value = value.trim();
@@ -38,12 +39,7 @@ const getMapServiceList = () => {
     }
   });
 
-  const reduced = mapLayerUrlList.reduce((r, a) => {
-    r[a.url] = r[a.url] || [];
-    r[a.url].push(a);
-    return r;
-  }, Object.create(null));
-
+  const reduced = _.groupBy(mapLayerUrlList, "url");
   let mapServiceUrlList = [];
 
   Object.keys(reduced).forEach((group) => {
@@ -149,14 +145,12 @@ export const identifyMapPoint = async ({ mapPoint, view }) => {
       }
     });
   }
-  const uniqueIdResults = idResults.filter(function (result) {
-    var key = result.layerName + "|" + result.displayValue;
-    if (!this[key]) {
-      this[key] = true;
-      return true;
-    }
-  }, Object.create(null));
+
+  const uniqueIdResults = _.uniqWith(
+    idResults,
+    (resultA, resultB) =>
+      resultA.layerName === resultB.layerName && resultA.displayValue === resultB.displayValue
+  );
+
   store.dispatch(setIdentifyResults(uniqueIdResults));
-  store.dispatch(setActivePanel(null));
-  store.dispatch(setActivePanel(3));
 };
