@@ -10,7 +10,6 @@ const ControlAccordionGroup = () => {
   const dispatch = useDispatch();
 
   const handleChange = (id) => {
-    console.log("changed", activePanel, curAccordionId);
     setCurAccordionId(curAccordionId === id ? null : id);
     dispatch(setActivePanel(id));
   };
@@ -18,6 +17,10 @@ const ControlAccordionGroup = () => {
   useEffect(() => {
     setCurAccordionId(activePanel);
   }, [activePanel]);
+
+  useEffect(() => {
+    dispatch(setActivePanel(curAccordionId));
+  }, [dispatch, curAccordionId]);
 
   return accordions.map((accordion, index) => {
     return (
