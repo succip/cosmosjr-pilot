@@ -80,139 +80,21 @@ LEAF:
       })}
 
 
-example output from searchBar: 
+findResult:
 {
-    "FieldName": "ADDRESSID",
-    "FieldValue": "28742",
-    "LayerName": "Address Search",
-    "ListValue": "2949 KING GEORGE BLVD - Address",
-    "key": "197400"
+    displayFieldName: "LATERAL TYPE",
+    feature: {..., attributes: [...]}
+    foundFieldName: "FACILITYID"
+    layerName: "Drainage Laterals"
+    value: "100064986"
 }
 
-example results output object: 
+identifyResults:
 {
+    "attributes": [...]
     "displayFieldName": "MSLINK",
     "layerName": "Lots",
-    "feature": {
-        "geometry": {
-            "spatialReference": {
-                "latestWkid": 26910,
-                "wkid": 26910
-            },
-            "rings": [
-                [
-                    [
-                        511987.87968749966,
-                        5448744.158625001
-                    ],
-                    [
-                        511996.9246250005,
-                        5448740.3421875
-                    ],
-                    [
-                        512073.0824375005,
-                        5448738.9994375
-                    ],
-                    [
-                        512072.7829374997,
-                        5448548.216187499
-                    ],
-                    [
-                        511971.836312499,
-                        5448549.429375001
-                    ],
-                    [
-                        511972.16606250015,
-                        5448573.868125001
-                    ],
-                    [
-                        511973.44481250027,
-                        5448668.2212499995
-                    ],
-                    [
-                        511974.4763125013,
-                        5448744.3949375
-                    ],
-                    [
-                        511987.87968749966,
-                        5448744.158625001
-                    ]
-                ]
-            ]
-        },
-        "symbol": null,
-        "attributes": {
-            "LOT_TYPE2": "Standard Lot",
-            "MSLINK": 34842,
-            "LOT_NO": "1",
-            "REM_FLAG": "Y",
-            "BLOCK_NO": null,
-            "OWNER_TYPE": "Private",
-            "IN_PLAN": "5210",
-            "CANC_PLAN_NO": null,
-            "PLAN_TYPE": "Subdivision",
-            "PLAN_YR": 1932,
-            "PID": "011-126-345",
-            "DESCRIPTION": null,
-            "NAME": null,
-            "OBJECTID": 18452,
-            "PLANIMAGEID": 15837,
-            "AMANDARSN": 20955,
-            "SHAPE": "Polygon",
-            "SHAPE_Area": 19134.493724859632
-        },
-        "popupTemplate": null
-    },
-    "displayValue": 34842,
-    "attributes": [
-        {
-            "Field": "LOT TYPE2",
-            "Value": "Standard Lot"
-        },
-        {
-            "Field": "MSLINK",
-            "Value": 34842
-        },
-        {
-            "Field": "LOT NO",
-            "Value": "1"
-        },
-        {
-            "Field": "REM FLAG",
-            "Value": "Y"
-        },
-        {
-            "Field": "OWNER TYPE",
-            "Value": "Private"
-        },
-        {
-            "Field": "IN PLAN",
-            "Value": "5210"
-        },
-        {
-            "Field": "PLAN TYPE",
-            "Value": "Subdivision"
-        },
-        {
-            "Field": "PLAN YR",
-            "Value": 1932
-        },
-        {
-            "Field": "PID",
-            "Value": "011-126-345"
-        },
-        {
-            "Field": "PLANIMAGEID",
-            "Value": 15837
-        },
-        {
-            "Field": "AMANDARSN",
-            "Value": 20955
-        },
-        {
-            "Field": "AREA (m²)",
-            "Value": 19134.493724859632
-        }
-    ],
+    "feature": {...},
     "isLotLayer": true
 }
+

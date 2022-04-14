@@ -20,10 +20,10 @@ const createAttributeLink = (value) => {
 };
 
 const getMapServiceList = () => {
-  const { layers } = store.getState();
+  const { mapLayers } = store.getState().layers;
   let mapLayerUrlList = [];
 
-  layers.mapLayers.forEach(({ layer }) => {
+  mapLayers.forEach(({ layer }) => {
     if (layer.visible === true) {
       if (
         !settings.ignoreIdentifyServices.includes(layer.layer.id) &&
@@ -74,6 +74,7 @@ export const formatAttributes = (attributes) => {
     if (Value !== null && Field !== "OBJECTID" && Field !== "SHAPE") {
       if (Field === "SHAPE_Area") Field = "AREA (m²)";
       if (Field === "SHAPE_Length") Field = "LENGTH (m)";
+      if (Field === "LATERAL_TYPE2") Field = "LATERAL TYPE";
 
       Field = Field.replace(/_/g, " ");
 
@@ -98,8 +99,7 @@ export const formatPropertyAttributes = (attributes) => {
 };
 
 export const highlightFeature = ({ geometry }) => {
-  const { app } = store.getState();
-  const map = app.view.map;
+  const { map } = store.getState().app.view;
   const csGraphicsLayer = map.findLayerById("CosGraphicsLayer");
 
   const existingGraphic = csGraphicsLayer.graphics.find((g) => g.attributes.id === "hg");

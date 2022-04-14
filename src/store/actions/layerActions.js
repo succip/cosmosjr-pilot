@@ -12,16 +12,9 @@ export const addMapLayer = (layer) => {
   };
 };
 
-export const addAddressLayer = (layer) => {
+export const addCustomLayer = (layer) => {
   return {
-    type: "ADD_ADDRESS_LAYER",
-    payload: layer,
-  };
-};
-
-export const addIntersectionLayer = (layer) => {
-  return {
-    type: "ADD_INTERSECTION_LAYER",
+    type: "ADD_CUSTOM_LAYER",
     payload: layer,
   };
 };

@@ -2,37 +2,77 @@ import * as find from "@arcgis/core/rest/find";
 import FindParameters from "@arcgis/core/rest/support/FindParameters";
 import store from "../store/store";
 import { getMapLayerByTitle } from "./Layers";
+import { highlightFeature, parseResult } from "./Identify";
+import { setIdentifyResults } from "../store/actions/appActions";
+import { setLayerVisible } from "../store/actions/layerActions";
 
 export const findFeature = async ({ LayerName, FieldName, FieldValue }) => {
   const { layers, app } = store.getState();
   const outSpatialReference = app.view.spatialReference;
-  let layer;
+  let mapLayer, addressRequested;
 
   if (LayerName === "Address Search") {
-    layer = layers.addressLayer;
+    mapLayer = layers.addressLayer;
+    addressRequested = true;
   } else if (LayerName === "Intersection Search") {
-    layer = layers.intersectionLayer;
+    mapLayer = layers.intersectionLayer;
   } else {
-    layer = getMapLayerByTitle(LayerName);
+    mapLayer = getMapLayerByTitle(LayerName);
   }
 
   let findParameters = new FindParameters({
     returnGeometry: true,
     contains: false,
-    layerIds: [layer.id],
+    layerIds: [mapLayer.id],
     searchFields: [FieldName],
     searchText: FieldValue,
     outSpatialReference,
   });
 
-  const { results } = await find.find(layer.serviceUrl, findParameters);
+  const { results } = await find.find(mapLayer.serviceUrl, findParameters);
 
   if (results.length) {
-    zoomToFeature(results[0].feature);
+    showResults(results);
+    if (!mapLayer.layer.visible) store.dispatch(setLayerVisible(mapLayer, true));
   }
+
+  if (addressRequested) getAddressLot(results[0].feature.attributes["LOT_LINK"]);
+};
+
+const getAddressLot = async (lotLink) => {
+  const { layers, app } = store.getState();
+  const outSpatialReference = app.view.spatialReference;
+
+  const lotsLayer = layers.lotsLayer;
+
+  const findParameters = new FindParameters({
+    returnGeometry: true,
+    contains: false,
+    layerIds: [lotsLayer.id],
+    searchFields: ["MSLINK"],
+    searchText: lotLink,
+    outSpatialReference,
+  });
+
+  const { results } = await find.find(lotsLayer.serviceUrl, findParameters);
+  highlightFeature(results[0].feature);
+  console.log(results);
+};
+
+export const findLayer = ({ LayerName }) => {
+  const layer = getMapLayerByTitle(LayerName);
+  console.log("Layer title found: ", layer.title);
 };
 
 const zoomToFeature = (feature) => {
-  const { app } = store.getState();
-  app.view.goTo(feature.geometry);
+  const { view } = store.getState().app;
+  view.goTo(feature.geometry);
+  if (feature.geometry.type === "point") view.scale = 550;
+};
+
+const showResults = (results) => {
+  const parsedResult = parseResult(results[0]);
+  store.dispatch(setIdentifyResults([parsedResult]));
+  zoomToFeature(results[0].feature);
+  highlightFeature(results[0].feature);
 };

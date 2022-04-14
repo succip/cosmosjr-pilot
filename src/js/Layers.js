@@ -5,8 +5,7 @@ import store from "../store/store";
 import LayerTree from "../config/LayerTree";
 import { customAlphabet } from "nanoid";
 import {
-  addAddressLayer,
-  addIntersectionLayer,
+  addCustomLayer,
   addLayer,
   addMapLayer,
   setLayerVisible,
@@ -30,8 +29,12 @@ const onAddServiceLayer = (layer) => {
       serviceUrl: layer.url,
       ulid: nanoid(),
     };
-    if (newLayer.title === "Address Search") store.dispatch(addAddressLayer(newLayer));
-    if (newLayer.title === "Intersection Search") store.dispatch(addIntersectionLayer(newLayer));
+    if (newLayer.title === "Address Search")
+      store.dispatch(addCustomLayer({ layer: newLayer, title: "addressLayer" }));
+    if (newLayer.title === "Intersection Search")
+      store.dispatch(addCustomLayer({ layer: newLayer, title: "intersectionLayer" }));
+    if (newLayer.title === "Lots")
+      store.dispatch(addCustomLayer({ layer: newLayer, title: "lotsLayer" }));
     store.dispatch(addLayer(newLayer));
     checkMapLayers(LayerTree, newLayer);
   });
@@ -71,11 +74,11 @@ export const addMapServices = (map) => {
 
 export const setMapThemeLayers = (mapThemeName) => {
   clearVisibleMapLayers();
-  const { layers } = store.getState();
+  const { mapLayers } = store.getState().layers;
   const { themeLayers } = MapThemes.find((mapTheme) => mapTheme.themeTitle === mapThemeName);
 
   themeLayers.forEach((themeLayer) => {
-    const mapLayer = layers.mapLayers.find((mapLayer) => mapLayer.title === themeLayer.title);
+    const mapLayer = mapLayers.find((mapLayer) => mapLayer.title === themeLayer.title);
     if (mapLayer) {
       store.dispatch(setLayerVisible(mapLayer, true));
     }
@@ -113,12 +116,11 @@ export const checkMapLayers = (layerStore = LayerTree, queryLayer = {}) => {
 };
 
 export const getMapLayerByTitle = (mapLayerTitle) => {
-  const { layers } = store.getState();
-  const { mapLayers } = layers;
+  const { mapLayers } = store.getState().layers;
   return mapLayers.find((mapLayer) => mapLayer.title === mapLayerTitle);
 };
 
 export const clearVisibleMapLayers = () => {
-  const { layers } = store.getState();
-  layers.mapLayers.forEach((mapLayer) => store.dispatch(setLayerVisible(mapLayer, false)));
+  const { mapLayers } = store.getState().layers;
+  mapLayers.forEach((mapLayer) => store.dispatch(setLayerVisible(mapLayer, false)));
 };
