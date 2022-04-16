@@ -82,16 +82,6 @@ const settings = {
   ],
   legendDisabledLayers: ["Building Shadow", "Address Search", "Road Names", "Intersection Search"],
   dataServiceUrl: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc",
-  dataServiceUrls: {
-    addresses: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetAddressData",
-    property: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetPropertyDataAll",
-    assessment: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetAssessmentData",
-    servicing: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetServicetData",
-    ocp: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetNCPData",
-    zoning: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetZoningData",
-    secondaryPlan:
-      "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetSecondaryPlanData",
-  },
   mapServices: [
     {
       id: "BaseMap",
@@ -232,6 +222,17 @@ export const dataServices = {
     url: "https://tstcosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetSecondaryPlanData",
     headings: ["Land Use", "% of Lot", "Plan Area", "Plan Type"],
   },
+};
+
+export const dataServiceUrls = {
+  addresses: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetAddressData",
+  property: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetPropertyDataAll",
+  assessment: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetAssessmentData",
+  servicing: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetServicetData",
+  ocp: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetNCPData",
+  zoning: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetZoningData",
+  secondaryPlan:
+    "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetSecondaryPlanData",
 };
 
 export default settings;

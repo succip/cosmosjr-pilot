@@ -11,11 +11,16 @@ const ResultTreeItem = ({ result, index, onNodeClick }) => {
 
   const onResultClick = async (nodeId) => {
     onNodeClick(nodeId);
+    await fetchAddresses();
+    highlightFeature(feature);
+  };
+
+  const fetchAddresses = async () => {
     setAddressList([]);
     const url = `${settings.dataServiceUrl}/GetAddressData/${displayValue}`;
     const { data } = await axios.get(url);
+    console.log(data);
     setAddressList(data);
-    highlightFeature(feature);
   };
 
   return (

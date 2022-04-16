@@ -13,7 +13,6 @@ export const findFeature = async ({ LayerName, FieldName, FieldValue }) => {
 
   if (LayerName === "Address Search") {
     mapLayer = layers.addressLayer;
-    addressRequested = true;
   } else if (LayerName === "Intersection Search") {
     mapLayer = layers.intersectionLayer;
   } else {
@@ -35,8 +34,6 @@ export const findFeature = async ({ LayerName, FieldName, FieldValue }) => {
     showResults(results);
     if (!mapLayer.layer.visible) store.dispatch(setLayerVisible(mapLayer, true));
   }
-
-  if (addressRequested) getAddressLot(results[0].feature.attributes["LOT_LINK"]);
 };
 
 const getAddressLot = async (lotLink) => {
@@ -55,8 +52,7 @@ const getAddressLot = async (lotLink) => {
   });
 
   const { results } = await find.find(lotsLayer.serviceUrl, findParameters);
-  highlightFeature(results[0].feature);
-  console.log(results);
+  return parseResult(results[0]);
 };
 
 export const findLayer = ({ LayerName }) => {
@@ -70,9 +66,19 @@ const zoomToFeature = (feature) => {
   if (feature.geometry.type === "point") view.scale = 550;
 };
 
-const showResults = (results) => {
+const showResults = async (results) => {
   const parsedResult = parseResult(results[0]);
-  store.dispatch(setIdentifyResults([parsedResult]));
+  console.log("parsedAddress", parsedResult);
+
+  if (parsedResult.layerName === "Address Search") {
+    const { Value: lotLink } = parsedResult.attributes.find(
+      (attribute) => attribute.Field === "LOT LINK"
+    );
+    const addressLot = await getAddressLot(lotLink);
+    store.dispatch(setIdentifyResults([addressLot]));
+  } else {
+    store.dispatch(setIdentifyResults([parsedResult]));
+  }
   zoomToFeature(results[0].feature);
   highlightFeature(results[0].feature);
 };

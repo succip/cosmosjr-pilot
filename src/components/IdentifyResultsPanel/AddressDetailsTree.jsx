@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import settings from "../../config/Settings";
-import { dataServices } from "../../config/Settings";
+import { dataServices, dataServiceUrls } from "../../config/Settings";
 import TreeView from "@mui/lab/TreeView";
 import TreeItem from "@mui/lab/TreeItem";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
@@ -37,28 +37,38 @@ const AddressDetailsPanel = ({ mslink, propertyNumber }) => {
   const fetchData = async (type) => {
     switch (type) {
       case "assessment": {
-        const { data } = await axios.get(`${settings.dataServiceUrls[type]}/${propertyNumber}`);
-        setAssessmentData(data);
+        if (!assessmentData.length) {
+          const { data } = await axios.get(`${dataServiceUrls[type]}/${propertyNumber}`);
+          setAssessmentData(data);
+        }
         break;
       }
       case "servicing": {
-        const { data } = await axios.get(`${settings.dataServiceUrls[type]}/${propertyNumber}`);
-        setServicingData(data);
+        if (!servicingData.length) {
+          const { data } = await axios.get(`${dataServiceUrls[type]}/${propertyNumber}`);
+          setServicingData(data);
+        }
         break;
       }
       case "ocp": {
-        const { data } = await axios.get(`${settings.dataServiceUrls[type]}/${mslink}`);
-        setOcpData(data);
+        if (!ocpData.length) {
+          const { data } = await axios.get(`${dataServiceUrls[type]}/${mslink}`);
+          setOcpData(data);
+        }
         break;
       }
       case "zoning": {
-        const { data } = await axios.get(`${settings.dataServiceUrls[type]}/${mslink}`);
-        setZoningData(formatPropertyAttributes(data));
+        if (!zoningData.length) {
+          const { data } = await axios.get(`${dataServiceUrls[type]}/${mslink}`);
+          setZoningData(formatPropertyAttributes(data));
+        }
         break;
       }
       case "secondaryPlan": {
-        const { data } = await axios.get(`${settings.dataServiceUrls[type]}/${mslink}`);
-        setSecondaryPlanData(data);
+        if (!secondaryPlanData.length) {
+          const { data } = await axios.get(`${dataServiceUrls[type]}/${mslink}`);
+          setSecondaryPlanData(data);
+        }
         break;
       }
       default:
