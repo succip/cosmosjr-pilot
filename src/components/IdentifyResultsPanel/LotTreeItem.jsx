@@ -19,7 +19,6 @@ const ResultTreeItem = ({ result, index, onNodeClick }) => {
     setAddressList([]);
     const url = `${settings.dataServiceUrl}/GetAddressData/${displayValue}`;
     const { data } = await axios.get(url);
-    console.log(data);
     setAddressList(data);
   };
 
