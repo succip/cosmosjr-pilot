@@ -75,7 +75,7 @@ const showResults = async (results) => {
       (attribute) => attribute.Field === "LOT LINK"
     );
     const addressLot = await getAddressLot(lotLink);
-    store.dispatch(setIdentifyResults([addressLot]));
+    store.dispatch(setIdentifyResults([{ ...addressLot, open: true }]));
   } else {
     store.dispatch(setIdentifyResults([parsedResult]));
   }

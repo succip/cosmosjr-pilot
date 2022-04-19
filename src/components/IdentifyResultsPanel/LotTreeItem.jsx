@@ -5,7 +5,7 @@ import settings from "../../config/Settings";
 import { highlightFeature } from "../../js/Identify";
 const axios = require("axios");
 
-const ResultTreeItem = ({ result, index, onNodeClick }) => {
+const LotTreeItem = ({ result, index, onNodeClick }) => {
   const { layerName, feature, displayValue } = result;
   const [addressList, setAddressList] = useState([]);
 
@@ -32,4 +32,4 @@ const ResultTreeItem = ({ result, index, onNodeClick }) => {
   );
 };
 
-export default ResultTreeItem;
+export default LotTreeItem;

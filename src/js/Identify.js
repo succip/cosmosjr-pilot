@@ -89,7 +89,6 @@ export const formatPropertyAttributes = (attributes) => {
   attributes.forEach((attribute) => {
     let { Field, Value } = attribute;
 
-    if (Field === "PLAN") Value = createAttributeLink(Value);
     if (Field.includes("<a href=")) Field = createAttributeLink(Field);
 
     formattedAttributes.push({ Field, Value });
