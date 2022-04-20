@@ -66,5 +66,5 @@ IdentifyPanel
   ResultTree (idResults)
     LotTreeItem (result)
       AddressTree (mslink, addresses)
-        AddressTreeItem (address, mslink)
+        AddressTreeItem (address[propertyNumber], mslink)
           AddressDetailsTree (propertyNumber, mslink)

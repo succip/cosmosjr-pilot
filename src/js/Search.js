@@ -9,7 +9,7 @@ import { setLayerVisible } from "../store/actions/layerActions";
 export const findFeature = async ({ LayerName, FieldName, FieldValue }) => {
   const { layers, app } = store.getState();
   const outSpatialReference = app.view.spatialReference;
-  let mapLayer, addressRequested;
+  let mapLayer;
 
   if (LayerName === "Address Search") {
     mapLayer = layers.addressLayer;
@@ -31,6 +31,7 @@ export const findFeature = async ({ LayerName, FieldName, FieldValue }) => {
   const { results } = await find.find(mapLayer.serviceUrl, findParameters);
 
   if (results.length) {
+    console.log("findResults", results);
     showResults(results);
     if (!mapLayer.layer.visible) store.dispatch(setLayerVisible(mapLayer, true));
   }
@@ -67,8 +68,8 @@ const zoomToFeature = (feature) => {
 };
 
 const showResults = async (results) => {
-  const parsedResult = parseResult(results[0]);
-  console.log("parsedAddress", parsedResult);
+  const parsedResult = { ...parseResult(results[0]), open: true };
+  console.log("parsedResult", parsedResult);
 
   if (parsedResult.layerName === "Address Search") {
     const { Value: lotLink } = parsedResult.attributes.find(

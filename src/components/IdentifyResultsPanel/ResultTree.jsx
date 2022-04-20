@@ -8,14 +8,14 @@ import LotTreeItem from "./LotTreeItem";
 const ResultTree = ({ results }) => {
   const [expanded, setExpanded] = useState([]);
 
-  const onNodeClick = (nodeId) => {
-    const expandNodes = [nodeId.toString()];
-    expandNodes[0] === expanded[0] ? setExpanded([]) : setExpanded(expandNodes);
-  };
-
   useEffect(() => {
-    setExpanded([]);
+    results.length && results[0].open ? setExpanded(["0"]) : setExpanded([]);
   }, [results]);
+
+  const onNodeSelect = (event = undefined, value) => {
+    const expandNode = [value.toString()];
+    expandNode[0] === expanded[0] ? setExpanded([]) : setExpanded(expandNode);
+  };
 
   return (
     <>
@@ -23,12 +23,13 @@ const ResultTree = ({ results }) => {
         expanded={expanded}
         defaultCollapseIcon={<LocationOnOutlinedIcon />}
         defaultExpandIcon={<LocationOnIcon />}
+        onNodeSelect={onNodeSelect}
       >
         {results.map((result, index) => {
           return result.isLotLayer ? (
-            <LotTreeItem key={index} result={result} index={index} onNodeClick={onNodeClick} />
+            <LotTreeItem key={index} result={result} index={index} />
           ) : (
-            <ResultTreeItem key={index} result={result} index={index} onNodeClick={onNodeClick} />
+            <ResultTreeItem key={index} result={result} index={index} />
           );
         })}
       </TreeView>

@@ -4,16 +4,16 @@ import HomeWorkIcon from "@mui/icons-material/HomeWork";
 import HomeWorkOutlinedIcon from "@mui/icons-material/HomeWorkOutlined";
 import AddressTreeItem from "./AddressTreeItem";
 
-const ResultTree = ({ addresses, mslink }) => {
+const ResultTree = ({ addresses, mslink, open }) => {
   const [expanded, setExpanded] = useState([]);
 
-  const onNodeClick = (nodeId) => {
-    const expandNodes = [nodeId.toString()];
-    expandNodes[0] === expanded[0] ? setExpanded([]) : setExpanded(expandNodes);
+  const onNodeSelect = (event = undefined, value) => {
+    const expandNode = [value.toString()];
+    expandNode[0] === expanded[0] ? setExpanded([]) : setExpanded(expandNode);
   };
 
   useEffect(() => {
-    setExpanded([]);
+    // open ? setExpanded(["0"]) : setExpanded([]);
   }, [addresses]);
 
   return (
@@ -22,17 +22,10 @@ const ResultTree = ({ addresses, mslink }) => {
         expanded={expanded}
         defaultCollapseIcon={<HomeWorkOutlinedIcon />}
         defaultExpandIcon={<HomeWorkIcon />}
+        onNodeSelect={onNodeSelect}
       >
         {addresses.map((address, index) => {
-          return (
-            <AddressTreeItem
-              key={index}
-              address={address}
-              index={index}
-              onNodeClick={onNodeClick}
-              mslink={mslink}
-            />
-          );
+          return <AddressTreeItem key={index} address={address} index={index} mslink={mslink} />;
         })}
       </TreeView>
     </>
