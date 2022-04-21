@@ -1,7 +1,7 @@
 import * as find from "@arcgis/core/rest/find";
 import FindParameters from "@arcgis/core/rest/support/FindParameters";
 import store from "../store/store";
-import { getMapLayerByTitle } from "./Layers";
+import { getAllLayerByTitle, getMapLayerByTitle } from "./Layers";
 import { highlightFeature, parseResult } from "./Identify";
 import { setIdentifyResults } from "../store/actions/appActions";
 import { setLayerVisible } from "../store/actions/layerActions";
@@ -17,6 +17,7 @@ export const findFeature = async ({ LayerName, FieldName, FieldValue }) => {
     mapLayer = layers.intersectionLayer;
   } else {
     mapLayer = getMapLayerByTitle(LayerName);
+    if (!mapLayer) mapLayer = getAllLayerByTitle(LayerName);
   }
 
   let findParameters = new FindParameters({
@@ -60,10 +61,10 @@ export const findLayer = ({ LayerName }) => {
   console.log("Layer title found: ", layer.title);
 };
 
-const zoomToFeature = (feature) => {
+const zoomToFeature = async (feature) => {
   const { view } = store.getState().app;
-  view.goTo(feature.geometry);
-  if (feature.geometry.type === "point") view.scale = 550;
+  await view.goTo(feature.geometry);
+  if (feature.geometry.type === "point" || view.scale < 500) view.scale = 550;
 };
 
 const showResults = async (results) => {

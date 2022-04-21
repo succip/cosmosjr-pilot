@@ -71,7 +71,7 @@ export const formatAttributes = (attributes) => {
     let Field = key;
     let Value = attributes[key];
 
-    if (Value !== null && Field !== "OBJECTID" && Field !== "SHAPE") {
+    if (Value !== null && Value !== "Null" && Field !== "OBJECTID" && Field !== "SHAPE") {
       if (Field === "SHAPE_Area") Field = "AREA (m²)";
       if (Field === "SHAPE_Length") Field = "LENGTH (m)";
       if (Field === "LATERAL_TYPE2") Field = "LATERAL TYPE";

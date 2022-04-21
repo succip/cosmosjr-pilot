@@ -106,7 +106,7 @@ const LayerStore = [
         leaf: true,
       },
       {
-        name: "Water courses",
+        name: "Water Courses",
         id: nanoid(),
         leaf: true,
       },

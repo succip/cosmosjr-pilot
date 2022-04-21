@@ -120,6 +120,11 @@ export const getMapLayerByTitle = (mapLayerTitle) => {
   return mapLayers.find((mapLayer) => mapLayer.title === mapLayerTitle);
 };
 
+export const getAllLayerByTitle = (allLayerTitle) => {
+  const { allLayers } = store.getState().layers;
+  return allLayers.find((allLayer) => allLayer.title === allLayerTitle);
+};
+
 export const clearVisibleMapLayers = () => {
   const { mapLayers } = store.getState().layers;
   mapLayers.forEach((mapLayer) => store.dispatch(setLayerVisible(mapLayer, false)));
