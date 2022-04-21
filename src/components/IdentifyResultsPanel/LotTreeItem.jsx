@@ -10,7 +10,7 @@ const LotTreeItem = ({ result, index }) => {
   const [addressList, setAddressList] = useState([]);
 
   useEffect(() => {
-    if (result.open) onLotResultClick();
+    if (result.open) fetchAddresses();
   }, [result]);
 
   const onLotResultClick = async () => {
@@ -22,9 +22,6 @@ const LotTreeItem = ({ result, index }) => {
     setAddressList([]);
     const url = `${settings.dataServiceUrl}/GetAddressData/${displayValue}`;
     const { data } = await axios.get(url);
-    if (result.open) {
-      console.log("addrData", data);
-    }
     setAddressList(data);
   };
 
@@ -33,9 +30,7 @@ const LotTreeItem = ({ result, index }) => {
       nodeId={index.toString()}
       label={`${layerName} - ${displayValue}`}
       onClick={onLotResultClick}
-      children={
-        <AddressTree open={result.open} mslink={result.displayValue} addresses={addressList} />
-      }
+      children={<AddressTree mslink={result.displayValue} addresses={addressList} />}
     />
   );
 };

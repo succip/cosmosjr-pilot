@@ -4,7 +4,7 @@ import HomeWorkIcon from "@mui/icons-material/HomeWork";
 import HomeWorkOutlinedIcon from "@mui/icons-material/HomeWorkOutlined";
 import AddressTreeItem from "./AddressTreeItem";
 
-const ResultTree = ({ addresses, mslink, open }) => {
+const ResultTree = ({ addresses, mslink }) => {
   const [expanded, setExpanded] = useState([]);
 
   const onNodeSelect = (event = undefined, value) => {
@@ -13,7 +13,7 @@ const ResultTree = ({ addresses, mslink, open }) => {
   };
 
   useEffect(() => {
-    // open ? setExpanded(["0"]) : setExpanded([]);
+    addresses.length === 1 ? setExpanded(["0"]) : setExpanded([]);
   }, [addresses]);
 
   return (

@@ -31,6 +31,7 @@ const AddressDetailsPanel = ({ mslink, propertyNumber }) => {
 
   useEffect(() => {
     fetchPropertyData();
+    setExpanded(["property"]);
     fetchData("secondaryPlan");
   }, []);
 

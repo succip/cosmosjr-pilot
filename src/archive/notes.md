@@ -61,7 +61,7 @@ identifyResults:
     "isLotLayer": true
 }
 
-_Address Hierarchy_
+_Identify Lot Hierarchy_
 IdentifyPanel
   ResultTree (idResults)
     LotTreeItem (result)
