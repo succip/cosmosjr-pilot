@@ -235,4 +235,14 @@ export const dataServiceUrls = {
     "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetSecondaryPlanData",
 };
 
+export const addressDetails = {
+  assessment: {
+    id: "assessment",
+    label: "Assessment Details",
+    url: "https://tstcosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetAssessmentData",
+    tableHeadings: ["Land Use", "% of Lot", "Plan Area", "Plan Type"],
+    lookupValue: "propertyNumber",
+  },
+};
+
 export default settings;
