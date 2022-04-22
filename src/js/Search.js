@@ -57,8 +57,9 @@ const getAddressLot = async (lotLink) => {
 };
 
 export const findLayer = ({ LayerName }) => {
-  const layer = getMapLayerByTitle(LayerName);
-  console.log("Layer title found: ", layer.title);
+  const mapLayer = getMapLayerByTitle(LayerName);
+  if (!mapLayer.layer.visible) store.dispatch(setLayerVisible(mapLayer, true));
+  console.log("Layer title found: ", mapLayer.title);
 };
 
 const zoomToFeature = async (feature) => {

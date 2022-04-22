@@ -86,6 +86,7 @@ export const formatAttributes = (attributes) => {
 
 export const formatPropertyAttributes = (attributes) => {
   const formattedAttributes = [];
+
   attributes.forEach((attribute) => {
     let { Field, Value } = attribute;
 

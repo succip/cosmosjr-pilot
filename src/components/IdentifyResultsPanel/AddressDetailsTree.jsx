@@ -19,7 +19,7 @@ const AddressDetailsPanel = ({ mslink, propertyNumber }) => {
   const [expanded, setExpanded] = useState([]);
 
   const fetchPropertyData = async () => {
-    const url = `${settings.dataServiceUrl}/GetPropertyDataAll/${mslink};`;
+    const url = `${settings.dataServiceUrl}/GetPropertyDataAll/${propertyNumber}`;
     const { data } = await axios.get(url);
     setPropertyData(formatPropertyAttributes(data));
   };
