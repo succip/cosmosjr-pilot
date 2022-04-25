@@ -224,25 +224,49 @@ export const dataServices = {
   },
 };
 
-export const dataServiceUrls = {
-  addresses: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetAddressData",
-  property: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetPropertyDataAll",
-  assessment: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetAssessmentData",
-  servicing: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetServicetData",
-  ocp: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetNCPData",
-  zoning: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetZoningData",
-  secondaryPlan:
-    "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetSecondaryPlanData",
-};
-
-export const addressDetails = {
-  assessment: {
+export const addressDetails = [
+  {
+    id: "property",
+    label: "Property Details",
+    url: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetPropertyDataAll",
+    tableHeadings: [],
+    lookupValue: "propertyNumber",
+  },
+  {
     id: "assessment",
     label: "Assessment Details",
     url: "https://tstcosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetAssessmentData",
-    tableHeadings: ["Land Use", "% of Lot", "Plan Area", "Plan Type"],
+    tableHeadings: ["Year", "Gross Land", "Gross Improvements", "Gross Assessments"],
     lookupValue: "propertyNumber",
   },
-};
+  {
+    id: "servicing",
+    label: "Servicing Details",
+    url: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetServicetData",
+    tableHeadings: ["Service", "Start Date", "End Date"],
+    lookupValue: "propertyNumber",
+  },
+  {
+    id: "ocp",
+    label: "OCP Details",
+    url: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetNCPData",
+    tableHeadings: ["Land Use", "% of Lot"],
+    lookupValue: "mslink",
+  },
+  {
+    id: "zoning",
+    label: "Zoning Details",
+    url: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetZoningData",
+    tableHeadings: ["Zone", "% of Lot", "Zone Bylaws", "Zone LUC"],
+    lookupValue: "mslink",
+  },
+  {
+    id: "secondaryPlan",
+    label: "Secondary Plan Details",
+    url: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetSecondaryPlanData",
+    tableHeadings: ["Land Use", "% of Lot", "Plan Area", "Plan Type"],
+    lookupValue: "mslink",
+  },
+];
 
 export default settings;

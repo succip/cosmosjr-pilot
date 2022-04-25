@@ -4830,11 +4830,6 @@
   "resolved" "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz"
   "version" "1.0.0"
 
-"fsevents@^2.3.2", "fsevents@~2.3.2":
-  "integrity" "sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA=="
-  "resolved" "https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz"
-  "version" "2.3.2"
-
 "function-bind@^1.1.1":
   "integrity" "sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A=="
   "resolved" "https://registry.npmjs.org/function-bind/-/function-bind-1.1.1.tgz"
@@ -6272,6 +6267,11 @@
   "version" "1.4.0"
   dependencies:
     "js-tokens" "^3.0.0 || ^4.0.0"
+
+"lottie-web@^5.5.7":
+  "integrity" "sha512-QKA31Lu57SMfS09oUvuheEL+BkzjWHuzi7VkO9gSBaynK8tOMF2EwBgRdvcn3vXvX79/Y9RFlm75mjsS8je2+w=="
+  "resolved" "https://registry.npmjs.org/lottie-web/-/lottie-web-5.9.3.tgz"
+  "version" "5.9.3"
 
 "lower-case@^2.0.2":
   "integrity" "sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg=="
@@ -7720,7 +7720,14 @@
     "loose-envify" "^1.4.0"
     "prop-types" "^15.6.2"
 
-"react@*", "react@^16.8.3 || ^17", "react@^17.0.0", "react@^17.0.2", "react@>= 16", "react@>=16.6.0", "react@>=16.8", "react@>=16.8.0", "react@17.0.2":
+"react-useanimations@^2.0.8":
+  "integrity" "sha512-pjA5M8qA2NF3kvvu8yuBToOt79fdqXpx3Ba32ci8uG9zSv5XHz1d4OmDqqWARwaFWLIRS1Jan3HllpsqUWiKjw=="
+  "resolved" "https://registry.npmjs.org/react-useanimations/-/react-useanimations-2.0.8.tgz"
+  "version" "2.0.8"
+  dependencies:
+    "lottie-web" "^5.5.7"
+
+"react@*", "react@^16.8.3 || ^17", "react@^16.9.0", "react@^17.0.0", "react@^17.0.2", "react@>= 16", "react@>=16.6.0", "react@>=16.8", "react@>=16.8.0", "react@17.0.2":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"
