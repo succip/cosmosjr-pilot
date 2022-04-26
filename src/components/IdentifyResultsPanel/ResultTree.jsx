@@ -21,8 +21,8 @@ const ResultTree = ({ results }) => {
     <>
       <TreeView
         expanded={expanded}
-        defaultCollapseIcon={<LocationOnOutlinedIcon />}
         defaultExpandIcon={<LocationOnIcon />}
+        defaultCollapseIcon={<LocationOnOutlinedIcon />}
         onNodeSelect={onNodeSelect}
       >
         {results.map((result, index) => {

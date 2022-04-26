@@ -2,11 +2,9 @@ import { useEffect, useState } from "react";
 import TreeItem from "@mui/lab/TreeItem";
 import TreeView from "@mui/lab/TreeView";
 import Snackbar from "@mui/material/Snackbar";
-import CloseIcon from "@mui/icons-material/Close";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import UseAnimations from "react-useanimations";
-import loading from "react-useanimations/lib/loading";
+import LoadingIcon from "../Common/LoadingIcon";
 import DetailsTable from "../Common/DetailsTable";
 import { formatPropertyAttributes } from "../../js/Identify";
 const axios = require("axios");
@@ -31,9 +29,6 @@ const AddressDetailsTreeItem = ({
   };
 
   const fetchData = async () => {
-    console.log("lookupValue", lookupValue);
-    console.log("mslink", mslink);
-    console.log("propertyNumber", propertyNumber);
     setDataLoading(true);
     const searchValue = lookupValue === "mslink" ? mslink : propertyNumber;
     const { data } = await axios.get(`${url}/${searchValue}`);
@@ -62,9 +57,7 @@ const AddressDetailsTreeItem = ({
       />
       <TreeView
         onNodeToggle={onNodeToggle}
-        defaultExpandIcon={
-          dataLoading ? <UseAnimations animation={loading} /> : <KeyboardArrowRightIcon />
-        }
+        defaultExpandIcon={dataLoading ? <LoadingIcon /> : <KeyboardArrowRightIcon />}
         defaultCollapseIcon={<KeyboardArrowDownIcon />}
         expanded={expanded}
       >
