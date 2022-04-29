@@ -3,7 +3,7 @@ import MapThemes from "../config/MapThemes";
 import MapImageLayer from "@arcgis/core/layers/MapImageLayer";
 import store from "../store/store";
 import LayerTree from "../config/LayerTree";
-import { customAlphabet } from "nanoid";
+import { generateId } from "./Utilities";
 import {
   addCustomLayer,
   addLayer,
@@ -20,14 +20,13 @@ const onAddServiceLayer = (layer) => {
       sublayer.legendEnabled = !settings.legendDisabledLayers.includes(sublayer.title);
     }
     if (layer.id === "BaseMap") sublayer.legendEnabled = false;
-    const nanoid = customAlphabet("1234567890abcdef", 6);
     const newLayer = {
       layer: sublayer,
       inScale: false,
       title: sublayer.title,
       id: sublayer.id,
       serviceUrl: layer.url,
-      ulid: nanoid(),
+      ulid: generateId(),
     };
     if (newLayer.title === "Address Search")
       store.dispatch(addCustomLayer({ layer: newLayer, title: "addressLayer" }));
@@ -35,6 +34,7 @@ const onAddServiceLayer = (layer) => {
       store.dispatch(addCustomLayer({ layer: newLayer, title: "intersectionLayer" }));
     if (newLayer.title === "Lots")
       store.dispatch(addCustomLayer({ layer: newLayer, title: "lotsLayer" }));
+    if (newLayer.title === "Salish Sucker") console.log(newLayer);
     store.dispatch(addLayer(newLayer));
     checkMapLayers(LayerTree, newLayer);
   });

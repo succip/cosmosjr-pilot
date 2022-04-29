@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import settings from "../../config/Settings";
-import { customAlphabet } from "nanoid";
 import { findFeature, findLayer } from "../../js/Search";
-const nanoid = customAlphabet("1234567890abcdef", 6);
+import Toast from "../Common/Toast";
+import { generateId } from "../../js/Utilities";
 const axios = require("axios");
 const _ = require("lodash");
 
@@ -21,6 +21,8 @@ const SearchBar = () => {
   const [options, setOptions] = useState([]);
   const [noOptionsText, setNoOptionsText] = useState("");
   const [open, setOpen] = useState(false);
+  const [toastOpen, setToastOpen] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
 
   const resetSearchBar = () => {
     setValue(null);
@@ -41,6 +43,8 @@ const SearchBar = () => {
       setOpen(false);
       if (value.ListValue.includes("Layer")) {
         findLayer(value);
+        setToastMessage(`Added layer to map: ${value.LayerName}`);
+        setToastOpen(true);
       } else {
         findFeature(value);
       }
@@ -57,7 +61,7 @@ const SearchBar = () => {
 
     if (searchResults.length > 0) {
       searchResults.forEach((searchResult) => {
-        newResults.push({ ...searchResult, key: nanoid() });
+        newResults.push({ ...searchResult, key: generateId() });
       });
 
       newResults = _.sortBy(newResults, "LayerName");
@@ -69,30 +73,33 @@ const SearchBar = () => {
   };
 
   return (
-    <Autocomplete
-      sx={searchBarStyle}
-      disableCloseOnSelect={true}
-      groupBy={(option) => option.LayerName}
-      inputValue={inputValue}
-      isOptionEqualToValue={(option, value) => option.ListValue === value.ListValue}
-      noOptionsText={noOptionsText}
-      open={open}
-      options={options}
-      onBlur={resetSearchBar}
-      onChange={(event = undefined, newValue) => setValue(newValue)}
-      onClose={resetSearchBar}
-      onInputChange={(event = undefined, newInputValue) => setInputValue(newInputValue)}
-      getOptionLabel={(option) => option.ListValue}
-      renderInput={(params) => <TextField {...params} label="Search COSMOS" />}
-      renderOption={(params, option) => {
-        return (
-          <li {...params} key={option.key}>
-            {option.ListValue}
-          </li>
-        );
-      }}
-      value={value}
-    />
+    <>
+      <Toast open={toastOpen} message={toastMessage} onClose={() => setToastOpen(false)} />
+      <Autocomplete
+        sx={searchBarStyle}
+        disableCloseOnSelect={true}
+        groupBy={(option) => option.LayerName}
+        inputValue={inputValue}
+        isOptionEqualToValue={(option, value) => option.ListValue === value.ListValue}
+        noOptionsText={noOptionsText}
+        open={open}
+        options={options}
+        onBlur={resetSearchBar}
+        onChange={(event = undefined, newValue) => setValue(newValue)}
+        onClose={resetSearchBar}
+        onInputChange={(event = undefined, newInputValue) => setInputValue(newInputValue)}
+        getOptionLabel={(option) => option.ListValue}
+        renderInput={(params) => <TextField {...params} label="Search COSMOS" />}
+        renderOption={(params, option) => {
+          return (
+            <li {...params} key={option.key}>
+              {option.ListValue}
+            </li>
+          );
+        }}
+        value={value}
+      />
+    </>
   );
 };
 

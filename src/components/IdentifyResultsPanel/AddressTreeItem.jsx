@@ -1,4 +1,5 @@
 import TreeItem from "@mui/lab/TreeItem";
+import { addressDetails } from "../../config/Settings";
 import AddressDetailsTree from "./AddressDetailsTree";
 
 const AddressTreeItem = ({ address, index, mslink }) => {
@@ -6,7 +7,20 @@ const AddressTreeItem = ({ address, index, mslink }) => {
     <TreeItem
       nodeId={index.toString()}
       label={address.Field}
-      children={<AddressDetailsTree propertyNumber={address.Value} mslink={mslink} />}
+      children={addressDetails.map((detail) => {
+        return (
+          <AddressDetailsTree
+            key={detail.id}
+            id={detail.id}
+            label={detail.label}
+            tableHeadings={detail.tableHeadings}
+            url={detail.url}
+            lookupValue={detail.lookupValue}
+            mslink={mslink}
+            propertyNumber={address.Value}
+          />
+        );
+      })}
     />
   );
 };

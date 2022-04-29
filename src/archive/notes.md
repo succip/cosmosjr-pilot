@@ -63,8 +63,9 @@ identifyResults:
 
 _Identify Lot Hierarchy_
 IdentifyPanel
-  ResultTree (idResults)
-    LotTreeItem (result)
-      AddressTree (mslink, addresses)
-        AddressTreeItem (address[propertyNumber], mslink)
-          AddressDetailsTree (propertyNumber, mslink)
+  ResultTree
+    LotTreeItem (e.g. "Lots - 86250")
+      AddressTree
+        AddressTreeItem (e.g. "10168 University Dr")
+          AddressDetailsTree (e.g. "Property Details")
+    ResultTreeItem (e.g. "Water Mains - 450")

@@ -235,7 +235,7 @@ export const addressDetails = [
   {
     id: "assessment",
     label: "Assessment Details",
-    url: "https://tstcosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetAssessmentData",
+    url: "https://cosmos.surrey.ca/external/COSMOSWebServices/cosmos.svc/GetAssessmentData",
     tableHeadings: ["Year", "Gross Land", "Gross Improvements", "Gross Assessments"],
     lookupValue: "propertyNumber",
   },

@@ -5,6 +5,7 @@ import * as identify from "@arcgis/core/rest/identify";
 import settings from "../config/Settings";
 import store from "../store/store";
 import Link from "@mui/material/Link";
+import { generateId } from "./Utilities";
 const _ = require("lodash");
 
 const createAttributeLink = (value) => {
@@ -59,9 +60,10 @@ export const parseResult = (result) => {
   const layerName = settings.lotLayerGroup.includes(result.layerName) ? "Lots" : result.layerName;
   const isLotLayer = layerName === "Lots";
   let displayValue = feature.attributes[displayFieldName];
+  const id = generateId();
   displayValue =
     !displayValue || displayValue === "Null" ? feature.attributes.OBJECTID : displayValue;
-  return { displayFieldName, layerName, feature, displayValue, attributes, isLotLayer };
+  return { displayFieldName, layerName, feature, displayValue, attributes, isLotLayer, id };
 };
 
 export const formatAttributes = (attributes) => {
