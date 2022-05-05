@@ -34,7 +34,6 @@ const onAddServiceLayer = (layer) => {
       store.dispatch(addCustomLayer({ layer: newLayer, title: "intersectionLayer" }));
     if (newLayer.title === "Lots")
       store.dispatch(addCustomLayer({ layer: newLayer, title: "lotsLayer" }));
-    if (newLayer.title === "Salish Sucker") console.log(newLayer);
     store.dispatch(addLayer(newLayer));
     checkMapLayers(LayerTree, newLayer);
   });
