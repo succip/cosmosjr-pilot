@@ -8,12 +8,15 @@ import AddressTreeItem from "./AddressTreeItem";
 
 const ResultTree = ({ addresses, mslink }) => {
   const [expanded, setExpanded] = useState([]);
-  const itemsPerPage = 24;
+  const itemsPerPage = 25;
 
   const count = Math.ceil(addresses.length / itemsPerPage);
   const addressesData = usePagination(addresses, itemsPerPage);
 
-  const handleChange = (e = undefined, page) => addressesData.jump(page);
+  const handleChange = (e = undefined, page) => {
+    setExpanded([]);
+    addressesData.jump(page);
+  };
 
   const onNodeSelect = (event = undefined, value) => {
     const expandNode = [value.toString()];
@@ -35,6 +38,7 @@ const ResultTree = ({ addresses, mslink }) => {
         {addressesData.currentData().map((address, index) => {
           return <AddressTreeItem key={index} address={address} index={index} mslink={mslink} />;
         })}
+
         {addresses.length >= itemsPerPage && (
           <Pagination count={count} onChange={handleChange} size="small" />
         )}
