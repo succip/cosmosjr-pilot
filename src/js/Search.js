@@ -3,10 +3,12 @@ import FindParameters from "@arcgis/core/rest/support/FindParameters";
 import store from "../store/store";
 import { getAllLayerByTitle, getMapLayerByTitle } from "./Layers";
 import { highlightFeature, parseResult } from "./Identify";
-import { setIdentifyResults } from "../store/actions/appActions";
+import { setIdentifyResults, setIdentifyLoading } from "../store/actions/appActions";
 import { setLayerVisible } from "../store/actions/layerActions";
 
 export const findFeature = async ({ LayerName, FieldName, FieldValue }) => {
+  store.dispatch(setIdentifyResults([]));
+  store.dispatch(setIdentifyLoading(true));
   const { layers, app } = store.getState();
   const outSpatialReference = app.view.spatialReference;
   let mapLayer;
@@ -35,6 +37,7 @@ export const findFeature = async ({ LayerName, FieldName, FieldValue }) => {
     showResults(results);
     if (!mapLayer.layer.visible) store.dispatch(setLayerVisible(mapLayer, true));
   }
+  store.dispatch(setIdentifyLoading(false));
 };
 
 const getAddressLot = async (lotLink) => {

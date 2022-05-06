@@ -1,4 +1,4 @@
-import { setIdentifyResults } from "../store/actions/appActions";
+import { setIdentifyLoading, setIdentifyResults } from "../store/actions/appActions";
 import Graphic from "@arcgis/core/Graphic";
 import IdentifyParameters from "@arcgis/core/rest/support/IdentifyParameters";
 import * as identify from "@arcgis/core/rest/identify";
@@ -116,6 +116,8 @@ export const highlightFeature = ({ geometry }) => {
 };
 
 export const identifyMapPoint = async ({ mapPoint, view }) => {
+  store.dispatch(setIdentifyResults([]));
+  store.dispatch(setIdentifyLoading(true));
   let idResults = [];
 
   const g = new Graphic({
@@ -154,5 +156,6 @@ export const identifyMapPoint = async ({ mapPoint, view }) => {
       resultA.layerName === resultB.layerName && resultA.displayValue === resultB.displayValue
   );
 
-  store.dispatch(setIdentifyResults(uniqueIdResults));
+  await store.dispatch(setIdentifyResults(uniqueIdResults));
+  store.dispatch(setIdentifyLoading(false));
 };

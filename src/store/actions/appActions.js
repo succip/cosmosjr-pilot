@@ -5,6 +5,13 @@ export const setActivePanel = (panelId) => {
   };
 };
 
+export const setIdentifyLoading = (loadingState) => {
+  return {
+    type: "SET_IDENTIFY_LOADING",
+    payload: loadingState,
+  };
+};
+
 export const setIdentifyResults = (results) => {
   return {
     type: "SET_IDENTIFY_RESULTS",

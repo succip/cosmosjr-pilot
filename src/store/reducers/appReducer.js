@@ -11,6 +11,11 @@ const appReducer = (state = initialState, { type, payload }) => {
         ...state,
         activePanel: payload,
       };
+    case "SET_IDENTIFY_LOADING":
+      return {
+        ...state,
+        identifyLoading: payload,
+      };
     case "SET_IDENTIFY_RESULTS":
       return {
         ...state,
