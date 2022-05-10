@@ -1,4 +1,5 @@
 import LayerLegendPanel from "../components/LayerListLegendPanel/LayerLegendPanel";
+import PrintSavePanel from "../components/PrintSave/PrintSavePanel";
 import TestPanelContent from "../components/TestPanelContent";
 import IdentifyPanel from "../components/IdentifyResultsPanel/IdentifyPanel";
 
@@ -12,8 +13,8 @@ const accordions = [
     component: <TestPanelContent />,
   },
   {
-    title: "Measure",
-    component: <TestPanelContent />,
+    title: "Print & Save",
+    component: <PrintSavePanel />,
   },
   {
     title: "Identify",
