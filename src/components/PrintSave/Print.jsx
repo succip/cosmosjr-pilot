@@ -1,11 +1,8 @@
+import { exportMap } from "../../js/Print";
 const PrintTab = () => {
-  const onPrintClick = () => {
-    console.log("Print clicked");
-  };
-
   return (
     <>
-      <button onClick={onPrintClick}>Print Map</button>
+      <button onClick={exportMap}>Print Map</button>
     </>
   );
 };
