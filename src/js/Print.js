@@ -1,35 +1,32 @@
 import store from "../store/store";
-const axios = require("axios");
-const printDpi = 192;
-const printUrl =
-  "https://gisservices.surrey.ca/arcgis/rest/services/PrintWebMap/GPServer/Export%20Web%20Map/execute?";
+import PrintVM from "@arcgis/core/widgets/Print/PrintViewModel";
+import PrintTemplate from "@arcgis/core/rest/support/PrintTemplate";
+const printServiceUrl =
+  "https://gisservices.surrey.ca/arcgis/rest/services/PrintWebMap/GPServer/Export%20Web%20Map";
+const esriSampleUrl =
+  "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task";
 
 export const exportMap = () => {
   const { view } = store.getState().app;
-  const { mapLayers } = store.getState().layers;
-  const { spatialReference, extent, scale } = view;
-  const { xmin, xmax, ymin, ymax } = extent;
-  const mapScale = view.scale.toFixed(3);
 
-  console.log("mapLayers", mapLayers);
-
-  const exportOptions = {
-    mapOptions: {
-      showAttribution: true,
-      extent: {
-        xmin,
-        xmax,
-        ymin,
-        ymax,
-        spatialReference: {
-          wkid: spatialReference.wkid,
-        },
-      },
-      scale,
+  const printTemplate = new PrintTemplate({
+    layout: "8.5x11 Landscape No Legend",
+    format: "jpg",
+    layoutOptions: {
+      titleText: "super cool map of super cool things",
+      authorText: "cool description what up",
     },
-  };
+    exportOptions: {
+      dpi: 100,
+    },
+  });
 
-  console.log("object", exportOptions);
-  const jsoned = JSON.stringify(exportOptions);
-  console.log("jsonObject", jsoned);
+  const printVM = new PrintVM({
+    view,
+    printServiceUrl,
+  });
+
+  printVM.print(printTemplate).then(({ url }) => {
+    console.log(url);
+  });
 };

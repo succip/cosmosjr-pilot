@@ -34,24 +34,40 @@ const getMapServiceList = () => {
           mapLayerUrlList.push({
             url: layer.layer.url,
             layerId: layer.id,
+            title: layer.layer.title,
           });
         }
       }
     }
   });
 
-  const reduced = _.groupBy(mapLayerUrlList, "url");
+  console.log("1. mapLayerUrlList", mapLayerUrlList);
+
+  const groups = _.groupBy(mapLayerUrlList, "url");
   let mapServiceUrlList = [];
 
-  Object.keys(reduced).forEach((group) => {
+  console.log("2. groups:", groups);
+
+  Object.keys(groups).forEach((group) => {
     let layerIds = [];
-    reduced[group].forEach((item) => {
+    groups[group].forEach((item) => {
       layerIds.push(item.layerId);
     });
     mapServiceUrlList.push({ url: group, layerIds });
   });
 
+  console.log("3. mapServiecUrlList", mapServiceUrlList);
+
   return mapServiceUrlList;
+};
+
+export const getOperationalLayers = () => {
+  const { mapLayers } = store.getState().layers;
+  const visibleLayers = mapLayers.filter((mapLayer) => mapLayer.layer.visible);
+
+  console.log("mapLayerExample:", mapLayers[0]);
+
+  getMapServiceList();
 };
 
 export const parseResult = (result) => {
