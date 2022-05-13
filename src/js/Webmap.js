@@ -33,7 +33,7 @@ view.when(() => {
 });
 
 view.on("click", ({ mapPoint }) => {
-  identifyMapPoint({ mapPoint, view });
+  identifyMapPoint({ mapPoint });
 });
 
 export const initialize = (container) => {

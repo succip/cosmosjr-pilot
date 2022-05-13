@@ -34,19 +34,14 @@ const getMapServiceList = () => {
           mapLayerUrlList.push({
             url: layer.layer.url,
             layerId: layer.id,
-            title: layer.layer.title,
           });
         }
       }
     }
   });
 
-  console.log("1. mapLayerUrlList", mapLayerUrlList);
-
   const groups = _.groupBy(mapLayerUrlList, "url");
   let mapServiceUrlList = [];
-
-  console.log("2. groups:", groups);
 
   Object.keys(groups).forEach((group) => {
     let layerIds = [];
@@ -56,18 +51,7 @@ const getMapServiceList = () => {
     mapServiceUrlList.push({ url: group, layerIds });
   });
 
-  console.log("3. mapServiecUrlList", mapServiceUrlList);
-
   return mapServiceUrlList;
-};
-
-export const getOperationalLayers = () => {
-  const { mapLayers } = store.getState().layers;
-  const visibleLayers = mapLayers.filter((mapLayer) => mapLayer.layer.visible);
-
-  console.log("mapLayerExample:", mapLayers[0]);
-
-  getMapServiceList();
 };
 
 export const parseResult = (result) => {
@@ -131,7 +115,8 @@ export const highlightFeature = ({ geometry }) => {
   csGraphicsLayer.add(highlightGraphic);
 };
 
-export const identifyMapPoint = async ({ mapPoint, view }) => {
+export const identifyMapPoint = async ({ mapPoint }) => {
+  const { view } = store.getState().app;
   store.dispatch(setIdentifyResults([]));
   store.dispatch(setIdentifyLoading(true));
   let idResults = [];
