@@ -3,7 +3,7 @@ import PrintVM from "@arcgis/core/widgets/Print/PrintViewModel";
 import PrintTemplate from "@arcgis/core/rest/support/PrintTemplate";
 import { printServiceUrl, dpi } from "../config/PrintConfig";
 
-export const exportMap = ({ layout, format, titleText, authorText }) => {
+export const exportMap = async ({ layout, format, titleText, authorText }) => {
   const { view } = store.getState().app;
 
   const printTemplate = new PrintTemplate({
@@ -23,7 +23,7 @@ export const exportMap = ({ layout, format, titleText, authorText }) => {
     printServiceUrl,
   });
 
-  printVM.print(printTemplate).then(({ url }) => {
-    console.log(url);
-  });
+  const { url } = await printVM.print(printTemplate);
+
+  console.log(url);
 };

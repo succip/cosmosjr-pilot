@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import FormGroup from "@mui/material/FormGroup";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -12,18 +13,32 @@ const PrintTab = () => {
   const [format, setFormat] = useState("pdf");
   const [titleText, setTitleText] = useState("");
   const [authorText, setAuthorText] = useState("");
+  const [sizeWarning, setSizeWarning] = useState(false);
 
   const onPrintClick = () => {
     const printTemplate = { layout, format, titleText, authorText };
     exportMap(printTemplate);
   };
 
+  useEffect(() => {
+    setSizeWarning(layout.includes("24x36"));
+  }, [layout]);
+
   return (
     <>
-      <Box>
+      <Box my={2}>
         <FormGroup>
-          <PrintTemplateSelect setLayout={setLayout} />
-          <PrintFormatSelect setFormat={setFormat} />
+          <Box mb={2}>
+            <PrintTemplateSelect setLayout={setLayout} />
+            {sizeWarning && (
+              <Typography>
+                Please note, maps of this size (24x36) take significantly longer to process than
+                smaller sized layouts.
+              </Typography>
+            )}
+            <PrintFormatSelect setFormat={setFormat} />
+          </Box>
+
           <TextField
             label="Map Title"
             value={titleText}
@@ -36,6 +51,7 @@ const PrintTab = () => {
             value={authorText}
             onChange={(e) => setAuthorText(e.target.value)}
           />
+
           <Button variant="contained" onClick={onPrintClick}>
             Print
           </Button>
