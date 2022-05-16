@@ -4,8 +4,10 @@ import Typography from "@mui/material/Typography";
 import FormGroup from "@mui/material/FormGroup";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import LoadingIcon from "../Common/LoadingIcon";
 import PrintTemplateSelect from "./PrintTemplateSelect";
 import PrintFormatSelect from "./PrintFormatSelect";
+import PrintOutbox from "./PrintOutbox";
 import { exportMap } from "../../js/Print";
 
 const PrintTab = () => {
@@ -14,10 +16,15 @@ const PrintTab = () => {
   const [titleText, setTitleText] = useState("");
   const [authorText, setAuthorText] = useState("");
   const [sizeWarning, setSizeWarning] = useState(false);
+  const [printDisabled, setPrintDisabled] = useState(false);
+  const [printedMaps, setPrintedMaps] = useState([]);
 
-  const onPrintClick = () => {
+  const onPrintClick = async () => {
+    setPrintDisabled(true);
     const printTemplate = { layout, format, titleText, authorText };
-    exportMap(printTemplate);
+    const newPrintedMap = await exportMap(printTemplate);
+    setPrintedMaps([...printedMaps, newPrintedMap]);
+    setPrintDisabled(false);
   };
 
   useEffect(() => {
@@ -31,7 +38,7 @@ const PrintTab = () => {
           <Box mb={2}>
             <PrintTemplateSelect setLayout={setLayout} />
             {sizeWarning && (
-              <Typography>
+              <Typography sx={{ color: "warning.main" }}>
                 Please note, maps of this size (24x36) take significantly longer to process than
                 smaller sized layouts.
               </Typography>
@@ -52,9 +59,10 @@ const PrintTab = () => {
             onChange={(e) => setAuthorText(e.target.value)}
           />
 
-          <Button variant="contained" onClick={onPrintClick}>
-            Print
+          <Button disabled={printDisabled} variant="contained" onClick={onPrintClick}>
+            {printDisabled ? <LoadingIcon /> : "Print"}
           </Button>
+          {printedMaps.length > 0 && <PrintOutbox printedMaps={printedMaps} />}
         </FormGroup>
       </Box>
     </>

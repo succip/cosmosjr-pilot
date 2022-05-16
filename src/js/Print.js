@@ -24,6 +24,5 @@ export const exportMap = async ({ layout, format, titleText, authorText }) => {
   });
 
   const { url } = await printVM.print(printTemplate);
-
-  console.log(url);
+  return { titleText, url };
 };
