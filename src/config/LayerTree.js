@@ -1063,7 +1063,7 @@ const LayerStore = [
         leaf: true,
       },
       {
-        name: "Drainage Signals",
+        name: "Traffic Signals",
         id: generateId(),
         leaf: true,
       },
