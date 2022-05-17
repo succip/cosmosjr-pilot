@@ -4,7 +4,9 @@ import Link from "@mui/material/Link";
 const PrintOutbox = ({ printedMaps }) => {
   return (
     <>
-      <Typography>Printed Maps</Typography>
+      <Typography align="center" variant="h6">
+        Printed Maps
+      </Typography>
       {printedMaps.map(({ titleText, url }, index) => {
         return (
           <Link key={index} href={url} target="_blank">

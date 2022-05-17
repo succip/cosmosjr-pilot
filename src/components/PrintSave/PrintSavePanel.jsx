@@ -4,6 +4,7 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import TestPanelContent from "../TestPanelContent";
 import PrintTab from "./PrintTab";
+import BookmarkTab from "./BookmarkTab";
 
 const TabPanel = (props) => {
   const { children, value, index } = props;
@@ -30,9 +31,8 @@ const PrintSavePanel = () => {
       <TabPanel value={value} index={0}>
         <PrintTab />
       </TabPanel>
-
       <TabPanel value={value} index={1}>
-        <TestPanelContent />
+        <BookmarkTab />
       </TabPanel>
       <TabPanel value={value} index={2}>
         <TestPanelContent />

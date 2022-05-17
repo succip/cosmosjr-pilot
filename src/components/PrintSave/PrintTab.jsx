@@ -10,6 +10,8 @@ import PrintFormatSelect from "./PrintFormatSelect";
 import PrintOutbox from "./PrintOutbox";
 import { exportMap } from "../../js/Print";
 
+const outboxMax = 5;
+
 const PrintTab = () => {
   const [layout, setLayout] = useState("8.5x11 Landscape");
   const [format, setFormat] = useState("pdf");
@@ -30,6 +32,10 @@ const PrintTab = () => {
   useEffect(() => {
     setSizeWarning(layout.includes("24x36"));
   }, [layout]);
+
+  useEffect(() => {
+    if (printedMaps.length > outboxMax) setPrintedMaps(printedMaps.slice(1, outboxMax + 1));
+  }, [printedMaps]);
 
   return (
     <>
