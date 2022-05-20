@@ -1,13 +1,21 @@
 import store from "../store/store";
 import PrintVM from "@arcgis/core/widgets/Print/PrintViewModel";
 import PrintTemplate from "@arcgis/core/rest/support/PrintTemplate";
-import { printServiceUrl, dpi } from "../config/PrintConfig";
+import { printServiceUrl, dpi, printLayouts } from "../config/PrintConfig";
 
-export const exportMap = async ({ layout, format, titleText, authorText }) => {
+const esriTestUrl =
+  "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task";
+
+export const exportMap = async ({
+  layout = "8.5x11 Landscape",
+  format = "pdf",
+  titleText = "",
+  authorText = "",
+}) => {
   const { view } = store.getState().app;
 
   const printTemplate = new PrintTemplate({
-    layout,
+    layout: "MAP_ONLY",
     format,
     layoutOptions: {
       titleText,
