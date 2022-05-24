@@ -1,25 +1,21 @@
 import Button from "@mui/material/Button";
 import { exportMap } from "../../js/Print";
 import { dpi } from "../../config/PrintConfig";
-const url =
+const propertyReportUrl =
   "https://cosmos.surrey.ca/external/apps/tools/propertyreport/PropertyReportExternal.aspx?";
 
 const PropertyReportButton = ({ mslink, propertyNumber }) => {
   const onPropertyReportClick = async () => {
+    const width = window.innerWidth > 0 ? window.innerWidth : window.screen.width;
+    const height = window.innerHeight > 0 ? window.innerHeight : window.screen.height;
     const propertyReportPrintTemplate = {
       layout: "map-only",
-      format: "PNG32",
-      layoutOptions: {
-        titleText: "",
-        authorText: "",
-      },
-      exportOptions: {
-        dpi,
-      },
+      width,
+      height,
     };
     const printedMap = await exportMap(propertyReportPrintTemplate);
-    console.log(printedMap.url);
-    let reportUrl = `${url}MSLINK=${mslink}&PROPERTY_NUMBER=${propertyNumber}&IMAGEURL=${printedMap.url}`;
+    let reportUrl = `${propertyReportUrl}MSLINK=${mslink}&PROPERTY_NUMBER=${propertyNumber}&IMAGEURL=${printedMap.url}`;
+    console.log("reportUrl", reportUrl);
   };
   return (
     <>
