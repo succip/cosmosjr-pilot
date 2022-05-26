@@ -1,11 +1,16 @@
+import { useState } from "react";
 import Button from "@mui/material/Button";
+import LoadingIcon from "../Common/LoadingIcon";
 import { exportMap } from "../../js/Print";
-import { dpi } from "../../config/PrintConfig";
-const propertyReportUrl =
-  "https://cosmos.surrey.ca/external/apps/tools/propertyreport/PropertyReportExternal.aspx?";
+import { propertyReportUrl } from "../../config/PrintConfig";
+const windowFeatures =
+  "menubar=yes,location=yes,resizable=yes,scrollbars=yes,status=yes,width=1200,height=1000,top=25,left=25";
 
 const PropertyReportButton = ({ mslink, propertyNumber }) => {
+  const [loading, setLoading] = useState(false);
+
   const onPropertyReportClick = async () => {
+    setLoading(true);
     const width = window.innerWidth > 0 ? window.innerWidth : window.screen.width;
     const height = window.innerHeight > 0 ? window.innerHeight : window.screen.height;
     const propertyReportPrintTemplate = {
@@ -15,11 +20,14 @@ const PropertyReportButton = ({ mslink, propertyNumber }) => {
     };
     const printedMap = await exportMap(propertyReportPrintTemplate);
     let reportUrl = `${propertyReportUrl}MSLINK=${mslink}&PROPERTY_NUMBER=${propertyNumber}&IMAGEURL=${printedMap.url}`;
-    console.log("reportUrl", reportUrl);
+    window.open(reportUrl, "_blank", windowFeatures);
+    setLoading(false);
   };
   return (
     <>
-      <Button onClick={onPropertyReportClick}>Property Report</Button>
+      <Button variant="contained" disabled={loading} onClick={onPropertyReportClick}>
+        {loading ? <LoadingIcon /> : "Property Report"}
+      </Button>
     </>
   );
 };

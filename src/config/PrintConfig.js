@@ -1,6 +1,9 @@
 export const printServiceUrl =
   "https://gisservices.surrey.ca/arcgis/rest/services/PrintWebMap/GPServer/Export%20Web%20Map";
 
+export const propertyReportUrl =
+  "https://cosmos.surrey.ca/external/apps/tools/propertyreport/PropertyReportExternal.aspx?";
+
 export const dpi = 192;
 
 export const printLayouts = [

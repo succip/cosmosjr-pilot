@@ -28,8 +28,10 @@ const IdentifyPanel = () => {
           {<LoadingIcon />}
         </Grid>
       ) : (
-        <ResultTree results={idResults} />
-        // {!identifyResults.length && !identifyLoading && message}
+        <>
+          <ResultTree results={idResults} />
+          {!identifyResults.length && !identifyLoading && message}
+        </>
       )}
     </>
   );
