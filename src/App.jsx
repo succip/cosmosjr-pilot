@@ -3,6 +3,7 @@ import MapFrame from "./components/MapFrame";
 import Controlbar from "./components/ControlBar/ControlBar";
 import AppTitleBar from "./components/AppTitleBar/AppTitleBar";
 import "./app.css";
+import "toastify-js/src/toastify.css";
 
 function App() {
   return (
