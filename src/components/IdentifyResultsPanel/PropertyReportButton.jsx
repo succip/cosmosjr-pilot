@@ -11,6 +11,9 @@ const PropertyReportButton = ({ mslink, propertyNumber }) => {
 
   const onPropertyReportClick = async () => {
     setLoading(true);
+    // using innerwidth/innerheight, not window screen for some reason
+    console.log("innerWidth:", window.innerWidth);
+    console.log("innerHeight:", window.innerHeight);
     const width = window.innerWidth > 0 ? window.innerWidth : window.screen.width;
     const height = window.innerHeight > 0 ? window.innerHeight : window.screen.height;
     const propertyReportPrintTemplate = {

@@ -13,7 +13,7 @@ const IdentifyPanel = () => {
 
   useEffect(() => {
     setIdResults(identifyResults);
-    setMessage(identifyResults.length ? "" : "No Results found!");
+    setMessage(identifyResults.length ? "" : "Click an area on the map to identify map layers.");
   }, [identifyResults]);
 
   useEffect(() => {

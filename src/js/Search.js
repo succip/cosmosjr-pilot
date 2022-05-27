@@ -2,13 +2,13 @@ import * as find from "@arcgis/core/rest/find";
 import FindParameters from "@arcgis/core/rest/support/FindParameters";
 import store from "../store/store";
 import { getAllLayerByTitle, getMapLayerByTitle } from "./Layers";
-import { highlightFeature, parseResult } from "./Identify";
+import { clearIdentifyResults, highlightFeature, parseResult } from "./Identify";
 import { setIdentifyResults, setIdentifyLoading } from "../store/actions/appActions";
 import { setLayerVisible } from "../store/actions/layerActions";
 import { toast } from "../js/Utilities";
 
 export const findFeature = async ({ LayerName, FieldName, FieldValue }) => {
-  store.dispatch(setIdentifyResults([]));
+  clearIdentifyResults();
   store.dispatch(setIdentifyLoading(true));
   const { layers, app } = store.getState();
   const outSpatialReference = app.view.spatialReference;

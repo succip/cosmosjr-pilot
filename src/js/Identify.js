@@ -6,6 +6,7 @@ import settings from "../config/Settings";
 import store from "../store/store";
 import Link from "@mui/material/Link";
 import { generateId } from "./Utilities";
+import { toast } from "../js/Utilities";
 const _ = require("lodash");
 
 const createAttributeLink = (value) => {
@@ -115,9 +116,11 @@ export const highlightFeature = ({ geometry }) => {
   csGraphicsLayer.add(highlightGraphic);
 };
 
+export const clearIdentifyResults = () => store.dispatch(setIdentifyResults([]));
+
 export const identifyMapPoint = async ({ mapPoint }) => {
   const { view } = store.getState().app;
-  store.dispatch(setIdentifyResults([]));
+  clearIdentifyResults();
   store.dispatch(setIdentifyLoading(true));
   let idResults = [];
 
@@ -157,6 +160,8 @@ export const identifyMapPoint = async ({ mapPoint }) => {
       resultA.layerName === resultB.layerName && resultA.displayValue === resultB.displayValue
   );
 
+  if (!uniqueIdResults.length)
+    toast({ text: "Nothing found at location clicked. Try zooming in or another location." });
   await store.dispatch(setIdentifyResults(uniqueIdResults));
   store.dispatch(setIdentifyLoading(false));
 };
