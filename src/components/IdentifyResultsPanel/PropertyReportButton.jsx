@@ -21,6 +21,8 @@ const PropertyReportButton = ({ mslink, propertyNumber }) => {
     const printedMap = await exportMap(propertyReportPrintTemplate);
     let reportUrl = `${propertyReportUrl}MSLINK=${mslink}&PROPERTY_NUMBER=${propertyNumber}&IMAGEURL=${printedMap.url}`;
     window.open(reportUrl, "_blank", windowFeatures);
+    console.log("width", width);
+    console.log("height:", height);
     setLoading(false);
   };
   return (

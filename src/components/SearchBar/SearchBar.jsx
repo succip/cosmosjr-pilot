@@ -3,7 +3,6 @@ import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import settings from "../../config/Settings";
 import { findFeature, findLayer } from "../../js/Search";
-import Toast from "../Common/Toast";
 import { generateId } from "../../js/Utilities";
 const axios = require("axios");
 const _ = require("lodash");
@@ -21,8 +20,6 @@ const SearchBar = () => {
   const [options, setOptions] = useState([]);
   const [noOptionsText, setNoOptionsText] = useState("");
   const [open, setOpen] = useState(false);
-  const [toastOpen, setToastOpen] = useState(false);
-  const [toastMessage, setToastMessage] = useState("");
 
   const resetSearchBar = () => {
     setValue(null);
@@ -43,8 +40,6 @@ const SearchBar = () => {
       setOpen(false);
       if (value.ListValue.includes("Layer")) {
         findLayer(value);
-        setToastMessage(`Added layer to map: ${value.LayerName}`);
-        setToastOpen(true);
       } else {
         findFeature(value);
       }
@@ -74,7 +69,6 @@ const SearchBar = () => {
 
   return (
     <>
-      <Toast open={toastOpen} message={toastMessage} onClose={() => setToastOpen(false)} />
       <Autocomplete
         sx={searchBarStyle}
         disableCloseOnSelect={true}

@@ -6,8 +6,14 @@ export const generateId = () => {
   return nanoid().toString();
 };
 
-export const toast = (text) => {
+export const toast = ({ text, gravity = "bottom", position = "center", close = true }) => {
   Toastify({
     text,
+    close,
+    gravity,
+    position,
+    style: {
+      background: "#262626",
+    },
   }).showToast();
 };

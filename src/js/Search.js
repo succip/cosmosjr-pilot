@@ -5,6 +5,7 @@ import { getAllLayerByTitle, getMapLayerByTitle } from "./Layers";
 import { highlightFeature, parseResult } from "./Identify";
 import { setIdentifyResults, setIdentifyLoading } from "../store/actions/appActions";
 import { setLayerVisible } from "../store/actions/layerActions";
+import { toast } from "../js/Utilities";
 
 export const findFeature = async ({ LayerName, FieldName, FieldValue }) => {
   store.dispatch(setIdentifyResults([]));
@@ -64,6 +65,7 @@ export const findLayer = ({ LayerName }) => {
   if (!mapLayer.layer.visible) {
     store.dispatch(setLayerVisible(mapLayer, true));
   }
+  toast({ text: `Added layer to map: ${mapLayer.title}` });
 };
 
 const zoomToFeature = async (feature) => {

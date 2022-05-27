@@ -8,7 +8,6 @@ import {
   updateLayerListInScale,
   setMapThemeLayers,
 } from "./Layers";
-import { toast } from "../js/Utilities";
 import { identifyMapPoint } from "./Identify";
 
 const onViewStationary = () => {
@@ -34,7 +33,6 @@ view.when(() => {
 });
 
 view.on("click", ({ mapPoint }) => {
-  toast("this is a test");
   identifyMapPoint({ mapPoint });
 });
 

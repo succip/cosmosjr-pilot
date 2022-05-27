@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import TreeItem from "@mui/lab/TreeItem";
 import TreeView from "@mui/lab/TreeView";
-import Toast from "../Common/Toast";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import LoadingIcon from "../Common/LoadingIcon";
 import DetailsTable from "../Common/DetailsTable";
 import { formatPropertyAttributes } from "../../js/Identify";
+import { toast } from "../../js/Utilities";
 const axios = require("axios");
 
 const AddressDetailsTreeItem = ({
@@ -19,7 +19,6 @@ const AddressDetailsTreeItem = ({
   propertyNumber,
 }) => {
   const [detailsData, setDetailsData] = useState([]);
-  const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState([]);
   const [dataLoading, setDataLoading] = useState(false);
 
@@ -35,7 +34,7 @@ const AddressDetailsTreeItem = ({
     if (data.length) {
       id === "property" ? setDetailsData(formatPropertyAttributes(data)) : setDetailsData(data);
     } else {
-      setOpen(true);
+      toast({ text: `No ${label} found for this address.` });
     }
     setDataLoading(false);
   };
@@ -49,11 +48,6 @@ const AddressDetailsTreeItem = ({
 
   return (
     <>
-      <Toast
-        open={open}
-        message={`No ${label} found for this address.`}
-        onClose={() => setOpen(false)}
-      />
       <TreeView
         onNodeToggle={onNodeToggle}
         defaultExpandIcon={dataLoading ? <LoadingIcon /> : <KeyboardArrowRightIcon />}
