@@ -11,9 +11,6 @@ const PropertyReportButton = ({ mslink, propertyNumber }) => {
 
   const onPropertyReportClick = async () => {
     setLoading(true);
-    // using innerwidth/innerheight, not window screen for some reason
-    console.log("innerWidth:", window.innerWidth);
-    console.log("innerHeight:", window.innerHeight);
     const width = window.innerWidth > 0 ? window.innerWidth : window.screen.width;
     const height = window.innerHeight > 0 ? window.innerHeight : window.screen.height;
     const propertyReportPrintTemplate = {
@@ -24,8 +21,6 @@ const PropertyReportButton = ({ mslink, propertyNumber }) => {
     const printedMap = await exportMap(propertyReportPrintTemplate);
     let reportUrl = `${propertyReportUrl}MSLINK=${mslink}&PROPERTY_NUMBER=${propertyNumber}&IMAGEURL=${printedMap.url}`;
     window.open(reportUrl, "_blank", windowFeatures);
-    console.log("width", width);
-    console.log("height:", height);
     setLoading(false);
   };
   return (
