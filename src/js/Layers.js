@@ -28,16 +28,21 @@ const onAddServiceLayer = (layer) => {
       serviceUrl: layer.url,
       ulid: generateId(),
     };
-    if (newLayer.title === "Address Search")
-      store.dispatch(addCustomLayer({ layer: newLayer, title: "addressLayer" }));
-    if (newLayer.title === "Intersection Search")
-      store.dispatch(addCustomLayer({ layer: newLayer, title: "intersectionLayer" }));
-    if (newLayer.title === "Lots")
-      store.dispatch(addCustomLayer({ layer: newLayer, title: "lotsLayer" }));
-    if (newLayer.title.includes("Aerial")) console.log(newLayer.title);
+
+    filterLayer(newLayer);
+
     store.dispatch(addLayer(newLayer));
     checkMapLayers(LayerTree, newLayer);
   });
+};
+
+const filterLayer = (layer) => {
+  if (layer.title === "Address Search")
+    store.dispatch(addCustomLayer({ layer, title: "addressLayer" }));
+  if (layer.title === "Intersection Search")
+    store.dispatch(addCustomLayer({ layer, title: "intersectionLayer" }));
+  if (layer.title === "Lots") store.dispatch(addCustomLayer({ layer, title: "lotsLayer" }));
+  if (layer.title.includes("Aerial")) console.log(layer.title);
 };
 
 export const addOrthoServices = (map) => {
