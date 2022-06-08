@@ -214,6 +214,11 @@ const LayerStore = [
         leaf: true,
       },
       {
+        name: "Aerial Photo April 2014",
+        id: generateId(),
+        leaf: true,
+      },
+      {
         name: "Aerial Photo April 2013",
         id: generateId(),
         leaf: true,
