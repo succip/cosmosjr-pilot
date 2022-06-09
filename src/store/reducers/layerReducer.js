@@ -2,6 +2,7 @@ const initialState = {
   allLayers: [],
   legendLayers: [],
   mapLayers: [],
+  orthoLayers: [],
 };
 
 const layerReducer = (state = initialState, { type, payload }) => {
@@ -12,6 +13,8 @@ const layerReducer = (state = initialState, { type, payload }) => {
       return { ...state, mapLayers: [...state.mapLayers, payload] };
     case "ADD_CUSTOM_LAYER":
       return { ...state, [payload.title]: payload.layer };
+    case "ADD_LAYER_TO_GROUP":
+      return { ...state, [payload.group]: [...state[payload.group], payload.layer] };
     case "SET_LAYER_VISIBLE": {
       let { layer } = payload;
       layer.visible = payload.visible;

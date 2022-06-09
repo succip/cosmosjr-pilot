@@ -2,6 +2,7 @@ const initialState = {
   view: null,
   activePanel: null,
   identifyResults: [],
+  mapViewMode: "basemap",
 };
 
 const appReducer = (state = initialState, { type, payload }) => {
@@ -23,6 +24,8 @@ const appReducer = (state = initialState, { type, payload }) => {
       };
     case "SET_VIEW":
       return { ...state, view: payload };
+    case "SET_MAP_VIEW_MODE":
+      return { ...state, mapViewMode: payload };
     default:
       return state;
   }

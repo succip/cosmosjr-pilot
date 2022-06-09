@@ -19,6 +19,13 @@ export const addCustomLayer = (layer) => {
   };
 };
 
+export const addLayerToGroup = (layer, group) => {
+  return {
+    type: "ADD_LAYER_TO_GROUP",
+    payload: { group, layer },
+  };
+};
+
 export const setLayerVisible = ({ ulid, layer }, visible) => {
   return {
     type: "SET_LAYER_VISIBLE",

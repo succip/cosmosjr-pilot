@@ -1,16 +1,19 @@
 import settings from "../config/Settings";
 import MapThemes from "../config/MapThemes";
 import MapImageLayer from "@arcgis/core/layers/MapImageLayer";
+import { watch, whenTrue, whenFalse } from "@arcgis/core/core/watchUtils";
 import store from "../store/store";
 import LayerTree from "../config/LayerTree";
 import { generateId } from "./Utilities";
 import {
   addCustomLayer,
+  addLayerToGroup,
   addLayer,
   addMapLayer,
   setLayerVisible,
   updateLayerInscale,
 } from "../store/actions/layerActions";
+import { setMapViewMode } from "../store/actions/appActions";
 
 const onAddServiceLayer = (layer) => {
   layer.allSublayers.items.forEach((sublayer) => {
@@ -42,7 +45,29 @@ const filterLayer = (layer) => {
   if (layer.title === "Intersection Search")
     store.dispatch(addCustomLayer({ layer, title: "intersectionLayer" }));
   if (layer.title === "Lots") store.dispatch(addCustomLayer({ layer, title: "lotsLayer" }));
-  if (layer.title.includes("Aerial")) console.log(layer.title);
+  if (layer.title.includes("Aerial") || layer.title.includes("Satellite")) {
+    watchLayerVisibility(layer);
+    store.dispatch(addLayerToGroup(layer, "orthoLayers"));
+  }
+};
+
+const watchLayerVisibility = ({ layer, title }) => {
+  whenTrue(layer, "visible", (e) => {
+    store.dispatch(setMapViewMode("ortho"));
+  });
+
+  whenFalse(layer, "visible", (e) => {
+    checkOrthoLayersVisibility();
+  });
+};
+
+const checkOrthoLayersVisibility = () => {
+  const { orthoLayers } = store.getState().layers;
+  orthoLayers.forEach((orthoLayer) => {
+    if (orthoLayer.layer.visible) {
+      console.log(`One layer found visible: ${orthoLayer.title}`);
+    }
+  });
 };
 
 export const addOrthoServices = (map) => {
