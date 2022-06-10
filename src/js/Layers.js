@@ -65,7 +65,7 @@ const checkOrthoLayersVisibility = () => {
   const { orthoLayers } = store.getState().layers;
   orthoLayers.forEach((orthoLayer) => {
     if (orthoLayer.layer.visible) {
-      console.log(`One layer found visible: ${orthoLayer.title}`);
+      console.log(`${orthoLayer.title}`, orthoLayer);
     }
   });
 };
