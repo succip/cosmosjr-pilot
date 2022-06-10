@@ -57,7 +57,7 @@ const watchLayerVisibility = ({ layer, title }) => {
   });
 
   whenFalse(layer, "visible", (e) => {
-    checkOrthoLayersVisibility();
+    // checkOrthoLayersVisibility();
   });
 };
 
