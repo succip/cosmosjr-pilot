@@ -269,4 +269,6 @@ export const addressDetails = [
   },
 ];
 
+export const defaultOrthoImage = "Aerial Photo April 2021";
+
 export default settings;

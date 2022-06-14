@@ -28,7 +28,7 @@ export const setView = (view) => {
 
 export const setMapViewMode = (mapViewMode) => {
   return {
-    type: "SET_APP_VIEW_MODE",
+    type: "SET_MAP_VIEW_MODE",
     payload: mapViewMode,
   };
 };

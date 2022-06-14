@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Grid from "@mui/material/Grid";
 import ResultTree from "./ResultTree";
 import LoadingIcon from "../Common/LoadingIcon";
-import store from "../../store/store";
 import { setActivePanel } from "../../store/actions/appActions";
 
 const IdentifyPanel = () => {
   const [idResults, setIdResults] = useState([]);
   const [message, setMessage] = useState("");
   const { identifyResults, identifyLoading } = useSelector((state) => state.app);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setIdResults(identifyResults);
@@ -17,8 +17,8 @@ const IdentifyPanel = () => {
   }, [identifyResults]);
 
   useEffect(() => {
-    store.dispatch(setActivePanel(null));
-    store.dispatch(setActivePanel(3));
+    dispatch(setActivePanel(null));
+    dispatch(setActivePanel(3));
   }, [identifyLoading]);
 
   return (

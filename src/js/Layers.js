@@ -1,4 +1,4 @@
-import settings from "../config/Settings";
+import settings, { defaultOrthoImage } from "../config/Settings";
 import MapThemes from "../config/MapThemes";
 import MapImageLayer from "@arcgis/core/layers/MapImageLayer";
 import { watch, whenTrue, whenFalse } from "@arcgis/core/core/watchUtils";
@@ -44,30 +44,35 @@ const filterLayer = (layer) => {
     store.dispatch(addCustomLayer({ layer, title: "addressLayer" }));
   if (layer.title === "Intersection Search")
     store.dispatch(addCustomLayer({ layer, title: "intersectionLayer" }));
+
   if (layer.title === "Lots") store.dispatch(addCustomLayer({ layer, title: "lotsLayer" }));
-  if (layer.title.includes("Aerial") || layer.title.includes("Satellite")) {
-    watchLayerVisibility(layer);
-    store.dispatch(addLayerToGroup(layer, "orthoLayers"));
-  }
 };
 
-const watchLayerVisibility = ({ layer, title }) => {
-  whenTrue(layer, "visible", (e) => {
-    store.dispatch(setMapViewMode("ortho"));
-  });
-
-  whenFalse(layer, "visible", (e) => {
-    // checkOrthoLayersVisibility();
-  });
-};
-
-const checkOrthoLayersVisibility = () => {
-  const { orthoLayers } = store.getState().layers;
-  orthoLayers.forEach((orthoLayer) => {
-    if (orthoLayer.layer.visible) {
-      console.log(`${orthoLayer.title}`, orthoLayer);
+const checkMapLayers = (layerStore = LayerTree, queryLayer = {}) => {
+  Object.keys(layerStore).forEach((key) => {
+    if (typeof layerStore[key] === "object") {
+      if (layerStore[key].leaf) {
+        if (queryLayer.title === layerStore[key].name) {
+          store.dispatch(addMapLayer(queryLayer));
+          if (layerStore[key].customGroup) {
+            store.dispatch(addLayerToGroup(queryLayer, layerStore[key].customGroup));
+            watchOrthoLayerVisibility(queryLayer);
+          }
+        }
+      }
+      checkMapLayers(layerStore[key], queryLayer);
     }
   });
+};
+
+export const activateBasemapMode = () => {
+  const { orthoLayers } = store.getState().layers;
+  orthoLayers.forEach((orthoLayer) => store.dispatch(setLayerVisible(orthoLayer, false)));
+};
+
+export const activateOrthoMode = () => {
+  const defaultOrthoLayer = getMapLayerByTitle(defaultOrthoImage);
+  store.dispatch(setLayerVisible(defaultOrthoLayer, true));
 };
 
 export const addOrthoServices = (map) => {
@@ -82,6 +87,19 @@ export const addOrthoServices = (map) => {
       serviceLayer.when(onAddServiceLayer);
 
       map.add(serviceLayer);
+    }
+  });
+};
+
+const watchOrthoLayerVisibility = ({ layer, title }) => {
+  whenTrue(layer, "visible", (e) => {
+    store.dispatch(setMapViewMode("ortho"));
+  });
+
+  whenFalse(layer, "visible", (e) => {
+    const { orthoLayers } = store.getState().layers;
+    if (!orthoLayers.some((orthoLayer) => orthoLayer.layer.visible)) {
+      store.dispatch(setMapViewMode("basemap"));
     }
   });
 };
@@ -130,17 +148,6 @@ export const updateLayerListInScale = (mapScale) => {
 
     if (inScale !== mapLayer.inScale) {
       store.dispatch(updateLayerInscale({ ulid: mapLayer.ulid, inScale }));
-    }
-  });
-};
-
-export const checkMapLayers = (layerStore = LayerTree, queryLayer = {}) => {
-  Object.keys(layerStore).forEach((key) => {
-    if (typeof layerStore[key] === "object") {
-      if (layerStore[key].leaf) {
-        if (queryLayer.title === layerStore[key].name) store.dispatch(addMapLayer(queryLayer));
-      }
-      checkMapLayers(layerStore[key], queryLayer);
     }
   });
 };
