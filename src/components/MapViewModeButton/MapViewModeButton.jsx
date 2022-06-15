@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { activateBasemapMode, activateOrthoMode } from "../../js/Layers";
+import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
 
 const MapViewModeButton = () => {
   const { mapViewMode } = useSelector((state) => state.app);
@@ -13,13 +15,13 @@ const MapViewModeButton = () => {
   };
 
   useEffect(() => {
-    setAltViewMode(mapViewMode === "basemap" ? "ortho" : "basemap");
+    setAltViewMode(mapViewMode === "basemap" ? "Aerial" : "Basemap");
   }, [mapViewMode]);
 
   return (
     <div className="mapViewModeButton">
       <Button variant="contained" onClick={onMapViewModeClick}>
-        {altViewMode}
+        {altViewMode} {mapViewMode === "basemap" ? <PublicOutlinedIcon /> : <MapOutlinedIcon />}
       </Button>
     </div>
   );

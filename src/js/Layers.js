@@ -1,7 +1,8 @@
-import settings, { defaultOrthoImage } from "../config/Settings";
+import settings from "../config/Settings";
+import { basemapModeLayers, orthoModeLayers } from "../config/LayerConfig";
 import MapThemes from "../config/MapThemes";
 import MapImageLayer from "@arcgis/core/layers/MapImageLayer";
-import { watch, whenTrue, whenFalse } from "@arcgis/core/core/watchUtils";
+import { whenTrue, whenFalse } from "@arcgis/core/core/watchUtils";
 import store from "../store/store";
 import LayerTree from "../config/LayerTree";
 import { generateId } from "./Utilities";
@@ -65,14 +66,34 @@ const checkMapLayers = (layerStore = LayerTree, queryLayer = {}) => {
   });
 };
 
+const watchOrthoLayerVisibility = ({ layer, title }) => {
+  whenTrue(layer, "visible", (e) => {
+    store.dispatch(setMapViewMode("ortho"));
+  });
+
+  whenFalse(layer, "visible", (e) => {
+    const { orthoLayers } = store.getState().layers;
+    if (!orthoLayers.some((orthoLayer) => orthoLayer.layer.visible)) {
+      store.dispatch(setMapViewMode("basemap"));
+    }
+  });
+};
+
 export const activateBasemapMode = () => {
   const { orthoLayers } = store.getState().layers;
+
+  basemapModeLayers.forEach(({ title, visible }) => {
+    const mapLayer = getMapLayerByTitle(title);
+    store.dispatch(setLayerVisible(mapLayer, visible));
+  });
   orthoLayers.forEach((orthoLayer) => store.dispatch(setLayerVisible(orthoLayer, false)));
 };
 
 export const activateOrthoMode = () => {
-  const defaultOrthoLayer = getMapLayerByTitle(defaultOrthoImage);
-  store.dispatch(setLayerVisible(defaultOrthoLayer, true));
+  orthoModeLayers.forEach(({ title, visible }) => {
+    const mapLayer = getMapLayerByTitle(title);
+    store.dispatch(setLayerVisible(mapLayer, visible));
+  });
 };
 
 export const addOrthoServices = (map) => {
@@ -87,19 +108,6 @@ export const addOrthoServices = (map) => {
       serviceLayer.when(onAddServiceLayer);
 
       map.add(serviceLayer);
-    }
-  });
-};
-
-const watchOrthoLayerVisibility = ({ layer, title }) => {
-  whenTrue(layer, "visible", (e) => {
-    store.dispatch(setMapViewMode("ortho"));
-  });
-
-  whenFalse(layer, "visible", (e) => {
-    const { orthoLayers } = store.getState().layers;
-    if (!orthoLayers.some((orthoLayer) => orthoLayer.layer.visible)) {
-      store.dispatch(setMapViewMode("basemap"));
     }
   });
 };
