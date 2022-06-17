@@ -61,7 +61,6 @@ const filterLayer = (layer) => {
     store.dispatch(addCustomLayer({ layer, title: "addressLayer" }));
   if (layer.title === "Intersection Search")
     store.dispatch(addCustomLayer({ layer, title: "intersectionLayer" }));
-
   if (layer.title === "Lots") store.dispatch(addCustomLayer({ layer, title: "lotsLayer" }));
 };
 
@@ -76,7 +75,6 @@ export const watchOrthoVisibility = () => {
   orthoLayers.forEach(({ layer }) => {
     whenTrue(layer, "visible", (e) => {
       if (store.getState().app.mapViewMode === "basemap") {
-        console.log("true:", layer.title);
         store.dispatch(setMapViewMode("ortho"));
         activateOrthoMode();
       }
@@ -84,7 +82,6 @@ export const watchOrthoVisibility = () => {
 
     whenFalse(layer, "visible", (e) => {
       if (!isMultipleOrthos()) {
-        console.log("no other orthos on");
         store.dispatch(setMapViewMode("basemap"));
         activateBasemapMode();
       }
@@ -112,7 +109,7 @@ export const activateOrthoMode = () => {
     store.dispatch(setLayerVisible(mapLayer, visible));
   });
 
-  if (isMultipleOrthos()) activateDefaultOrthoLayer();
+  if (!isMultipleOrthos()) activateDefaultOrthoLayer();
 };
 
 export const activateDefaultOrthoLayer = () => {
