@@ -1,4 +1,4 @@
-import settings from "../config/Settings";
+import settings, { defaultOrthoImage } from "../config/Settings";
 import { basemapModeLayers, orthoModeLayers } from "../config/LayerConfig";
 import MapThemes from "../config/MapThemes";
 import MapImageLayer from "@arcgis/core/layers/MapImageLayer";
@@ -17,7 +17,7 @@ import {
 import { setMapViewMode } from "../store/actions/appActions";
 
 const onAddServiceLayer = (layer) => {
-  layer.allSublayers.items.forEach((sublayer) => {
+  for (const sublayer of layer.allSublayers.items) {
     if (layer.id === "BaseMap") {
       sublayer.legendEnabled = false;
     } else {
@@ -37,6 +37,22 @@ const onAddServiceLayer = (layer) => {
 
     store.dispatch(addLayer(newLayer));
     checkMapLayers(LayerTree, newLayer);
+  }
+};
+
+const checkMapLayers = (layerStore = LayerTree, queryLayer = {}) => {
+  Object.keys(layerStore).forEach((key) => {
+    if (typeof layerStore[key] === "object") {
+      if (layerStore[key].leaf) {
+        if (queryLayer.title === layerStore[key].name) {
+          store.dispatch(addMapLayer(queryLayer));
+          if (layerStore[key].customGroup) {
+            store.dispatch(addLayerToGroup(queryLayer, layerStore[key].customGroup));
+          }
+        }
+      }
+      checkMapLayers(layerStore[key], queryLayer);
+    }
   });
 };
 
@@ -49,83 +65,73 @@ const filterLayer = (layer) => {
   if (layer.title === "Lots") store.dispatch(addCustomLayer({ layer, title: "lotsLayer" }));
 };
 
-const checkMapLayers = (layerStore = LayerTree, queryLayer = {}) => {
-  Object.keys(layerStore).forEach((key) => {
-    if (typeof layerStore[key] === "object") {
-      if (layerStore[key].leaf) {
-        if (queryLayer.title === layerStore[key].name) {
-          store.dispatch(addMapLayer(queryLayer));
-          if (layerStore[key].customGroup) {
-            store.dispatch(addLayerToGroup(queryLayer, layerStore[key].customGroup));
-            watchOrthoLayerVisibility(queryLayer);
-          }
-        }
-      }
-      checkMapLayers(layerStore[key], queryLayer);
-    }
-  });
+const isMultipleOrthos = () => {
+  const { orthoLayers } = store.getState().layers;
+  return orthoLayers.some(({ layer }) => layer.visible);
 };
 
-const watchOrthoLayerVisibility = ({ layer, title }) => {
-  whenTrue(layer, "visible", (e) => {
-    store.dispatch(setMapViewMode("ortho"));
-  });
+export const watchOrthoVisibility = () => {
+  const { orthoLayers } = store.getState().layers;
 
-  whenFalse(layer, "visible", (e) => {
-    const { orthoLayers } = store.getState().layers;
-    if (!orthoLayers.some((orthoLayer) => orthoLayer.layer.visible)) {
-      store.dispatch(setMapViewMode("basemap"));
-    }
+  orthoLayers.forEach(({ layer }) => {
+    whenTrue(layer, "visible", (e) => {
+      if (store.getState().app.mapViewMode === "basemap") {
+        console.log("true:", layer.title);
+        store.dispatch(setMapViewMode("ortho"));
+        activateOrthoMode();
+      }
+    });
+
+    whenFalse(layer, "visible", (e) => {
+      if (!isMultipleOrthos()) {
+        console.log("no other orthos on");
+        store.dispatch(setMapViewMode("basemap"));
+        activateBasemapMode();
+      }
+    });
   });
 };
 
 export const activateBasemapMode = () => {
+  console.log("basemap called");
   const { orthoLayers } = store.getState().layers;
 
   basemapModeLayers.forEach(({ title, visible }) => {
     const mapLayer = getMapLayerByTitle(title);
     store.dispatch(setLayerVisible(mapLayer, visible));
   });
+
   orthoLayers.forEach((orthoLayer) => store.dispatch(setLayerVisible(orthoLayer, false)));
 };
 
 export const activateOrthoMode = () => {
+  console.log("ortho called");
+
   orthoModeLayers.forEach(({ title, visible }) => {
     const mapLayer = getMapLayerByTitle(title);
     store.dispatch(setLayerVisible(mapLayer, visible));
   });
+
+  if (isMultipleOrthos()) activateDefaultOrthoLayer();
 };
 
-export const addOrthoServices = (map) => {
-  settings.mapServices.forEach((mapService) => {
-    const { id, url, baseMapService } = mapService;
-    if (baseMapService) {
-      const serviceLayer = new MapImageLayer({
-        id,
-        url,
-        visible: true,
-      });
-      serviceLayer.when(onAddServiceLayer);
-
-      map.add(serviceLayer);
-    }
-  });
+export const activateDefaultOrthoLayer = () => {
+  const defaultOrthoLayer = getMapLayerByTitle(defaultOrthoImage);
+  store.dispatch(setLayerVisible(defaultOrthoLayer, true));
 };
 
-export const addMapServices = (map) => {
-  settings.mapServices.forEach((mapService) => {
-    const { id, url, baseMapService } = mapService;
-    if (!baseMapService) {
-      const serviceLayer = new MapImageLayer({
-        id,
-        url,
-        visible: true,
-      });
-      serviceLayer.when(onAddServiceLayer);
+export const addAllServices = async (map) => {
+  for (const mapService of settings.mapServices) {
+    const { id, url } = mapService;
 
-      map.add(serviceLayer);
-    }
-  });
+    const serviceLayer = new MapImageLayer({
+      id,
+      url,
+      visible: true,
+    });
+    map.add(serviceLayer);
+    await serviceLayer.when(onAddServiceLayer);
+  }
 };
 
 export const setMapThemeLayers = (mapThemeName) => {

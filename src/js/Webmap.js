@@ -3,10 +3,10 @@ import MapView from "@arcgis/core/views/MapView";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
 import settings from "../config/Settings";
 import {
-  addOrthoServices,
-  addMapServices,
   updateLayerListInScale,
   setMapThemeLayers,
+  addAllServices,
+  watchOrthoVisibility,
 } from "./Layers";
 import { identifyMapPoint } from "./Identify";
 
@@ -22,10 +22,6 @@ const map = new ArcGISMap();
 
 export let view = new MapView({ map, extent: settings.startingExtent });
 
-addOrthoServices(map);
-addMapServices(map);
-map.add(csGraphicsLayer);
-
 view.watch("stationary", onViewStationary);
 
 view.when(() => {
@@ -36,7 +32,10 @@ view.on("click", ({ mapPoint }) => {
   identifyMapPoint({ mapPoint });
 });
 
-export const initialize = (container) => {
+export const initialize = async (container) => {
+  await addAllServices(map);
+  watchOrthoVisibility();
+  map.add(csGraphicsLayer);
   view.container = container;
   return view;
 };

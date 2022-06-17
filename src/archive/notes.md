@@ -1,3 +1,9 @@
+order should be:
+
+1. Basemap
+2. Ortho
+3. Lots
+
 mapServiceLayerIds = [
     {
         serviceName: "Drainage"

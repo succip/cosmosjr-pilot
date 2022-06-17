@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { activateBasemapMode, activateOrthoMode } from "../../js/Layers";
+import { activateBasemapMode, activateDefaultOrthoLayer } from "../../js/Layers";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
 
@@ -11,7 +11,7 @@ const MapViewModeButton = () => {
   const [altViewMode, setAltViewMode] = useState(mapViewMode === "basemap" ? "ortho" : "basemap");
 
   const onMapViewModeClick = () => {
-    mapViewMode === "basemap" ? activateOrthoMode() : activateBasemapMode();
+    mapViewMode === "basemap" ? activateDefaultOrthoLayer() : activateBasemapMode();
   };
 
   useEffect(() => {
