@@ -9,6 +9,9 @@ import {
   watchOrthoVisibility,
 } from "./Layers";
 import { identifyMapPoint } from "./Identify";
+import { widgets } from "../config/WidgetConfig";
+
+import * as ReactDOM from "react-dom";
 
 const onViewStationary = () => {
   updateLayerListInScale(view.scale);
@@ -32,10 +35,21 @@ view.on("click", ({ mapPoint }) => {
   identifyMapPoint({ mapPoint });
 });
 
+const addMapWidgets = () => {
+  widgets.forEach(({ component, position }) => {
+    const node = document.createElement("div");
+    view.ui.add(node, position);
+    // ReactDOM.render(component, node);
+    console.log(component);
+  });
+};
+
 export const initialize = async (container) => {
   await addAllServices(map);
   watchOrthoVisibility();
+  addMapWidgets();
   map.add(csGraphicsLayer);
   view.container = container;
+
   return view;
 };
