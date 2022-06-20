@@ -130,6 +130,7 @@ export const identifyMapPoint = async ({ mapPoint }) => {
     attributes: { name: "select" },
     spatialReference: view.spatialReference,
   });
+
   view.map.findLayerById("CosGraphicsLayer").add(g);
 
   for (const { url, layerIds } of getMapServiceList()) {

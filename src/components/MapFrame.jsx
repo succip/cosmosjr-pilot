@@ -9,9 +9,12 @@ const MapFrame = () => {
   const mapDispatch = useDispatch();
 
   useEffect(() => {
-    if (mapRef.current) {
-      const view = initialize(mapRef.current);
+    async function dispatchView() {
+      const view = await initialize(mapRef.current);
       mapDispatch(setView(view));
+    }
+    if (mapRef.current) {
+      dispatchView();
     }
   }, []);
 

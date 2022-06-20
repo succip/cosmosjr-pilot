@@ -1,5 +1,10 @@
-import settings, { defaultOrthoImage } from "../config/Settings";
-import { basemapModeLayers, orthoModeLayers } from "../config/LayerConfig";
+import {
+  basemapModeLayers,
+  orthoModeLayers,
+  mapServices,
+  legendDisabledLayers,
+  defaultOrthoImage,
+} from "../config/LayerConfig";
 import MapThemes from "../config/MapThemes";
 import MapImageLayer from "@arcgis/core/layers/MapImageLayer";
 import { whenTrue, whenFalse } from "@arcgis/core/core/watchUtils";
@@ -21,7 +26,7 @@ const onAddServiceLayer = (layer) => {
     if (layer.id === "BaseMap") {
       sublayer.legendEnabled = false;
     } else {
-      sublayer.legendEnabled = !settings.legendDisabledLayers.includes(sublayer.title);
+      sublayer.legendEnabled = !legendDisabledLayers.includes(sublayer.title);
     }
     if (layer.id === "BaseMap") sublayer.legendEnabled = false;
     const newLayer = {
@@ -90,7 +95,6 @@ export const watchOrthoVisibility = () => {
 };
 
 export const activateBasemapMode = () => {
-  console.log("basemap called");
   const { orthoLayers } = store.getState().layers;
 
   basemapModeLayers.forEach(({ title, visible }) => {
@@ -98,12 +102,12 @@ export const activateBasemapMode = () => {
     store.dispatch(setLayerVisible(mapLayer, visible));
   });
 
-  orthoLayers.forEach((orthoLayer) => store.dispatch(setLayerVisible(orthoLayer, false)));
+  orthoLayers.forEach((orthoLayer) => {
+    if (orthoLayer.layer.visible) store.dispatch(setLayerVisible(orthoLayer, false));
+  });
 };
 
 export const activateOrthoMode = () => {
-  console.log("ortho called");
-
   orthoModeLayers.forEach(({ title, visible }) => {
     const mapLayer = getMapLayerByTitle(title);
     store.dispatch(setLayerVisible(mapLayer, visible));
@@ -118,7 +122,7 @@ export const activateDefaultOrthoLayer = () => {
 };
 
 export const addAllServices = async (map) => {
-  for (const mapService of settings.mapServices) {
+  for (const mapService of mapServices) {
     const { id, url } = mapService;
 
     const serviceLayer = new MapImageLayer({
