@@ -32,3 +32,10 @@ export const setMapViewMode = (mapViewMode) => {
     payload: mapViewMode,
   };
 };
+
+export const setAppMode = (appMode) => {
+  return {
+    type: "SET_APP_MODE",
+    payload: appMode,
+  };
+};
