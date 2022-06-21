@@ -1,3 +1,5 @@
+import * as ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 import ArcGISMap from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
@@ -10,8 +12,7 @@ import {
 } from "./Layers";
 import { identifyMapPoint } from "./Identify";
 import { widgets } from "../config/WidgetConfig";
-
-import * as ReactDOM from "react-dom";
+import store from "../store/store";
 
 const onViewStationary = () => {
   updateLayerListInScale(view.scale);
@@ -39,8 +40,7 @@ const addMapWidgets = () => {
   widgets.forEach(({ component, position }) => {
     const node = document.createElement("div");
     view.ui.add(node, position);
-    // ReactDOM.render(component, node);
-    console.log(component);
+    ReactDOM.render(<Provider store={store}>{component}</Provider>, node);
   });
 };
 

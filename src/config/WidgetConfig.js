@@ -1,13 +1,8 @@
-import MapViewModeButton from "../components/MapViewModeButton/MapViewModeButton";
-import TestWidget from "../components/TestWidget";
+import MapViewModeToggle from "../components/MapViewModeToggle/MapViewModeToggle";
 
 export const widgets = [
   {
-    component: <MapViewModeButton />,
+    component: <MapViewModeToggle />,
     position: "top-right",
-  },
-  {
-    component: <TestWidget />,
-    position: "bottom-left",
   },
 ];

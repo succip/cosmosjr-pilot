@@ -6,7 +6,7 @@ import { activateBasemapMode, activateDefaultOrthoLayer } from "../../js/Layers"
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
 
-const MapViewModeButton = () => {
+const MapViewModeToggle = () => {
   const { mapViewMode } = useSelector((state) => state.app);
   const [altViewMode, setAltViewMode] = useState(mapViewMode === "basemap" ? "ortho" : "basemap");
 
@@ -19,7 +19,7 @@ const MapViewModeButton = () => {
   }, [mapViewMode]);
 
   return (
-    <div className="mapViewModeButton">
+    <div>
       <Button variant="contained" onClick={onMapViewModeClick}>
         {altViewMode} {mapViewMode === "basemap" ? <PublicOutlinedIcon /> : <MapOutlinedIcon />}
       </Button>
@@ -27,4 +27,4 @@ const MapViewModeButton = () => {
   );
 };
 
-export default MapViewModeButton;
+export default MapViewModeToggle;
