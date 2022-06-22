@@ -10,5 +10,5 @@ export const openDrawTool = () => {
     view,
   });
 
-  sketchVM.create("polygon", { mode: "click" });
+  sketchVM.create("polygon", { mode: "freehand" });
 };

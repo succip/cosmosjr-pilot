@@ -104,8 +104,9 @@ export const formatPropertyAttributes = (attributes) => {
 export const highlightFeature = ({ geometry }) => {
   const { map } = store.getState().app.view;
   const csGraphicsLayer = map.findLayerById("CosGraphicsLayer");
-
+  console.log("csGraphicsLayer", csGraphicsLayer);
   const existingGraphic = csGraphicsLayer.graphics.find((g) => g.attributes.id === "hg");
+  console.log("existingGraphic", existingGraphic);
   if (existingGraphic) csGraphicsLayer.graphics.remove(existingGraphic);
 
   const highlightGraphic = new Graphic({

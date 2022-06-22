@@ -5,9 +5,10 @@ const DrawPanel = () => {
   const onDrawClick = () => {
     openDrawTool();
   };
+
   return (
     <>
-      <Button onClick={onDrawClick}>Draw Polygon</Button>
+      <Button onClick={onDrawClick}>Polygon</Button>
     </>
   );
 };

@@ -33,9 +33,9 @@ export const setMapViewMode = (mapViewMode) => {
   };
 };
 
-export const setAppMode = (appMode) => {
+export const setActiveTool = (activeTool) => {
   return {
-    type: "SET_APP_MODE",
-    payload: appMode,
+    type: "SET_ACTIVE_TOOL",
+    payload: activeTool,
   };
 };
