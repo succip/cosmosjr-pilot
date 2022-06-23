@@ -18,8 +18,12 @@ const onViewStationary = () => {
   updateLayerListInScale(view.scale);
 };
 
-const csGraphicsLayer = new GraphicsLayer({
-  id: "CosGraphicsLayer",
+const highlightGLayer = new GraphicsLayer({
+  id: "highlight",
+});
+
+const drawGLayer = new GraphicsLayer({
+  id: "draw",
 });
 
 const map = new ArcGISMap();
@@ -48,7 +52,7 @@ export const initialize = async (container) => {
   await addAllServices(map);
   watchOrthoVisibility();
   addMapWidgets();
-  map.add(csGraphicsLayer);
+  map.addMany([highlightGLayer, drawGLayer]);
   view.container = container;
 
   return view;

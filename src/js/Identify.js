@@ -103,18 +103,16 @@ export const formatPropertyAttributes = (attributes) => {
 
 export const highlightFeature = ({ geometry }) => {
   const { map } = store.getState().app.view;
-  const csGraphicsLayer = map.findLayerById("CosGraphicsLayer");
-  console.log("csGraphicsLayer", csGraphicsLayer);
-  const existingGraphic = csGraphicsLayer.graphics.find((g) => g.attributes.id === "hg");
-  console.log("existingGraphic", existingGraphic);
-  if (existingGraphic) csGraphicsLayer.graphics.remove(existingGraphic);
+  const highlightGLayer = map.findLayerById("highlight");
+  const existingGraphic = highlightGLayer.graphics.find((g) => g.attributes.id === "hg");
+  if (existingGraphic) highlightGLayer.graphics.remove(existingGraphic);
 
   const highlightGraphic = new Graphic({
     geometry,
     attributes: { id: "hg" },
     symbol: settings.searchMarkerSymbols[geometry.type],
   });
-  csGraphicsLayer.add(highlightGraphic);
+  highlightGLayer.add(highlightGraphic);
 };
 
 export const clearIdentifyResults = () => store.dispatch(setIdentifyResults([]));
@@ -132,7 +130,7 @@ export const identifyMapPoint = async ({ mapPoint }) => {
     spatialReference: view.spatialReference,
   });
 
-  view.map.findLayerById("CosGraphicsLayer").add(g);
+  view.map.findLayerById("highlight").add(g);
 
   for (const { url, layerIds } of getMapServiceList()) {
     let params = new IdentifyParameters({
