@@ -1,21 +1,21 @@
 export const snappingLayers = [
   {
-    name: "Lots (Outline)",
+    title: "Lots (Outline)",
     mapService: "Lots",
     type: "Polyline",
   },
   {
-    name: "Building Large (Health Care)",
+    title: "Building Large (Health Care)",
     mapService: "Buildings",
     type: "Polygon",
   },
   {
-    name: "Building Large",
+    title: "Building Large",
     mapService: "Buildings",
     type: "Polygon",
   },
   {
-    name: "Building",
+    title: "Building",
     mapService: "Buildings",
     type: "Polygon",
   },

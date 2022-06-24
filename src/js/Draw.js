@@ -1,4 +1,6 @@
 import SketchViewModel from "@arcgis/core/widgets/Sketch/SketchViewModel";
+import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
+import { getAllLayerByTitle } from "../js/Layers";
 import { snappingLayers } from "../config/DrawConfig";
 import store from "../store/store";
 
@@ -16,10 +18,20 @@ export const openDrawTool = () => {
       distance: 5,
       selfEnabled: false,
       featureEnabled: true,
+      featureSources: getSnappingLayers(),
     },
   });
 
-  sketchVM.create("polygon", { mode: "freehand" });
+  sketchVM.create("polygon", { mode: "click" });
 };
 
-const setSnappingLayers = () => {};
+const getSnappingLayers = () => {
+  let snapLayers = [];
+  snappingLayers.forEach(({ title }) => {
+    const { layer } = getAllLayerByTitle(title);
+    const featureLayer = new FeatureLayer({ url: layer.url });
+    snapLayers.push({ layer: featureLayer });
+  });
+
+  return snapLayers;
+};
