@@ -4,7 +4,7 @@ import { getAllLayerByTitle } from "../js/Layers";
 import { snappingLayers } from "../config/DrawConfig";
 import store from "../store/store";
 
-export const openDrawTool = () => {
+export const openDrawTool = (shape) => {
   const { view } = store.getState().app;
   const layer = view.map.findLayerById("draw");
 
@@ -22,7 +22,7 @@ export const openDrawTool = () => {
     },
   });
 
-  sketchVM.create("polygon", { mode: "click" });
+  sketchVM.create(shape, { mode: "click" });
 };
 
 const getSnappingLayers = () => {
