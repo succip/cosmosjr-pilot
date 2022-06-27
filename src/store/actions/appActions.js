@@ -39,3 +39,10 @@ export const setActiveTool = (activeTool) => {
     payload: activeTool,
   };
 };
+
+export const setSketchVM = (sketchVM) => {
+  return {
+    type: "SET_SKETCH_VM",
+    payload: sketchVM,
+  };
+};

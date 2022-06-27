@@ -18,13 +18,8 @@ const onViewStationary = () => {
   updateLayerListInScale(view.scale);
 };
 
-const highlightGLayer = new GraphicsLayer({
-  id: "highlight",
-});
-
-const drawGLayer = new GraphicsLayer({
-  id: "draw",
-});
+const highlightGLayer = new GraphicsLayer({ id: "highlight" });
+const drawGLayer = new GraphicsLayer({ id: "draw" });
 
 const map = new ArcGISMap();
 

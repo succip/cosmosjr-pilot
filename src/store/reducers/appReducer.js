@@ -1,5 +1,6 @@
 const initialState = {
   view: null,
+  sketchVM: null,
   activePanel: null,
   identifyResults: [],
   mapViewMode: "basemap",
@@ -29,6 +30,8 @@ const appReducer = (state = initialState, { type, payload }) => {
       return { ...state, mapViewMode: payload };
     case "SET_ACTIVE_TOOL":
       return { ...state, activeTool: payload };
+    case "SET_SKETCH_VM":
+      return { ...state, sketchVM: { ...state.sketchVM, payload } };
     default:
       return state;
   }

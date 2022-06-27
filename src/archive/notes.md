@@ -80,3 +80,8 @@ Web_Map_as_JSON={"mapOptions": {"showAttribution": true,"extent":{"xmin": 505444
 &Format=PDF
 
 &Layout_Template=8.5x11 Landscape&f=json
+
+
+Potential mui icons:
+  - Line: ShowChartOutlined
+  - Polygon: SignalCellular0BarOutlined

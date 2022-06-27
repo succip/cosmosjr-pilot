@@ -3,27 +3,7 @@ import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import { getAllLayerByTitle } from "../js/Layers";
 import { snappingLayers } from "../config/DrawConfig";
 import store from "../store/store";
-
-export const openDrawTool = (shape) => {
-  const { view } = store.getState().app;
-  const layer = view.map.findLayerById("draw");
-
-  let sketchVM = new SketchViewModel({
-    layer,
-    view,
-    updateOnGraphicClick: false,
-    defaultCreateOptions: {},
-    snappingOptions: {
-      enabled: true,
-      distance: 5,
-      selfEnabled: false,
-      featureEnabled: true,
-      featureSources: getSnappingLayers(),
-    },
-  });
-
-  sketchVM.create(shape, { mode: "click" });
-};
+import { setSketchVM } from "../store/actions/appActions";
 
 const getSnappingLayers = () => {
   let snapLayers = [];
@@ -34,4 +14,46 @@ const getSnappingLayers = () => {
   });
 
   return snapLayers;
+};
+
+export const openDrawTool = ({ shape, snappingEnabled }) => {
+  const { view } = store.getState().app;
+  const layer = view.map.findLayerById("draw");
+
+  let sketchVM = new SketchViewModel({
+    layer,
+    view,
+    updateOnGraphicClick: false,
+    defaultCreateOptions: {},
+    snappingOptions: {
+      enabled: snappingEnabled,
+      distance: 5,
+      selfEnabled: false,
+      featureEnabled: true,
+      featureSources: getSnappingLayers(),
+    },
+  });
+
+  sketchVM.create(shape, { mode: "click" });
+};
+
+export const initializeSketchVM = ({ shape, snappingEnabled }) => {
+  const { view } = store.getState().app;
+  const layer = view.map.findLayerById("draw");
+
+  let sketchVM = new SketchViewModel({
+    layer,
+    view,
+    updateOnGraphicClick: false,
+    defaultCreateOptions: {},
+    snappingOptions: {
+      enabled: snappingEnabled,
+      distance: 5,
+      selfEnabled: false,
+      featureEnabled: true,
+      featureSources: getSnappingLayers(),
+    },
+  });
+
+  store.dispatch(setSketchVM());
 };
