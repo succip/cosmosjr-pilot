@@ -1,18 +1,17 @@
 import FormGroup from "@mui/material/FormGroup";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import { colorList } from "../../config/DrawConfig";
 
-const colours = ["Red", "Blue", "Green"];
-
-const SymbolSelect = ({ colour, onColourChange }) => {
+const SymbolSelect = ({ color, onColorChange }) => {
   return (
     <>
       <FormGroup>
-        <Select value={colour} label="Colour" onChange={onColourChange}>
-          {colours.map((colour, index) => {
+        <Select displayEmpty value={color} label="color" onChange={onColorChange}>
+          {colorList.map(({ colorName, color }) => {
             return (
-              <MenuItem key={index} value={colour}>
-                {colour}
+              <MenuItem key={colorName} value={color}>
+                {colorName}
               </MenuItem>
             );
           })}

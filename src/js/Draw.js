@@ -7,7 +7,7 @@ import { setActiveTool, setSketchVM } from "../store/actions/appActions";
 
 const getSnappingLayers = () => {
   let snapLayers = [];
-  snappingLayers.forEach(({ title }) => {
+  snappingLayers.forEach((title) => {
     const { layer } = getAllLayerByTitle(title);
     const featureLayer = new FeatureLayer({ url: layer.url });
     snapLayers.push({ layer: featureLayer });

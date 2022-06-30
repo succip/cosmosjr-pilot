@@ -7,16 +7,14 @@ import SymbolSelect from "./SymbolSelect";
 const DrawPanel = () => {
   const { sketchVM } = useSelector((state) => state.app);
   const [snappingEnabled, setSnappingEnabled] = useState(false);
-  const [colour, setColour] = useState("Red");
+  const [color, setColor] = useState(0, 0, 0);
 
   const onShapeClick = (shape) => sketchVM.create(shape);
   const onUndoClick = () => sketchVM.undo();
   const onRedoClick = () => sketchVM.redo();
-  const onColourChange = ({ target }) => setColour(target.value);
+  const onColorChange = ({ target }) => setColor(target.value);
 
-  useEffect(() => {
-    console.log("Changed to colour:", colour);
-  }, [colour]);
+  useEffect(() => {}, [color]);
 
   useEffect(() => {
     if (sketchVM) sketchVM.snappingOptions.enabled = snappingEnabled;
@@ -30,7 +28,7 @@ const DrawPanel = () => {
         onRedoClick={onRedoClick}
       />
 
-      <SymbolSelect colour={colour} onColourChange={onColourChange} />
+      <SymbolSelect color={color} onColorChange={onColorChange} />
       <SnapSelect snappingEnabled={snappingEnabled} setSnappingEnabled={setSnappingEnabled} />
     </>
   );
