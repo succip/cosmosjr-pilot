@@ -1,38 +1,37 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Button from "@mui/material/Button";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Switch from "@mui/material/Switch";
-import { openDrawTool } from "../../js/Draw";
+import ShapeSelect from "./ShapeSelect";
+import SnapSelect from "./SnapSelect";
+import SymbolSelect from "./SymbolSelect";
 
 const DrawPanel = () => {
-  const { view } = useSelector((state) => state.app);
-  const [shape, setShape] = useState("polygon");
-  const [snappingEnabled, setSnappingEnabled] = useState(true);
+  const { sketchVM } = useSelector((state) => state.app);
+  const [snappingEnabled, setSnappingEnabled] = useState(false);
+  const [colour, setColour] = useState("Red");
+
+  const onShapeClick = (shape) => sketchVM.create(shape);
+  const onUndoClick = () => sketchVM.undo();
+  const onRedoClick = () => sketchVM.redo();
+  const onColourChange = ({ target }) => setColour(target.value);
 
   useEffect(() => {
-    if (view) {
-      openDrawTool({ shape, snappingEnabled });
-    }
-  }, [shape, snappingEnabled]);
+    console.log("Changed to colour:", colour);
+  }, [colour]);
+
+  useEffect(() => {
+    if (sketchVM) sketchVM.snappingOptions.enabled = snappingEnabled;
+  }, [snappingEnabled]);
 
   return (
     <>
-      <Button onClick={() => setShape("polygon")}>Polygon</Button>
-      <Button onClick={() => setShape("polyline")}>Line</Button>
-      <Button onClick={() => setShape("point")}>Point</Button>
-      <FormGroup>
-        <FormControlLabel
-          label="Snapping"
-          control={
-            <Switch
-              checked={snappingEnabled}
-              onChange={() => setSnappingEnabled(!snappingEnabled)}
-            />
-          }
-        />
-      </FormGroup>
+      <ShapeSelect
+        onShapeClick={onShapeClick}
+        onUndoClick={onUndoClick}
+        onRedoClick={onRedoClick}
+      />
+
+      <SymbolSelect colour={colour} onColourChange={onColourChange} />
+      <SnapSelect snappingEnabled={snappingEnabled} setSnappingEnabled={setSnappingEnabled} />
     </>
   );
 };

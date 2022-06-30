@@ -13,6 +13,7 @@ import {
 import { identifyMapPoint } from "./Identify";
 import { widgets } from "../config/WidgetConfig";
 import store from "../store/store";
+import { initializeSketchVM } from "./Draw";
 
 const onViewStationary = () => {
   updateLayerListInScale(view.scale);
@@ -31,8 +32,11 @@ view.when(() => {
   setMapThemeLayers("City");
 });
 
-view.on("click", ({ mapPoint }) => {
-  identifyMapPoint({ mapPoint });
+view.on("click", ({ mapPoint, screenPoint }) => {
+  view.hitTest(screenPoint).then(({ results }) => {
+    const isGraphicHit = results.some((result) => result.graphic.layer.id === "draw");
+    if (!isGraphicHit) identifyMapPoint({ mapPoint });
+  });
 });
 
 const addMapWidgets = () => {
@@ -48,6 +52,7 @@ export const initialize = async (container) => {
   watchOrthoVisibility();
   addMapWidgets();
   map.addMany([highlightGLayer, drawGLayer]);
+  initializeSketchVM(view);
   view.container = container;
 
   return view;

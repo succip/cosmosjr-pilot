@@ -31,7 +31,7 @@ const appReducer = (state = initialState, { type, payload }) => {
     case "SET_ACTIVE_TOOL":
       return { ...state, activeTool: payload };
     case "SET_SKETCH_VM":
-      return { ...state, sketchVM: { ...state.sketchVM, payload } };
+      return { ...state, sketchVM: payload };
     default:
       return state;
   }
