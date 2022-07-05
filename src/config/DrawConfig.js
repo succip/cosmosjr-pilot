@@ -1,3 +1,5 @@
+import { generateId } from "../js/Utilities";
+
 export const snappingLayers = [
   "Lots (Outline)",
   "Building Large (Health Care)",
@@ -5,173 +7,434 @@ export const snappingLayers = [
   "Building",
 ];
 
+export const pointSymbol = {
+  type: "simple-marker",
+  style: "circle",
+  color: [153, 0, 0, 0.9],
+  size: 7,
+  outline: {
+    color: [0, 0, 0],
+    width: 1,
+  },
+};
+
+export const polylineSymbol = {
+  type: "simple-line",
+  color: [153, 0, 0],
+  width: 3,
+  style: "solid",
+};
+
+export const polygonSymbol = {
+  type: "simple-fill",
+  color: [153, 0, 0, 0.9],
+  style: "solid",
+  outline: {
+    color: [0, 0, 0],
+    width: 1,
+  },
+};
+
+export const fillStyleList = [
+  {
+    styleName: "Solid",
+    style: "solid",
+  },
+  {
+    styleName: "Backward Diagonal",
+    style: "backward-diagonal",
+  },
+  {
+    styleName: "Forward Diagonal",
+    style: "forward-diagonal",
+  },
+  {
+    styleName: "Vertical",
+    style: "vertical",
+  },
+  {
+    styleName: "Horizontal",
+    style: "horizontal",
+  },
+];
+
 export const colorList = [
   {
+    colorName: "Crimson",
+    color: {
+      r: 153,
+      g: 0,
+      b: 0,
+    },
+    id: "02662f",
+  },
+  {
     colorName: "Black",
-    color: [0, 0, 0],
+    color: {
+      r: 0,
+      g: 0,
+      b: 0,
+    },
+    id: "a16649",
   },
   {
     colorName: "Saddle Brown",
-    color: [153, 51, 0],
+    color: {
+      r: 153,
+      g: 51,
+      b: 0,
+    },
+    id: "af7a37",
   },
   {
     colorName: "Myrtle",
-    color: [51, 51, 0],
+    color: {
+      r: 51,
+      g: 51,
+      b: 0,
+    },
+    id: "678aea",
   },
   {
     colorName: "Prussian Blue",
-    color: [0, 51, 102],
+    color: {
+      r: 0,
+      g: 51,
+      b: 102,
+    },
+    id: "10b98d",
   },
   {
     colorName: "Navy",
-    color: [0, 0, 128],
+    color: {
+      r: 0,
+      g: 0,
+      b: 128,
+    },
+    id: "41a40d",
   },
   {
     colorName: "Dark Slate Blue",
-    color: [51, 51, 153],
+    color: {
+      r: 51,
+      g: 51,
+      b: 153,
+    },
+    id: "7ccb60",
   },
   {
     colorName: "Night Rider",
-    color: [51, 51, 51],
+    color: {
+      r: 51,
+      g: 51,
+      b: 51,
+    },
+    id: "000a73",
   },
   {
     colorName: "Maroon",
-    color: [128, 0, 0],
+    color: {
+      r: 128,
+      g: 0,
+      b: 0,
+    },
+    id: "276ca1",
   },
   {
     colorName: "Safety Orange",
-    color: [255, 102, 0],
+    color: {
+      r: 255,
+      g: 102,
+      b: 0,
+    },
+    id: "d51c5c",
   },
   {
     colorName: "Olive",
-    color: [128, 128, 0],
+    color: {
+      r: 128,
+      g: 128,
+      b: 0,
+    },
+    id: "900a82",
   },
   {
     colorName: "Lime",
-    color: [153, 255, 0],
+    color: {
+      r: 153,
+      g: 255,
+      b: 0,
+    },
+    id: "0b5e7f",
   },
   {
     colorName: "Teal",
-    color: [0, 128, 128],
+    color: {
+      r: 0,
+      g: 128,
+      b: 128,
+    },
+    id: "0fbfe2",
   },
   {
     colorName: "Blue",
-    color: [0, 0, 255],
+    color: {
+      r: 0,
+      g: 0,
+      b: 255,
+    },
+    id: "9a3d31",
   },
   {
     colorName: "Scampi",
-    color: [102, 102, 153],
+    color: {
+      r: 102,
+      g: 102,
+      b: 153,
+    },
+    id: "958f9c",
   },
   {
     colorName: "Gray",
-    color: [128, 128, 128],
+    color: {
+      r: 128,
+      g: 128,
+      b: 128,
+    },
+    id: "967adc",
   },
   {
     colorName: "Red",
-    color: [255, 0, 0],
+    color: {
+      r: 255,
+      g: 0,
+      b: 0,
+    },
+    id: "967dc9",
   },
   {
     colorName: "Orange Peel",
-    color: [255, 153, 0],
+    color: {
+      r: 255,
+      g: 153,
+      b: 0,
+    },
+    id: "bb9386",
   },
   {
     colorName: "Citrus",
-    color: [153, 204, 0],
+    color: {
+      r: 153,
+      g: 204,
+      b: 0,
+    },
+    id: "31a651",
   },
   {
     colorName: "Eucalyptus",
-    color: [51, 153, 102],
+    color: {
+      r: 51,
+      g: 153,
+      b: 102,
+    },
+    id: "69b876",
   },
   {
     colorName: "Medium Turquoise",
-    color: [51, 204, 204],
+    color: {
+      r: 51,
+      g: 204,
+      b: 204,
+    },
+    id: "285cd4",
   },
   {
     colorName: "Royal Blue",
-    color: [51, 102, 255],
+    color: {
+      r: 51,
+      g: 102,
+      b: 255,
+    },
+    id: "28e8b8",
   },
   {
     colorName: "Purple",
-    color: [128, 0, 128],
+    color: {
+      r: 128,
+      g: 0,
+      b: 128,
+    },
+    id: "f9b2aa",
   },
   {
     colorName: "Nobel",
-    color: [150, 150, 150],
+    color: {
+      r: 150,
+      g: 150,
+      b: 150,
+    },
+    id: "6353f5",
   },
   {
     colorName: "Magenta",
-    color: [255, 0, 255],
+    color: {
+      r: 255,
+      g: 0,
+      b: 255,
+    },
+    id: "106c35",
   },
   {
     colorName: "Tangerine",
-    color: [255, 204, 0],
+    color: {
+      r: 255,
+      g: 204,
+      b: 0,
+    },
+    id: "b5da11",
   },
   {
     colorName: "Yellow",
-    color: [255, 255, 0],
+    color: {
+      r: 255,
+      g: 255,
+      b: 0,
+    },
+    id: "8e5dec",
   },
   {
     colorName: "LightYellow",
-    color: [255, 255, 224],
+    color: {
+      r: 255,
+      g: 255,
+      b: 224,
+    },
+    id: "427927",
   },
   {
     colorName: "Moccasin",
-    color: [255, 228, 181],
+    color: {
+      r: 255,
+      g: 228,
+      b: 181,
+    },
+    id: "de0373",
   },
   {
     colorName: "Green",
-    color: [0, 255, 0],
+    color: {
+      r: 0,
+      g: 255,
+      b: 0,
+    },
+    id: "8ca109",
   },
   {
     colorName: "Aqua",
-    color: [0, 255, 255],
+    color: {
+      r: 0,
+      g: 255,
+      b: 255,
+    },
+    id: "0a0b73",
   },
   {
     colorName: "Deep Sky Blue",
-    color: [0, 204, 255],
+    color: {
+      r: 0,
+      g: 204,
+      b: 255,
+    },
+    id: "5bea83",
   },
   {
     colorName: "Lipstick",
-    color: [153, 51, 102],
+    color: {
+      r: 153,
+      g: 51,
+      b: 102,
+    },
+    id: "c4c6cb",
   },
   {
     colorName: "Silver",
-    color: [192, 192, 192],
+    color: {
+      r: 192,
+      g: 192,
+      b: 192,
+    },
+    id: "8018ba",
   },
   {
     colorName: "Carnation Pink",
-    color: [255, 153, 204],
+    color: {
+      r: 255,
+      g: 153,
+      b: 204,
+    },
+    id: "6e54fa",
   },
   {
     colorName: "Peach-Orange",
-    color: [255, 204, 153],
+    color: {
+      r: 255,
+      g: 204,
+      b: 153,
+    },
+    id: "4c75f5",
   },
   {
     colorName: "Canary",
-    color: [255, 255, 153],
+    color: {
+      r: 255,
+      g: 255,
+      b: 153,
+    },
+    id: "ebf82b",
   },
   {
     colorName: "Blue Romance",
-    color: [204, 255, 204],
+    color: {
+      r: 204,
+      g: 255,
+      b: 204,
+    },
+    id: "1d0c10",
   },
   {
     colorName: "Cyan",
-    color: [204, 255, 255],
+    color: {
+      r: 204,
+      g: 255,
+      b: 255,
+    },
+    id: "fe2d7e",
   },
   {
     colorName: "Light Sky Blue",
-    color: [153, 204, 255],
+    color: {
+      r: 153,
+      g: 204,
+      b: 255,
+    },
+    id: "721195",
   },
   {
     colorName: "Mauve",
-    color: [204, 153, 255],
-  },
-  {
-    colorName: "Crimson",
-    color: [153, 0, 0],
+    color: {
+      r: 204,
+      g: 153,
+      b: 255,
+    },
+    id: "97e161",
   },
   {
     colorName: "White",
-    color: [255, 255, 255],
+    color: {
+      r: 255,
+      g: 255,
+      b: 255,
+    },
+    id: "ec0b2e",
   },
 ];

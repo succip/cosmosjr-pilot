@@ -1,7 +1,7 @@
 import SketchViewModel from "@arcgis/core/widgets/Sketch/SketchViewModel";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import { getAllLayerByTitle } from "../js/Layers";
-import { snappingLayers } from "../config/DrawConfig";
+import { snappingLayers, pointSymbol, polylineSymbol, polygonSymbol } from "../config/DrawConfig";
 import store from "../store/store";
 import { setActiveTool, setSketchVM } from "../store/actions/appActions";
 
@@ -22,6 +22,9 @@ export const initializeSketchVM = (view) => {
   let sketchVM = new SketchViewModel({
     layer,
     view,
+    pointSymbol,
+    polylineSymbol,
+    polygonSymbol,
     defaultCreateOptions: {},
     defaultUpdateOptions: {
       enableRotation: false,

@@ -1,7 +1,7 @@
 import LayerLegendPanel from "../components/LayerListLegendPanel/LayerLegendPanel";
-import DrawPanel from "../components/Draw/DrawPanel";
 import PrintSavePanel from "../components/PrintSave/PrintSavePanel";
 import IdentifyPanel from "../components/IdentifyResultsPanel/IdentifyPanel";
+import DrawPanel from "../components/Draw/DrawPanel";
 
 const accordions = [
   {

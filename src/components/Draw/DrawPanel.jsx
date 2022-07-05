@@ -1,35 +1,50 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import ShapeSelect from "./ShapeSelect";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import TabPanel from "../Common/TabPanel";
+import PolygonToolbox from "./PolygonToolbox";
+import PolylineToolbox from "./PolylineToolbox";
 import SnapSelect from "./SnapSelect";
-import SymbolSelect from "./SymbolSelect";
 
 const DrawPanel = () => {
+  const [shape, setShape] = useState(undefined);
+  const [drawToolbox, setDrawToolbox] = useState("polygon");
   const { sketchVM } = useSelector((state) => state.app);
-  const [snappingEnabled, setSnappingEnabled] = useState(false);
-  const [color, setColor] = useState(0, 0, 0);
 
-  const onShapeClick = (shape) => sketchVM.create(shape);
-  const onUndoClick = () => sketchVM.undo();
-  const onRedoClick = () => sketchVM.redo();
-  const onColorChange = ({ target }) => setColor(target.value);
-
-  useEffect(() => {}, [color]);
+  const onShapeToggleClick = (event, shape) => {
+    setShape(shape);
+    setDrawToolbox(shape);
+  };
 
   useEffect(() => {
-    if (sketchVM) sketchVM.snappingOptions.enabled = snappingEnabled;
-  }, [snappingEnabled]);
+    if (sketchVM && shape) {
+      sketchVM.create(shape);
+      sketchVM.on("create", ({ state }) => {
+        if (state === "complete") setShape(undefined);
+      });
+    }
+  }, [shape]);
 
   return (
     <>
-      <ShapeSelect
-        onShapeClick={onShapeClick}
-        onUndoClick={onUndoClick}
-        onRedoClick={onRedoClick}
-      />
+      <ToggleButtonGroup value={shape} exclusive onChange={onShapeToggleClick}>
+        <ToggleButton value="polygon">Polygon</ToggleButton>
+        <ToggleButton value="polyline">Line</ToggleButton>
+        <ToggleButton value="point">Point</ToggleButton>
+      </ToggleButtonGroup>
 
-      <SymbolSelect color={color} onColorChange={onColorChange} />
-      <SnapSelect snappingEnabled={snappingEnabled} setSnappingEnabled={setSnappingEnabled} />
+      {sketchVM && (
+        <>
+          <SnapSelect snappingOptions={sketchVM.snappingOptions} />
+          <TabPanel value={drawToolbox} index={"polygon"}>
+            <PolygonToolbox symbol={sketchVM.polygonSymbol} />
+          </TabPanel>
+          <TabPanel value={drawToolbox} index={"polyline"}>
+            <PolylineToolbox symbol={sketchVM.polylineSymbol} />
+          </TabPanel>
+        </>
+      )}
     </>
   );
 };
