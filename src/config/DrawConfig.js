@@ -1,5 +1,3 @@
-import { generateId } from "../js/Utilities";
-
 export const snappingLayers = [
   "Lots (Outline)",
   "Building Large (Health Care)",
@@ -36,26 +34,25 @@ export const polygonSymbol = {
 };
 
 export const fillStyleList = [
-  {
-    styleName: "Solid",
-    style: "solid",
-  },
-  {
-    styleName: "Backward Diagonal",
-    style: "backward-diagonal",
-  },
-  {
-    styleName: "Forward Diagonal",
-    style: "forward-diagonal",
-  },
-  {
-    styleName: "Vertical",
-    style: "vertical",
-  },
-  {
-    styleName: "Horizontal",
-    style: "horizontal",
-  },
+  { styleName: "Solid", style: "solid" },
+  { styleName: "Backward Diagonal", style: "backward-diagonal" },
+  { styleName: "Forward Diagonal", style: "forward-diagonal" },
+  { styleName: "Vertical", style: "vertical" },
+  { styleName: "Horizontal", style: "horizontal" },
+];
+
+export const lineStyleList = [
+  { styleName: "Solid", style: "solid" },
+  { styleName: "Dash", style: "dash" },
+  { styleName: "Dot", style: "dot" },
+  { styleName: "Dash-dot", style: "dash-dot" },
+];
+
+export const pointStyleList = [
+  { styleName: "Circle", style: "circle" },
+  { styleName: "Cross", style: "cross" },
+  { styleName: "Diamond", style: "diamond" },
+  { styleName: "Square", style: "square" },
 ];
 
 export const colorList = [

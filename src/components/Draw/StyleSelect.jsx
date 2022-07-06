@@ -2,20 +2,19 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import { useState, useEffect } from "react";
-import { fillStyleList } from "../../config/DrawConfig";
 
-const FillStyleSelect = ({ label, symbol }) => {
-  const [fillStyle, setFillStyle] = useState("solid");
+const StyleSelect = ({ label, symbol, styleList }) => {
+  const [style, setStyle] = useState(symbol.style);
 
   useEffect(() => {
-    symbol.style = fillStyle;
-  }, [fillStyle]);
+    symbol.style = style;
+  }, [style]);
 
   return (
     <>
       <InputLabel>{label}</InputLabel>
-      <Select value={fillStyle} onChange={({ target }) => setFillStyle(target.value)}>
-        {fillStyleList.map(({ styleName, style }) => {
+      <Select value={style} onChange={({ target }) => setStyle(target.value)}>
+        {styleList.map(({ styleName, style }) => {
           return (
             <MenuItem key={styleName} value={style}>
               {styleName}
@@ -27,4 +26,4 @@ const FillStyleSelect = ({ label, symbol }) => {
   );
 };
 
-export default FillStyleSelect;
+export default StyleSelect;
