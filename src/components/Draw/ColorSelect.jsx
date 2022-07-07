@@ -4,7 +4,7 @@ import InputLabel from "@mui/material/InputLabel";
 import { colorList } from "../../config/DrawConfig";
 import { useState, useEffect } from "react";
 
-const ColorSelect = ({ label, symbol }) => {
+const ColorSelect = ({ setPolySymbol, label, symbol }) => {
   const [color, setColor] = useState(colorList[0].color);
 
   useEffect(() => {

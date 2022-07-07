@@ -7,7 +7,9 @@ import PolygonToolbox from "./PolygonToolbox";
 import PolylineToolbox from "./PolylineToolbox";
 import PointToolbox from "./PointToolbox";
 import SnapSelect from "./SnapSelect";
-import SymbolPreview from "./SymbolPreview";
+import * as watchUtils from "@arcgis/core/core/watchUtils";
+
+import * as reactiveUtils from "@arcgis/core/core/reactiveUtils";
 
 const DrawPanel = () => {
   const [shape, setShape] = useState(undefined);
@@ -48,7 +50,6 @@ const DrawPanel = () => {
           <TabPanel value={drawToolbox} index={"point"}>
             <PointToolbox symbol={sketchVM.pointSymbol} />
           </TabPanel>
-          <SymbolPreview symbol={sketchVM.polygonSymbol} />
         </>
       )}
     </>

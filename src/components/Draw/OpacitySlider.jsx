@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import Slider from "@mui/material/Slider";
 
-const OpacitySlider = ({ label = "Opacity", symbol }) => {
+const OpacitySlider = ({ updatePreview, label = "Opacity", symbol }) => {
   const [opacity, setOpacity] = useState(symbol.color.a);
   const onSliderChange = ({ target }) => setOpacity(target.value);
 
