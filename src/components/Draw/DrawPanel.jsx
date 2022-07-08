@@ -7,9 +7,6 @@ import PolygonToolbox from "./PolygonToolbox";
 import PolylineToolbox from "./PolylineToolbox";
 import PointToolbox from "./PointToolbox";
 import SnapSelect from "./SnapSelect";
-import * as watchUtils from "@arcgis/core/core/watchUtils";
-
-import * as reactiveUtils from "@arcgis/core/core/reactiveUtils";
 
 const DrawPanel = () => {
   const [shape, setShape] = useState(undefined);
@@ -30,26 +27,34 @@ const DrawPanel = () => {
     }
   }, [shape]);
 
+  useEffect(() => {
+    if (sketchVM !== null) {
+      console.log("svm", sketchVM.polygonSymbol);
+    }
+  }, [sketchVM]);
+
   return (
     <>
-      <ToggleButtonGroup value={shape} exclusive onChange={onShapeToggleClick}>
-        <ToggleButton value="polygon">Polygon</ToggleButton>
-        <ToggleButton value="polyline">Line</ToggleButton>
-        <ToggleButton value="point">Point</ToggleButton>
-      </ToggleButtonGroup>
-
       {sketchVM && (
         <>
-          <SnapSelect snappingOptions={sketchVM.snappingOptions} />
-          <TabPanel value={drawToolbox} index={"polygon"}>
-            <PolygonToolbox symbol={sketchVM.polygonSymbol} />
-          </TabPanel>
-          <TabPanel value={drawToolbox} index={"polyline"}>
-            <PolylineToolbox symbol={sketchVM.polylineSymbol} />
-          </TabPanel>
-          <TabPanel value={drawToolbox} index={"point"}>
-            <PointToolbox symbol={sketchVM.pointSymbol} />
-          </TabPanel>
+          <ToggleButtonGroup value={shape} exclusive onChange={onShapeToggleClick}>
+            <ToggleButton value="polygon">Polygon</ToggleButton>
+            <ToggleButton value="polyline">Line</ToggleButton>
+            <ToggleButton value="point">Point</ToggleButton>
+          </ToggleButtonGroup>
+
+          <>
+            <SnapSelect snappingOptions={sketchVM.snappingOptions} />
+            <TabPanel value={drawToolbox} index={"polygon"}>
+              <PolygonToolbox symbol={sketchVM.polygonSymbol} />
+            </TabPanel>
+            {/* <TabPanel value={drawToolbox} index={"polyline"}>
+              <PolylineToolbox symbol={sketchVM.polylineSymbol} />
+            </TabPanel>
+            <TabPanel value={drawToolbox} index={"point"}>
+              <PointToolbox symbol={sketchVM.pointSymbol} />
+            </TabPanel> */}
+          </>
         </>
       )}
     </>

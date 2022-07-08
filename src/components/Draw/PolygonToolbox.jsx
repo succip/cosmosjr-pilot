@@ -3,11 +3,15 @@ import ColorSelect from "./ColorSelect";
 import StyleSelect from "./StyleSelect";
 import OpacitySlider from "./OpacitySlider";
 import WidthField from "./WidthField";
-import { fillStyleList } from "../../config/DrawConfig";
 import SymbolPreview from "./SymbolPreview";
+import { fillStyleList } from "../../config/DrawConfig";
 import { useEffect } from "react";
 
 const PolygonToolbox = ({ symbol }) => {
+  useEffect(() => {
+    console.log("symbol updated");
+  }, [symbol]);
+
   return (
     <Box>
       <ColorSelect label={"Fill Color"} symbol={symbol} />

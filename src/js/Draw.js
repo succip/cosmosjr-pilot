@@ -39,10 +39,31 @@ export const initializeSketchVM = (view) => {
     },
   });
 
-  sketchVM.on("create", ({ state }) => {
-    if (state === "start") store.dispatch(setActiveTool("draw"));
-    if (state === "complete") store.dispatch(setActiveTool("identify"));
+  store.dispatch(setSketchVM(sketchVM));
+};
+
+export const getSketchVM = (view) => {
+  const layer = view.map.findLayerById("draw");
+
+  let sketchVM = new SketchViewModel({
+    layer,
+    view,
+    pointSymbol,
+    polylineSymbol,
+    polygonSymbol,
+    defaultCreateOptions: {},
+    defaultUpdateOptions: {
+      enableRotation: false,
+      enableScaling: false,
+    },
+    snappingOptions: {
+      enabled: false,
+      distance: 5,
+      selfEnabled: false,
+      featureEnabled: true,
+      featureSources: getSnappingLayers(),
+    },
   });
 
-  store.dispatch(setSketchVM(sketchVM));
+  return sketchVM;
 };

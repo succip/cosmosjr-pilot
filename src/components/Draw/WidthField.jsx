@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
 
-const WidthField = ({ label, symbol, min = 0, max = 20 }) => {
+const WidthField = ({ label = "Width", symbol, min = 0, max = 20 }) => {
+  // console.log("widthWidth:", symbol.width);
   const [width, setWidth] = useState(symbol.width);
 
   useEffect(() => {
