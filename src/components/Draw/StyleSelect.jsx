@@ -7,7 +7,8 @@ const StyleSelect = ({ label, symbol, styleList }) => {
   const [style, setStyle] = useState(symbol.style);
 
   useEffect(() => {
-    symbol.style = style;
+    // symbol.style = style;
+    symbol.set("style", style);
   }, [style]);
 
   return (

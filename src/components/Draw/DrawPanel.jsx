@@ -27,12 +27,6 @@ const DrawPanel = () => {
     }
   }, [shape]);
 
-  useEffect(() => {
-    if (sketchVM !== null) {
-      console.log("svm", sketchVM.polygonSymbol);
-    }
-  }, [sketchVM]);
-
   return (
     <>
       {sketchVM && (

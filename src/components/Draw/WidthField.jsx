@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
 
-const WidthField = ({ label = "Width", symbol, min = 0, max = 20 }) => {
+const WidthField = ({ setSymbol, label = "Width", symbol, min = 0, max = 20 }) => {
   // console.log("widthWidth:", symbol.width);
   const [width, setWidth] = useState(symbol.width);
 
@@ -10,7 +10,10 @@ const WidthField = ({ label = "Width", symbol, min = 0, max = 20 }) => {
     if (width === "") setWidth(min);
     if (width > max) setWidth(max);
     if (width < min) setWidth(min);
-    symbol.width = width;
+
+    let newSymbol = symbol.clone();
+    newSymbol.width = width;
+    setSymbol(newSymbol);
   }, [width]);
 
   return (

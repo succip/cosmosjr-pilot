@@ -29,7 +29,7 @@ export const polygonSymbol = {
   style: "solid",
   outline: {
     color: [0, 0, 0],
-    width: 5,
+    width: 1,
   },
 };
 

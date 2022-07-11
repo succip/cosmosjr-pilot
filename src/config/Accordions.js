@@ -11,7 +11,7 @@ const accordions = [
   },
   {
     title: "Draw",
-    component: <DrawTest />,
+    component: <DrawPanel />,
   },
   {
     title: "Print & Save",
