@@ -2,18 +2,22 @@ import { useEffect, useRef } from "react";
 import * as symbolUtils from "@arcgis/core/symbols/support/symbolUtils";
 import InputLabel from "@mui/material/InputLabel";
 
-const SymbolPreview = ({ symbol, polySymbol, lineSymbol }) => {
+const SymbolPreview = ({ symbol }) => {
   const previewRef = useRef(null);
+
+  const updatePreview = () => {
+    previewRef.current.innerHTML = "";
+    symbolUtils.renderPreviewHTML(symbol, {
+      node: previewRef.current,
+      size: 50,
+    });
+  };
 
   useEffect(() => {
     if (previewRef.current) {
-      previewRef.current.innerHTML = "";
-      symbolUtils.renderPreviewHTML(symbol, {
-        node: previewRef.current,
-        size: 50,
-      });
+      updatePreview();
     }
-  }, [polySymbol, lineSymbol]);
+  }, [JSON.stringify(symbol)]);
 
   return (
     <>
