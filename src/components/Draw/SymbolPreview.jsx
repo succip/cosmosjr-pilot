@@ -9,7 +9,8 @@ const SymbolPreview = ({ symbol }) => {
     previewRef.current.innerHTML = "";
     symbolUtils.renderPreviewHTML(symbol, {
       node: previewRef.current,
-      size: 50,
+      size: 60,
+      maxSize: 60,
     });
   };
 
@@ -17,7 +18,7 @@ const SymbolPreview = ({ symbol }) => {
     if (previewRef.current) {
       updatePreview();
     }
-  }, [JSON.stringify(symbol)]);
+  }, [symbol]);
 
   return (
     <>

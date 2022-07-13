@@ -3,14 +3,15 @@ import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
 
 const WidthField = ({ setSymbol, label = "Width", symbol, min = 0, max = 20 }) => {
-  const [width, setWidth] = useState(symbol.width);
+  const [width, setWidth] = useState(symbol.outline.width);
 
   useEffect(() => {
     if (width === "") setWidth(min);
     if (width > max) setWidth(max);
     if (width < min) setWidth(min);
+
     let newSymbol = symbol.clone();
-    newSymbol.width = width;
+    newSymbol.outline.width = width;
     setSymbol(newSymbol);
   }, [width]);
 

@@ -3,11 +3,14 @@ import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import { useState, useEffect } from "react";
 
-const StyleSelect = ({ label, symbol, styleList }) => {
+const StyleSelect = ({ label, setSymbol, symbol, styleList }) => {
   const [style, setStyle] = useState(symbol.style);
 
   useEffect(() => {
-    symbol.style = style;
+    // symbol.style = style;
+    let newSymbol = symbol.clone();
+    newSymbol.style = style;
+    setSymbol(newSymbol);
   }, [style]);
 
   return (

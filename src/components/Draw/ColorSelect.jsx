@@ -4,12 +4,18 @@ import InputLabel from "@mui/material/InputLabel";
 import { colorList } from "../../config/DrawConfig";
 import { useState, useEffect } from "react";
 
-const ColorSelect = ({ label, symbol, setSymbol }) => {
+const ColorSelect = ({ label = "Color", symbol, setSymbol, outline = false }) => {
   const [color, setColor] = useState(colorList[0].color);
 
   useEffect(() => {
     let newSymbol = symbol.clone();
-    newSymbol.color = { ...color, a: newSymbol.color.a };
+
+    if (outline) {
+      newSymbol.outline.color = color;
+    } else {
+      newSymbol.color = { ...color, a: newSymbol.color.a };
+    }
+
     setSymbol(newSymbol);
   }, [color]);
 
