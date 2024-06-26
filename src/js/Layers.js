@@ -181,3 +181,14 @@ export const clearVisibleMapLayers = () => {
   const { mapLayers } = store.getState().layers;
   mapLayers.forEach((mapLayer) => store.dispatch(setLayerVisible(mapLayer, false)));
 };
+
+export function getLayerByName(layerName) {
+  const { view } = store.getState().app;
+  const mapImageLayers = view.map.layers.filter((layer) => layer.type === "map-image");
+  for (const mapImageLayer of mapImageLayers) {
+    for (const sublayer of mapImageLayer.allSublayers.items) {
+      if (sublayer.title === layerName) return sublayer;
+    }
+  }
+  return null;
+}

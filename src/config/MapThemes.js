@@ -17,6 +17,10 @@ export const MapThemes = [
     ],
   },
   {
+    themeTitle: "Bike Routes",
+    themeLayers: [{ title: "Bike Routes", source: "Transportation" }],
+  },
+  {
     themeTitle: "Infrastructure",
     themeLayers: [
       { title: "Park Outdoor Recreation Facilities", source: "Parks" },

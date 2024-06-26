@@ -2,7 +2,7 @@ import LayerLegendPanel from "../components/LayerListLegendPanel/LayerLegendPane
 import PrintSavePanel from "../components/PrintSave/PrintSavePanel";
 import IdentifyPanel from "../components/IdentifyResultsPanel/IdentifyPanel";
 import DrawPanel from "../components/Draw/DrawPanel";
-import DrawTest from "../components/Draw/DrawTest/DrawTest";
+import TestPanelContent from "../components/TestPanelContent";
 
 const accordions = [
   {
@@ -16,6 +16,10 @@ const accordions = [
   {
     title: "Print & Save",
     component: <PrintSavePanel />,
+  },
+  {
+    title: "Bind test",
+    component: <TestPanelContent />,
   },
   {
     title: "Identify",
