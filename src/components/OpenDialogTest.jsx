@@ -7,11 +7,14 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Paper from "@mui/material/Paper";
 import { useState } from "react";
 import Draggable from "react-draggable";
+import { styled } from "@mui/material/styles";
 
 function PaperComponent(props) {
   return (
     <Draggable handle="#draggable-dialog-title" cancel={'[class*="MuiDialogContent-root"]'}>
-      <Paper {...props} />
+      <Paper style={{ position: "absolute", zIndex: 100 }}>
+        <div id="modal-header">{/* Header for dragging */}</div>
+      </Paper>
     </Draggable>
   );
 }
@@ -32,23 +35,10 @@ const OpenDialogTest = () => {
       <Button variant="contained" onClick={handleClickOpen}>
         Open Dialog
       </Button>
-      <Draggable>
-        <Dialog open={open} onClose={handleClose} PaperComponent={PaperComponent}>
-          <DialogTitle style={{ cursor: "move" }} id="draggable-dialog-title">
-            Widget Test
-          </DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              Here's where the widget would be, wouldn't that be cool?
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button autoFocus onClick={handleClose}>
-              Cancel
-            </Button>
-            <Button onClick={handleClose}>Add More shit</Button>
-          </DialogActions>
-        </Dialog>
+      <Draggable handle="#draggable-dialog-title" cancel={'[class*="MuiDialogContent-root"]'}>
+        <Paper style={{ position: "absolute", zIndex: 100 }}>
+          <div id="modal-header">{/* Header for dragging */}</div>
+        </Paper>
       </Draggable>
     </div>
   );

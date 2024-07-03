@@ -18,12 +18,12 @@ const accordions = [
     component: <PrintSavePanel />,
   },
   {
-    title: "Bind test",
-    component: <TestPanelContent />,
-  },
-  {
     title: "Identify",
     component: <IdentifyPanel />,
+  },
+  {
+    title: "Bind test",
+    component: <TestPanelContent />,
   },
 ];
 
