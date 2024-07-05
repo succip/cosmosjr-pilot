@@ -1,11 +1,23 @@
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import { useState } from "react";
-import Draggable from "react-draggable";
 import MapLayerList from "./LayerListLegendPanel/MapLayerList";
+import { Rnd } from "react-rnd";
+
+const style = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  border: "solid 1px #ddd",
+  background: "#f0f0f0",
+};
 
 const OpenDialogTest = () => {
   const [open, setOpen] = useState(false);
+
+  const onResize = () => {
+    console.log("resized");
+  };
 
   const handleClick = () => {
     setOpen(!open);
@@ -16,24 +28,26 @@ const OpenDialogTest = () => {
       <Button variant="contained" onClick={handleClick}>
         {open ? "Close Widget" : "Open Widget"}
       </Button>
-      <Draggable handle="#draggable-dialog-title" cancel={'[class*="MuiDialogContent-root"]'}>
+
+      <Rnd
+        default={{
+          x: 0,
+          y: 0,
+          width: 320,
+          height: 350,
+        }}
+      >
         <Paper
           style={{
-            position: "absolute",
-            zIndex: 100,
-            maxWidth: "400px",
-            maxHeight: "500px",
-            overflowY: "auto",
-            padding: "16px",
             visibility: open ? "visible" : "hidden",
+            height: 500,
+            width: 300,
+            backgroundColor: "green",
           }}
         >
-          <div id="draggable-dialog-title" style={{ cursor: "move" }}>
-            WIDGET TITLE
-          </div>
           <MapLayerList />
         </Paper>
-      </Draggable>
+      </Rnd>
     </div>
   );
 };
