@@ -1,26 +1,18 @@
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import { useState } from "react";
-import MapLayerList from "./LayerListLegendPanel/MapLayerList";
+import MapLegend from "./LayerListLegendPanel/MapLegend";
 import { Rnd } from "react-rnd";
-
-const style = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  border: "solid 1px #ddd",
-  background: "#f0f0f0",
-};
 
 const OpenDialogTest = () => {
   const [open, setOpen] = useState(false);
 
-  const onResize = () => {
-    console.log("resized");
-  };
-
   const handleClick = () => {
     setOpen(!open);
+  };
+
+  const onResize = () => {
+    console.log("resized");
   };
 
   return (
@@ -31,21 +23,30 @@ const OpenDialogTest = () => {
 
       <Rnd
         default={{
-          x: 0,
-          y: 0,
-          width: 320,
-          height: 350,
+          x: -170,
+          y: 30,
+          height: 500,
+          width: 350,
         }}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          background: "#FFF",
+          visibility: open ? "visible" : "hidden",
+          zIndex: 10,
+        }}
+        dragHandleClassName="handle"
+        minHeight={450}
+        maxHeight={1000}
+        minWidth={350}
+        maxWidth={500}
+        bounds={".viewDiv"}
       >
-        <Paper
-          style={{
-            visibility: open ? "visible" : "hidden",
-            height: 500,
-            width: 300,
-            backgroundColor: "green",
-          }}
-        >
-          <MapLayerList />
+        <span className="handle" style={{ cursor: "move" }}>
+          LAYER LIST
+        </span>
+        <Paper elevation={0} style={{ overflow: "auto" }}>
+          <MapLegend />
         </Paper>
       </Rnd>
     </div>
