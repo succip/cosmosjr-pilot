@@ -22,7 +22,7 @@ const accordions = [
     component: <IdentifyPanel />,
   },
   {
-    title: "Bind test",
+    title: "Test Panel",
     component: <TestPanelContent />,
   },
 ];

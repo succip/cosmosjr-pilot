@@ -1,10 +1,9 @@
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import { useState } from "react";
-import MapLayerList from "./LayerListLegendPanel/MapLayerList";
 import { Rnd } from "react-rnd";
 
-const OpenDialogTest = () => {
+const Widget = ({ title, children }) => {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
@@ -39,14 +38,14 @@ const OpenDialogTest = () => {
         bounds={".viewDiv"}
       >
         <span className="handle" style={{ cursor: "move" }}>
-          LAYER LIST
+          {title}
         </span>
         <Paper elevation={0} style={{ overflow: "auto" }}>
-          <MapLayerList />
+          {children}
         </Paper>
       </Rnd>
     </div>
   );
 };
 
-export default OpenDialogTest;
+export default Widget;
