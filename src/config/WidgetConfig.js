@@ -1,5 +1,4 @@
 import MapViewModeToggle from "../components/MapViewModeToggle/MapViewModeToggle";
-import OpenDialogTest from "../components/OpenDialogTest";
 import Widget from "../components/Widget/Widget";
 import MapLayerList from "../components/LayerListLegendPanel/MapLayerList";
 
